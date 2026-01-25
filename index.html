@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offtrail Cycles - Professional Mobile Bike Service Auckland</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #000000;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.85) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23f5f5f5" width="800" height="600"/><g transform="translate(150,150)"><path d="M250 150 Q250 50 300 50 L350 50 Q400 50 400 100 L400 150 Q400 200 350 200 L300 200 Q250 200 250 150 Z" fill="%23000" stroke="%23000" stroke-width="15"/><circle cx="220" cy="220" r="60" fill="none" stroke="%23000" stroke-width="15"/><circle cx="430" cy="220" r="60" fill="none" stroke="%23000" stroke-width="15"/><line x1="250" y1="150" x2="220" y2="220" stroke="%23000" stroke-width="12"/><line x1="400" y1="150" x2="430" y2="220" stroke="%23000" stroke-width="12"/><path d="M350 100 L380 130 L420 110" fill="none" stroke="%23000" stroke-width="12" stroke-linecap="round"/><path d="M380 130 L410 160" fill="none" stroke="%23000" stroke-width="12" stroke-linecap="round"/></g><text x="400" y="480" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" text-anchor="middle" fill="%23000">OFFTRAIL CYCLES</text><text x="400" y="530" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="%23000">MOBILE SERVICE</text></svg>') center/cover no-repeat;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #ffffff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #e94560;
+        }
+
+        .why-us {
+            background: #0a0a0a;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            color: #cccccc;
+            line-height: 1.7;
+        }
+
+        .packages {
+            background: #000000;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .package-card {
+            border: 2px solid #333333;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+        }
+
+        .package-card.blue::before {
+            background: linear-gradient(90deg, #2196F3, #1976D2);
+        }
+
+        .package-card.black::before {
+            background: linear-gradient(90deg, #666, #999);
+        }
+
+        .package-card.diamond::before {
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+        }
+
+        .package-card:hover {
+            border-color: #e94560;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(233, 69, 96, 0.3);
+        }
+
+        .package-name {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .package-price {
+            font-size: 3em;
+            font-weight: 700;
+            color: #e94560;
+            margin: 20px 0;
+        }
+
+        .package-note {
+            font-size: 0.9em;
+            color: #aaaaaa;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .services-table {
+            width: 100%;
+            margin-top: 50px;
+            border-collapse: collapse;
+            background: #1a1a1a;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .services-table th {
+            background: #2a2a2a;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .services-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #333333;
+            color: #ffffff;
+        }
+
+        .services-table tr:hover {
+            background: #252525;
+        }
+
+        .category-header {
+            background: #e94560 !important;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #d63550;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .package-price {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🚴 Offtrail Cycles</h1>
+        <p>Professional Mobile Bike Service - We Come to You Across Auckland</p>
+    </header>
+
+    <section class="section why-us">
+        <div class="container">
+            <h2 class="section-title">Why Choose Offtrail Cycles?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚐</div>
+                    <h3>Convenience That Comes to You</h3>
+                    <p>Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Professional-Grade Service On-Site</h3>
+                    <p>Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍🔧</div>
+                    <h3>Expertise You Can Trust</h3>
+                    <p>Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Transparency & Ongoing Care</h3>
+                    <p>We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section packages">
+        <div class="container">
+            <h2 class="section-title">Service Packages</h2>
+            <p style="text-align: center; font-size: 1.1em; color: #cccccc; margin-bottom: 30px;">
+                <strong>All prices listed are labour costs only and exclude parts</strong>
+            </p>
+
+            <div class="package-grid">
+                <div class="package-card">
+                    <div class="package-name">Green Package</div>
+                    <div class="package-price">$149</div>
+                    <div class="package-note">Basic service & maintenance</div>
+                    <ul style="text-align: left; color: #cccccc; line-height: 2; list-style: none;">
+                        <li>✓ Test ride</li>
+                        <li>✓ 6-Point Safety Check</li>
+                        <li>✓ Gear Tuning</li>
+                        <li>✓ Brake Alignment</li>
+                        <li>✓ Chain Lubrication</li>
+                        <li>✓ Service Report</li>
+                    </ul>
+                </div>
+
+                <div class="package-card blue">
+                    <div class="package-name">Blue Package</div>
+                    <div class="package-price">$299</div>
+                    <div class="package-note">Comprehensive service</div>
+                    <ul style="text-align: left; color: #cccccc; line-height: 2; list-style: none;">
+                        <li>✓ Everything in Green</li>
+                        <li>✓ Seatpost & Axles Service</li>
+                        <li>✓ Tube & Tyre Replacement</li>
+                        <li>✓ Suspension Setup</li>
+                        <li>✓ Hub Adjustment</li>
+                    </ul>
+                </div>
+
+                <div class="package-card black">
+                    <div class="package-name">Black Package</div>
+                    <div class="package-price">$299</div>
+                    <div class="package-note">Advanced service & repair</div>
+                    <ul style="text-align: left; color: #cccccc; line-height: 2; list-style: none;">
+                        <li>✓ Everything in Blue</li>
+                        <li>✓ Drivetrain Cleaning</li>
+                        <li>✓ Wheel Truing</li>
+                        <li>✓ Brake Service</li>
+                        <li>✓ Bearing Service</li>
+                    </ul>
+                </div>
+
+                <div class="package-card diamond">
+                    <div class="package-name">Black Diamond</div>
+                    <div class="package-price">$649</div>
+                    <div class="package-note">Premium complete overhaul</div>
+                    <ul style="text-align: left; color: #cccccc; line-height: 2; list-style: none;">
+                        <li>✓ Everything in Black</li>
+                        <li>✓ Fork 50-Hour Service</li>
+                        <li>✓ Shock 50-Hour Service</li>
+                        <li>✓ Full Brake Bleed</li>
+                        <li>✓ Frame Pivot Service</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; font-size: 2em; margin-top: 80px; margin-bottom: 30px; color: #ffffff;">Individual Services</h3>
+
+            <table class="services-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="category-header">
+                        <td colspan="2">Cable & Hose System Services</td>
+                    </tr>
+                    <tr>
+                        <td>Shifter or Brake External Hose Replacement (each)</td>
+                        <td>$25</td>
+                    </tr>
+                    <tr>
+                        <td>Conventional Bike Internal Shift/Dropper Post Casing (each)</td>
+                        <td>$75</td>
+                    </tr>
+                    <tr>
+                        <td>E-Bike Internal Shift/Dropper Post Casing (each)</td>
+                        <td>$150</td>
+                    </tr>
+                    <tr>
+                        <td>Conventional Bike Internal Brake Hose + Single Brake Bleed</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>E-Bike Internal Brake Hose + Single Brake Bleed</td>
+                        <td>$175</td>
+                    </tr>
+
+                    <tr class="category-header">
+                        <td colspan="2">Wheel & Tyre Services</td>
+                    </tr>
+                    <tr>
+                        <td>Hub-Motor E-Bike Tube or Tyre Replacement</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Convert Tyre to Tubeless (each wheel)</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Hub Service (each)</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Freehub Body Service</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Wheel Truing (each wheel)</td>
+                        <td>$25</td>
+                    </tr>
+                    <tr>
+                        <td>Tube Wheel Spoke Replacement + Wheel True (up to 5 spokes)</td>
+                        <td>$75</td>
+                    </tr>
+                    <tr>
+                        <td>Tubeless Wheel Spoke Replacement + Wheel True (up to 5 spokes)</td>
+                        <td>$125</td>
+                    </tr>
+                    <tr>
+                        <td>Complete Wheel Build (each wheel)</td>
+                        <td>$200</td>
+                    </tr>
+
+                    <tr class="category-header">
+                        <td colspan="2">Brake Services</td>
+                    </tr>
+                    <tr>
+                        <td>Brake Lever Bleed (each)</td>
+                        <td>$25</td>
+                    </tr>
+                    <tr>
+                        <td>Single Brake Bleed</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Both Brakes Bleed</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Hydraulic Brake Caliper Service (each)</td>
+                        <td>$25</td>
+                    </tr>
+                    <tr>
+                        <td>Brake Pad or Rotor Replacement (each)</td>
+                        <td>$25</td>
+                    </tr>
+
+                    <tr class="category-header">
+                        <td colspan="2">Frame Services</td>
+                    </tr>
+                    <tr>
+                        <td>Headset Service</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Bottom Bracket Service or Replacement</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Headset Bearing Service</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Headset System Replacement</td>
+                        <td>$75</td>
+                    </tr>
+                    <tr>
+                        <td>Fork Replacement</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Derailleur Clutch Service & Jockey Wheel Replacement</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Bike Wash</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Drivetrain Clean</td>
+                        <td>$75</td>
+                    </tr>
+                    <tr>
+                        <td>Bike Wrapping</td>
+                        <td>$100/hrs</td>
+                    </tr>
+                    <tr>
+                        <td>Frame Pivot Service or Bearing Replacement</td>
+                        <td>$200</td>
+                    </tr>
+
+                    <tr class="category-header">
+                        <td colspan="2">Suspension Services</td>
+                    </tr>
+                    <tr>
+                        <td>Dropper Post Installation (Conventional Bike)</td>
+                        <td>$75</td>
+                    </tr>
+                    <tr>
+                        <td>Dropper Post Installation (E-Bike)</td>
+                        <td>$125</td>
+                    </tr>
+                    <tr>
+                        <td>Dropper Post Service</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Fork 50-Hour Service</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Fork Airshaft Service</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>Fork 200-Hour Service</td>
+                        <td>$250</td>
+                    </tr>
+                    <tr>
+                        <td>Shock 50-Hour Service</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Shock 200-Hour Service</td>
+                        <td>$250</td>
+                    </tr>
+
+                    <tr class="category-header">
+                        <td colspan="2">Bike Building</td>
+                    </tr>
+                    <tr>
+                        <td>Children's Bike Build (Under 24")</td>
+                        <td>$75</td>
+                    </tr>
+                    <tr>
+                        <td>Adult Conventional Bike Build</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Adult E-Bike Build</td>
+                        <td>$125</td>
+                    </tr>
+
+                    <tr class="category-header">
+                        <td colspan="2">Diagnostics & Troubleshooting</td>
+                    </tr>
+                    <tr>
+                        <td>E-Bike System Shutdown & Component Replacement</td>
+                        <td>$100/hrs</td>
+                    </tr>
+                    <tr>
+                        <td>Intermittent Clicking Noise Diagnosis</td>
+                        <td>$100/hrs</td>
+                    </tr>
+                    <tr>
+                        <td>Complex / Non-Standard Problem Diagnosis & Repair</td>
+                        <td>$100/hrs</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="text-align: center; margin-top: 30px; color: #aaaaaa; font-style: italic;">
+                * Additional labour may apply for severely seized, damaged, or non-standard components.
+            </p>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2>Ready to Get Your Bike Serviced?</h2>
+            <p class="contact-info">📍 Serving Auckland and surrounding suburbs</p>
+            <p class="contact-info">📞 Contact us today for a free quote</p>
+            <p class="contact-info">⏰ Flexible scheduling - we work around your availability</p>
+            <a href="#" class="cta-button">Book Your Service Now</a>
+        </div>
+    </section>
+
+    <footer style="background: #0a0a0a; color: white; text-align: center; padding: 30px 20px;">
+        <p>&copy; 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand</p>
+        <p style="margin-top: 10px; opacity: 0.8;">Expert, convenient, and trustworthy bicycle care - wherever you are.</p>
+    </footer>
+</body>
+</html>
