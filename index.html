@@ -124,42 +124,95 @@
         }
 
         .package-card {
-            border: 2px solid #333333;
+            border: none;
             border-radius: 15px;
             padding: 40px 30px;
             text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        }
+
+        .package-card.blue {
+            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+        }
+
+        .package-card.black {
+            background: linear-gradient(135deg, #555 0%, #333 100%);
+        }
+
+        .package-card.diamond {
+            background: #000000;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .package-card:hover::before {
+            opacity: 1;
         }
 
         .package-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #4CAF50, #45a049);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .package-card::before {
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(76, 175, 80, 0.3) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 40%, rgba(76, 175, 80, 0.2) 0%, transparent 35%),
+                radial-gradient(ellipse at 50% 60%, rgba(76, 175, 80, 0.15) 0%, transparent 45%);
         }
 
         .package-card.blue::before {
-            background: linear-gradient(90deg, #2196F3, #1976D2);
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(33, 150, 243, 0.4) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 40%, rgba(33, 150, 243, 0.3) 0%, transparent 35%),
+                radial-gradient(ellipse at 50% 60%, rgba(33, 150, 243, 0.2) 0%, transparent 45%);
         }
 
         .package-card.black::before {
-            background: linear-gradient(90deg, #666, #999);
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(200, 200, 200, 0.3) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 40%, rgba(200, 200, 200, 0.2) 0%, transparent 35%),
+                radial-gradient(ellipse at 50% 60%, rgba(200, 200, 200, 0.15) 0%, transparent 45%);
         }
 
         .package-card.diamond::before {
-            background: linear-gradient(90deg, #FFD700, #FFA500);
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 35%),
+                radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.15) 0%, transparent 45%),
+                radial-gradient(ellipse at 20% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 30%);
+            opacity: 1;
         }
 
-        .package-card:hover {
-            border-color: #e94560;
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(233, 69, 96, 0.3);
+        .package-card.diamond::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .package-card.diamond:hover {
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
         }
 
         .package-name {
@@ -167,28 +220,37 @@
             font-weight: 700;
             margin-bottom: 15px;
             color: #ffffff;
+            position: relative;
+            z-index: 1;
         }
 
         .package-price {
             font-size: 3em;
             font-weight: 700;
-            color: #e94560;
+            color: #ffffff;
             margin: 20px 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .package-note {
             font-size: 0.9em;
-            color: #aaaaaa;
+            color: #f0f0f0;
             margin-bottom: 25px;
             font-style: italic;
+            position: relative;
+            z-index: 1;
         }
 
         .package-card ul {
             text-align: left;
-            color: #cccccc;
+            color: #ffffff;
             line-height: 1.8;
             list-style: none;
             font-size: 0.9em;
+            position: relative;
+            z-index: 1;
         }
 
         .package-card li {
@@ -297,7 +359,7 @@
 </head>
 <body>
     <header class="header">
-        <h1>🚴 Offtrail Cycles</h1>
+        <h1>Offtrail Cycles</h1>
         <p>Professional Mobile Bike Service - We Come to You Across Auckland</p>
     </header>
 
@@ -366,18 +428,7 @@
                     <div class="package-price">$199</div>
                     <div class="package-note">Comprehensive service</div>
                     <ul>
-                        <li>✓ Inspection & Service reports</li>
-                        <li>✓ Test ride</li>
-                        <li>✓ 6-Point Safety Check ("M" check)</li>
-                        <li>✓ Gear Tuning</li>
-                        <li>✓ Brake Alignment</li>
-                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
-                        <li>✓ Chain Inspection & Lubrication</li>
-                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
-                        <li>✓ Suspension Setup & Reset</li>
-                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
-                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
-                        <li>✓ Hub Adjustment & Tightening</li>
+                        <li>✓ Everything in Green</li>
                         <li>✓ Drivetrain Cleaning or Component Replacement</li>
                         <li>✓ Wheel Truing</li>
                         <li>✓ Brake Rotor & Pad Cleaning or Replacement</li>
@@ -389,21 +440,7 @@
                     <div class="package-price">$299</div>
                     <div class="package-note">Advanced service & repair</div>
                     <ul>
-                        <li>✓ Inspection & Service reports</li>
-                        <li>✓ Test ride</li>
-                        <li>✓ 6-Point Safety Check ("M" check)</li>
-                        <li>✓ Gear Tuning</li>
-                        <li>✓ Brake Alignment</li>
-                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
-                        <li>✓ Chain Inspection & Lubrication</li>
-                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
-                        <li>✓ Suspension Setup & Reset</li>
-                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
-                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
-                        <li>✓ Hub Adjustment & Tightening</li>
-                        <li>✓ Drivetrain Cleaning or Component Replacement</li>
-                        <li>✓ Wheel Truing</li>
-                        <li>✓ Brake Rotor & Pad Cleaning or Replacement</li>
+                        <li>✓ Everything in Blue</li>
                         <li>✓ Headset Bearing Service or Replacement</li>
                         <li>✓ Hub & Freehub Body Service or Bearing Replacement</li>
                         <li>✓ Bottom Bracket Service or E-Bike Software Update</li>
@@ -415,24 +452,7 @@
                     <div class="package-price">$649</div>
                     <div class="package-note">Premium complete overhaul</div>
                     <ul>
-                        <li>✓ Inspection & Service reports</li>
-                        <li>✓ Test ride</li>
-                        <li>✓ 6-Point Safety Check ("M" check)</li>
-                        <li>✓ Gear Tuning</li>
-                        <li>✓ Brake Alignment</li>
-                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
-                        <li>✓ Chain Inspection & Lubrication</li>
-                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
-                        <li>✓ Suspension Setup & Reset</li>
-                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
-                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
-                        <li>✓ Hub Adjustment & Tightening</li>
-                        <li>✓ Drivetrain Cleaning or Component Replacement</li>
-                        <li>✓ Wheel Truing</li>
-                        <li>✓ Brake Rotor & Pad Cleaning or Replacement</li>
-                        <li>✓ Headset Bearing Service or Replacement</li>
-                        <li>✓ Hub & Freehub Body Service or Bearing Replacement</li>
-                        <li>✓ Bottom Bracket Service or E-Bike Software Update</li>
+                        <li>✓ Everything in Black</li>
                         <li>✓ Frame Pivot Service or Bearing Replacement</li>
                         <li>✓ Fork 50-Hour Service</li>
                         <li>✓ Shock 50-Hour Service</li>
