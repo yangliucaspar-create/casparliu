@@ -19,31 +19,26 @@
         }
 
         .header {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.85) 100%),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23f5f5f5" width="800" height="600"/><g transform="translate(150,150)"><path d="M250 150 Q250 50 300 50 L350 50 Q400 50 400 100 L400 150 Q400 200 350 200 L300 200 Q250 200 250 150 Z" fill="%23000" stroke="%23000" stroke-width="15"/><circle cx="220" cy="220" r="60" fill="none" stroke="%23000" stroke-width="15"/><circle cx="430" cy="220" r="60" fill="none" stroke="%23000" stroke-width="15"/><line x1="250" y1="150" x2="220" y2="220" stroke="%23000" stroke-width="12"/><line x1="400" y1="150" x2="430" y2="220" stroke="%23000" stroke-width="12"/><path d="M350 100 L380 130 L420 110" fill="none" stroke="%23000" stroke-width="12" stroke-linecap="round"/><path d="M380 130 L410 160" fill="none" stroke="%23000" stroke-width="12" stroke-linecap="round"/></g><text x="400" y="480" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" text-anchor="middle" fill="%23000">OFFTRAIL CYCLES</text><text x="400" y="530" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="%23000">MOBILE SERVICE</text></svg>') center/cover no-repeat;
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="tools" patternUnits="userSpaceOnUse" width="200" height="200"><circle cx="50" cy="50" r="3" fill="%23444"/><circle cx="150" cy="150" r="3" fill="%23444"/><rect x="70" y="70" width="60" height="4" fill="%23333" opacity="0.5"/><rect x="95" y="45" width="4" height="60" fill="%23333" opacity="0.5"/><path d="M 20 100 L 40 120 L 30 130 L 10 110 Z" fill="%23555" opacity="0.3"/><circle cx="170" cy="30" r="15" fill="none" stroke="%23444" stroke-width="2"/></pattern></defs><rect width="1200" height="400" fill="url(%23tools)"/></svg>') center/cover;
             color: white;
-            padding: 120px 20px;
+            padding: 60px 20px;
             text-align: center;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         .header h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
+            font-size: 3.5em;
+            margin-bottom: 15px;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
         }
 
         .header p {
-            font-size: 1.3em;
+            font-size: 1.4em;
             max-width: 800px;
             margin: 0 auto;
-            opacity: 0.95;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .container {
@@ -82,7 +77,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             margin-top: 40px;
         }
@@ -106,7 +101,7 @@
         }
 
         .feature-card h3 {
-            font-size: 1.5em;
+            font-size: 1.3em;
             margin-bottom: 15px;
             color: #ffffff;
         }
@@ -114,6 +109,7 @@
         .feature-card p {
             color: #cccccc;
             line-height: 1.7;
+            font-size: 0.95em;
         }
 
         .packages {
@@ -187,6 +183,18 @@
             font-style: italic;
         }
 
+        .package-card ul {
+            text-align: left;
+            color: #cccccc;
+            line-height: 1.8;
+            list-style: none;
+            font-size: 0.9em;
+        }
+
+        .package-card li {
+            margin-bottom: 8px;
+        }
+
         .services-table {
             width: 100%;
             margin-top: 50px;
@@ -258,9 +266,23 @@
             box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
         }
 
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2em;
+                font-size: 2.5em;
+            }
+
+            .header p {
+                font-size: 1.1em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
             }
 
             .section-title {
@@ -323,26 +345,42 @@
                     <div class="package-name">Green Package</div>
                     <div class="package-price">$149</div>
                     <div class="package-note">Basic service & maintenance</div>
-                    <ul style="text-align: left; color: #cccccc; line-height: 2; list-style: none;">
+                    <ul>
+                        <li>✓ Inspection & Service reports</li>
                         <li>✓ Test ride</li>
-                        <li>✓ 6-Point Safety Check</li>
+                        <li>✓ 6-Point Safety Check ("M" check)</li>
                         <li>✓ Gear Tuning</li>
                         <li>✓ Brake Alignment</li>
-                        <li>✓ Chain Lubrication</li>
-                        <li>✓ Service Report</li>
+                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
+                        <li>✓ Chain Inspection & Lubrication</li>
+                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
+                        <li>✓ Suspension Setup & Reset</li>
+                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
+                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
+                        <li>✓ Hub Adjustment & Tightening</li>
                     </ul>
                 </div>
 
                 <div class="package-card blue">
                     <div class="package-name">Blue Package</div>
-                    <div class="package-price">$299</div>
+                    <div class="package-price">$199</div>
                     <div class="package-note">Comprehensive service</div>
-                    <ul style="text-align: left; color: #cccccc; line-height: 2; list-style: none;">
-                        <li>✓ Everything in Green</li>
-                        <li>✓ Seatpost & Axles Service</li>
-                        <li>✓ Tube & Tyre Replacement</li>
-                        <li>✓ Suspension Setup</li>
-                        <li>✓ Hub Adjustment</li>
+                    <ul>
+                        <li>✓ Inspection & Service reports</li>
+                        <li>✓ Test ride</li>
+                        <li>✓ 6-Point Safety Check ("M" check)</li>
+                        <li>✓ Gear Tuning</li>
+                        <li>✓ Brake Alignment</li>
+                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
+                        <li>✓ Chain Inspection & Lubrication</li>
+                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
+                        <li>✓ Suspension Setup & Reset</li>
+                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
+                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
+                        <li>✓ Hub Adjustment & Tightening</li>
+                        <li>✓ Drivetrain Cleaning or Component Replacement</li>
+                        <li>✓ Wheel Truing</li>
+                        <li>✓ Brake Rotor & Pad Cleaning or Replacement</li>
                     </ul>
                 </div>
 
@@ -350,12 +388,25 @@
                     <div class="package-name">Black Package</div>
                     <div class="package-price">$299</div>
                     <div class="package-note">Advanced service & repair</div>
-                    <ul style="text-align: left; color: #cccccc; line-height: 2; list-style: none;">
-                        <li>✓ Everything in Blue</li>
-                        <li>✓ Drivetrain Cleaning</li>
+                    <ul>
+                        <li>✓ Inspection & Service reports</li>
+                        <li>✓ Test ride</li>
+                        <li>✓ 6-Point Safety Check ("M" check)</li>
+                        <li>✓ Gear Tuning</li>
+                        <li>✓ Brake Alignment</li>
+                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
+                        <li>✓ Chain Inspection & Lubrication</li>
+                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
+                        <li>✓ Suspension Setup & Reset</li>
+                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
+                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
+                        <li>✓ Hub Adjustment & Tightening</li>
+                        <li>✓ Drivetrain Cleaning or Component Replacement</li>
                         <li>✓ Wheel Truing</li>
-                        <li>✓ Brake Service</li>
-                        <li>✓ Bearing Service</li>
+                        <li>✓ Brake Rotor & Pad Cleaning or Replacement</li>
+                        <li>✓ Headset Bearing Service or Replacement</li>
+                        <li>✓ Hub & Freehub Body Service or Bearing Replacement</li>
+                        <li>✓ Bottom Bracket Service or E-Bike Software Update</li>
                     </ul>
                 </div>
 
@@ -363,12 +414,29 @@
                     <div class="package-name">Black Diamond</div>
                     <div class="package-price">$649</div>
                     <div class="package-note">Premium complete overhaul</div>
-                    <ul style="text-align: left; color: #cccccc; line-height: 2; list-style: none;">
-                        <li>✓ Everything in Black</li>
+                    <ul>
+                        <li>✓ Inspection & Service reports</li>
+                        <li>✓ Test ride</li>
+                        <li>✓ 6-Point Safety Check ("M" check)</li>
+                        <li>✓ Gear Tuning</li>
+                        <li>✓ Brake Alignment</li>
+                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
+                        <li>✓ Chain Inspection & Lubrication</li>
+                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
+                        <li>✓ Suspension Setup & Reset</li>
+                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
+                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
+                        <li>✓ Hub Adjustment & Tightening</li>
+                        <li>✓ Drivetrain Cleaning or Component Replacement</li>
+                        <li>✓ Wheel Truing</li>
+                        <li>✓ Brake Rotor & Pad Cleaning or Replacement</li>
+                        <li>✓ Headset Bearing Service or Replacement</li>
+                        <li>✓ Hub & Freehub Body Service or Bearing Replacement</li>
+                        <li>✓ Bottom Bracket Service or E-Bike Software Update</li>
+                        <li>✓ Frame Pivot Service or Bearing Replacement</li>
                         <li>✓ Fork 50-Hour Service</li>
                         <li>✓ Shock 50-Hour Service</li>
-                        <li>✓ Full Brake Bleed</li>
-                        <li>✓ Frame Pivot Service</li>
+                        <li>✓ Full Brake Bleed & Brake Piston Service</li>
                     </ul>
                 </div>
             </div>
