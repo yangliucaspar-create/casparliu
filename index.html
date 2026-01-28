@@ -25,6 +25,43 @@
             color: white;
             padding: 60px 20px;
             text-align: center;
+            position: relative;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .language-switcher span {
+            color: #cccccc;
+            font-size: 0.9em;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .language-btn.active {
+            background: #e94560;
+            border-color: #e94560;
         }
 
         .header h1 {
@@ -365,31 +402,31 @@
 
     <section class="section why-us">
         <div class="container">
-            <h2 class="section-title">Why Choose Offtrail Cycles?</h2>
+            <h2 class="section-title" id="why-choose-title">Why Choose Offtrail Cycles?</h2>
             
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚐</div>
-                    <h3>Convenience That Comes to You</h3>
-                    <p>Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.</p>
+                    <h3 id="convenience-title">Convenience That Comes to You</h3>
+                    <p id="convenience-desc">Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">🔧</div>
-                    <h3>Professional-Grade Service On-Site</h3>
-                    <p>Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.</p>
+                    <h3 id="professional-title">Professional-Grade Service On-Site</h3>
+                    <p id="professional-desc">Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">👨‍🔧</div>
-                    <h3>Expertise You Can Trust</h3>
-                    <p>Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.</p>
+                    <h3 id="expertise-title">Expertise You Can Trust</h3>
+                    <p id="expertise-desc">Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">📋</div>
-                    <h3>Transparency & Ongoing Care</h3>
-                    <p>We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.</p>
+                    <h3 id="transparency-title">Transparency & Ongoing Care</h3>
+                    <p id="transparency-desc">We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.</p>
                 </div>
             </div>
         </div>
@@ -397,71 +434,71 @@
 
     <section class="section packages">
         <div class="container">
-            <h2 class="section-title">Service Packages</h2>
-            <p style="text-align: center; font-size: 1.1em; color: #cccccc; margin-bottom: 30px;">
+            <h2 class="section-title" id="service-packages-title">Service Packages</h2>
+            <p style="text-align: center; font-size: 1.1em; color: #cccccc; margin-bottom: 30px;" id="price-note">
                 <strong>All prices listed are labour costs only and exclude parts</strong>
             </p>
 
             <div class="package-grid">
                 <div class="package-card">
-                    <div class="package-name">Green Package</div>
+                    <div class="package-name" id="green-name">Green Package</div>
                     <div class="package-price">$149</div>
-                    <div class="package-note">Basic service & maintenance</div>
+                    <div class="package-note" id="green-note">Basic service & maintenance</div>
                     <ul>
-                        <li>✓ Inspection & Service reports</li>
-                        <li>✓ Test ride</li>
-                        <li>✓ 6-Point Safety Check ("M" check)</li>
-                        <li>✓ Gear Tuning</li>
-                        <li>✓ Brake Alignment</li>
-                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
-                        <li>✓ Chain Inspection & Lubrication</li>
-                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
-                        <li>✓ Suspension Setup & Reset</li>
-                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
-                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
-                        <li>✓ Hub Adjustment & Tightening</li>
+                        <li data-en="✓ Inspection & Service reports" data-zh="✓ 检查与服务报告">✓ Inspection & Service reports</li>
+                        <li data-en="✓ Test ride" data-zh="✓ 试骑">✓ Test ride</li>
+                        <li data-en="✓ 6-Point Safety Check ("M" check)" data-zh="✓ 6点安全检查（"M"检查）">✓ 6-Point Safety Check ("M" check)</li>
+                        <li data-en="✓ Gear Tuning" data-zh="✓ 变速调整">✓ Gear Tuning</li>
+                        <li data-en="✓ Brake Alignment" data-zh="✓ 刹车校准">✓ Brake Alignment</li>
+                        <li data-en="✓ Seatpost & Axles Clean & Re-grease" data-zh="✓ 座管与轴清洁及重新润滑">✓ Seatpost & Axles Clean & Re-grease</li>
+                        <li data-en="✓ Chain Inspection & Lubrication" data-zh="✓ 链条检查与润滑">✓ Chain Inspection & Lubrication</li>
+                        <li data-en="✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)" data-zh="✓ 内胎与轮胎更换（不包括轮毂电机轮）">✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
+                        <li data-en="✓ Suspension Setup & Reset" data-zh="✓ 避震设置与重置">✓ Suspension Setup & Reset</li>
+                        <li data-en="✓ Sealant Top-Up & Valve Core Replacement" data-zh="✓ 补充密封剂与气嘴芯更换">✓ Sealant Top-Up & Valve Core Replacement</li>
+                        <li data-en="✓ Cable Replacement (If Required) & Hose Lubrication" data-zh="✓ 线缆更换（如需要）与软管润滑">✓ Cable Replacement (If Required) & Hose Lubrication</li>
+                        <li data-en="✓ Hub Adjustment & Tightening" data-zh="✓ 花鼓调整与紧固">✓ Hub Adjustment & Tightening</li>
                     </ul>
                 </div>
 
                 <div class="package-card blue">
-                    <div class="package-name">Blue Package</div>
+                    <div class="package-name" id="blue-name">Blue Package</div>
                     <div class="package-price">$199</div>
-                    <div class="package-note">Comprehensive service</div>
+                    <div class="package-note" id="blue-note">Comprehensive service</div>
                     <ul>
-                        <li>✓ Everything in Green</li>
-                        <li>✓ Drivetrain Cleaning or Component Replacement</li>
-                        <li>✓ Wheel Truing</li>
-                        <li>✓ Brake Rotor & Pad Cleaning or Replacement</li>
+                        <li id="everything-green">✓ Everything in Green</li>
+                        <li data-en="✓ Drivetrain Cleaning or Component Replacement" data-zh="✓ 传动系统清洁或组件更换">✓ Drivetrain Cleaning or Component Replacement</li>
+                        <li data-en="✓ Wheel Truing" data-zh="✓ 轮组校正">✓ Wheel Truing</li>
+                        <li data-en="✓ Brake Rotor & Pad Cleaning or Replacement" data-zh="✓ 刹车盘与刹车片清洁或更换">✓ Brake Rotor & Pad Cleaning or Replacement</li>
                     </ul>
                 </div>
 
                 <div class="package-card black">
-                    <div class="package-name">Black Package</div>
+                    <div class="package-name" id="black-name">Black Package</div>
                     <div class="package-price">$299</div>
-                    <div class="package-note">Advanced service & repair</div>
+                    <div class="package-note" id="black-note">Advanced service & repair</div>
                     <ul>
-                        <li>✓ Everything in Blue</li>
-                        <li>✓ Headset Bearing Service or Replacement</li>
-                        <li>✓ Hub & Freehub Body Service or Bearing Replacement</li>
-                        <li>✓ Bottom Bracket Service or E-Bike Software Update</li>
+                        <li id="everything-blue">✓ Everything in Blue</li>
+                        <li data-en="✓ Headset Bearing Service or Replacement" data-zh="✓ 头管轴承保养或更换">✓ Headset Bearing Service or Replacement</li>
+                        <li data-en="✓ Hub & Freehub Body Service or Bearing Replacement" data-zh="✓ 花鼓与飞轮体保养或轴承更换">✓ Hub & Freehub Body Service or Bearing Replacement</li>
+                        <li data-en="✓ Bottom Bracket Service or E-Bike Software Update" data-zh="✓ 中轴保养或电动车软件更新">✓ Bottom Bracket Service or E-Bike Software Update</li>
                     </ul>
                 </div>
 
                 <div class="package-card diamond">
-                    <div class="package-name">Black Diamond</div>
+                    <div class="package-name" id="diamond-name">Black Diamond</div>
                     <div class="package-price">$649</div>
-                    <div class="package-note">Premium complete overhaul</div>
+                    <div class="package-note" id="diamond-note">Premium complete overhaul</div>
                     <ul>
-                        <li>✓ Everything in Black</li>
-                        <li>✓ Frame Pivot Service or Bearing Replacement</li>
-                        <li>✓ Fork 50-Hour Service</li>
-                        <li>✓ Shock 50-Hour Service</li>
-                        <li>✓ Full Brake Bleed & Brake Piston Service</li>
+                        <li id="everything-black">✓ Everything in Black</li>
+                        <li data-en="✓ Frame Pivot Service or Bearing Replacement" data-zh="✓ 车架枢轴保养或轴承更换">✓ Frame Pivot Service or Bearing Replacement</li>
+                        <li data-en="✓ Fork 50-Hour Service" data-zh="✓ 前叉50小时保养">✓ Fork 50-Hour Service</li>
+                        <li data-en="✓ Shock 50-Hour Service" data-zh="✓ 后避震50小时保养">✓ Shock 50-Hour Service</li>
+                        <li data-en="✓ Full Brake Bleed & Brake Piston Service" data-zh="✓ 全套刹车排气与活塞保养">✓ Full Brake Bleed & Brake Piston Service</li>
                     </ul>
                 </div>
             </div>
 
-            <h3 style="text-align: center; font-size: 2em; margin-top: 80px; margin-bottom: 30px; color: #ffffff;">Individual Services</h3>
+            <h3 style="text-align: center; font-size: 2em; margin-top: 80px; margin-bottom: 30px; color: #ffffff;" id="individual-services">Individual Services</h3>
 
             <table class="services-table">
                 <thead>
@@ -677,17 +714,17 @@
 
     <section class="contact">
         <div class="container">
-            <h2>Ready to Get Your Bike Serviced?</h2>
-            <p class="contact-info">📍 Serving Auckland and surrounding suburbs</p>
-            <p class="contact-info">📞 Contact us today for a free quote</p>
-            <p class="contact-info">⏰ Flexible scheduling - we work around your availability</p>
-            <a href="#" class="cta-button">Book Your Service Now</a>
+            <h2 id="ready-title">Ready to Get Your Bike Serviced?</h2>
+            <p class="contact-info" id="serving-area">📍 Serving Auckland and surrounding suburbs</p>
+            <p class="contact-info" id="contact-quote">📞 Contact us today for a free quote</p>
+            <p class="contact-info" id="flexible-schedule">⏰ Flexible scheduling - we work around your availability</p>
+            <a href="#" class="cta-button" id="book-button">Book Your Service Now</a>
         </div>
     </section>
 
     <footer style="background: #0a0a0a; color: white; text-align: center; padding: 30px 20px;">
-        <p>&copy; 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand</p>
-        <p style="margin-top: 10px; opacity: 0.8;">Expert, convenient, and trustworthy bicycle care - wherever you are.</p>
+        <p id="footer-text">&copy; 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand</p>
+        <p style="margin-top: 10px; opacity: 0.8;" id="footer-tagline">Expert, convenient, and trustworthy bicycle care - wherever you are.</p>
     </footer>
 </body>
 </html>
