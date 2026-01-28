@@ -3,430 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offtrail Cycles - Professional Mobile Bike Service Auckland</title>
+    <title>Offtrail Cycles</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background-color: #000000;
-        }
-
-        .header {
-            background: 
-                linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="tools" patternUnits="userSpaceOnUse" width="200" height="200"><circle cx="50" cy="50" r="3" fill="%23444"/><circle cx="150" cy="150" r="3" fill="%23444"/><rect x="70" y="70" width="60" height="4" fill="%23333" opacity="0.5"/><rect x="95" y="45" width="4" height="60" fill="%23333" opacity="0.5"/><path d="M 20 100 L 40 120 L 30 130 L 10 110 Z" fill="%23555" opacity="0.3"/><circle cx="170" cy="30" r="15" fill="none" stroke="%23444" stroke-width="2"/></pattern></defs><rect width="1200" height="400" fill="url(%23tools)"/></svg>') center/cover;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .language-switcher {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .language-switcher span {
-            color: #cccccc;
-            font-size: 0.9em;
-        }
-
-        .language-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-        }
-
-        .language-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .language-btn.active {
-            background: #e94560;
-            border-color: #e94560;
-        }
-
-        .header h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
-        }
-
-        .header p {
-            font-size: 1.4em;
-            max-width: 800px;
-            margin: 0 auto;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .section {
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 50px;
-            color: #ffffff;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: #e94560;
-        }
-
-        .why-us {
-            background: #0a0a0a;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(255,255,255,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255,255,255,0.1);
-        }
-
-        .feature-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .feature-card p {
-            color: #cccccc;
-            line-height: 1.7;
-            font-size: 0.95em;
-        }
-
-        .packages {
-            background: #000000;
-        }
-
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .package-card {
-            border: none;
-            border-radius: 15px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-        }
-
-        .package-card.blue {
-            background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-        }
-
-        .package-card.black {
-            background: linear-gradient(135deg, #555 0%, #333 100%);
-        }
-
-        .package-card.diamond {
-            background: #000000;
-            position: relative;
-        }
-
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-
-        .package-card:hover::before {
-            opacity: 1;
-        }
-
-        .package-card::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150%;
-            height: 150%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .package-card::before {
-            background: 
-                radial-gradient(ellipse at 30% 30%, rgba(76, 175, 80, 0.3) 0%, transparent 40%),
-                radial-gradient(ellipse at 70% 40%, rgba(76, 175, 80, 0.2) 0%, transparent 35%),
-                radial-gradient(ellipse at 50% 60%, rgba(76, 175, 80, 0.15) 0%, transparent 45%);
-        }
-
-        .package-card.blue::before {
-            background: 
-                radial-gradient(ellipse at 30% 30%, rgba(33, 150, 243, 0.4) 0%, transparent 40%),
-                radial-gradient(ellipse at 70% 40%, rgba(33, 150, 243, 0.3) 0%, transparent 35%),
-                radial-gradient(ellipse at 50% 60%, rgba(33, 150, 243, 0.2) 0%, transparent 45%);
-        }
-
-        .package-card.black::before {
-            background: 
-                radial-gradient(ellipse at 30% 30%, rgba(200, 200, 200, 0.3) 0%, transparent 40%),
-                radial-gradient(ellipse at 70% 40%, rgba(200, 200, 200, 0.2) 0%, transparent 35%),
-                radial-gradient(ellipse at 50% 60%, rgba(200, 200, 200, 0.15) 0%, transparent 45%);
-        }
-
-        .package-card.diamond::before {
-            background: 
-                radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 40%),
-                radial-gradient(ellipse at 70% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 35%),
-                radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.15) 0%, transparent 45%),
-                radial-gradient(ellipse at 20% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 30%);
-            opacity: 1;
-        }
-
-        .package-card.diamond::after {
-            content: '';
-            position: absolute;
-            top: 15%;
-            right: 15%;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .package-card.diamond:hover {
-            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
-        }
-
-        .package-name {
-            font-size: 1.8em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffffff;
-            position: relative;
-            z-index: 1;
-        }
-
-        .package-price {
-            font-size: 3em;
-            font-weight: 700;
-            color: #ffffff;
-            margin: 20px 0;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .package-note {
-            font-size: 0.9em;
-            color: #f0f0f0;
-            margin-bottom: 25px;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
-
-        .package-card ul {
-            text-align: left;
-            color: #ffffff;
-            line-height: 1.8;
-            list-style: none;
-            font-size: 0.9em;
-            position: relative;
-            z-index: 1;
-        }
-
-        .package-card li {
-            margin-bottom: 8px;
-        }
-
-        .services-table {
-            width: 100%;
-            margin-top: 50px;
-            border-collapse: collapse;
-            background: #1a1a1a;
-            box-shadow: 0 5px 15px rgba(255,255,255,0.05);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .services-table th {
-            background: #2a2a2a;
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .services-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #333333;
-            color: #ffffff;
-        }
-
-        .services-table tr:hover {
-            background: #252525;
-        }
-
-        .category-header {
-            background: #e94560 !important;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1em;
-        }
-
-        .contact {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .contact h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-
-        .contact-info {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #e94560;
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1em;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background: #d63550;
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
-        }
-
-        @media (max-width: 1024px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5em;
-            }
-
-            .header p {
-                font-size: 1.1em;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2em;
-            }
-
-            .package-price {
-                font-size: 2.5em;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #ffffff; background-color: #000000; }
+        .header { background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="tools" patternUnits="userSpaceOnUse" width="200" height="200"><circle cx="50" cy="50" r="3" fill="%23444"/><circle cx="150" cy="150" r="3" fill="%23444"/><rect x="70" y="70" width="60" height="4" fill="%23333" opacity="0.5"/><rect x="95" y="45" width="4" height="60" fill="%23333" opacity="0.5"/><path d="M 20 100 L 40 120 L 30 130 L 10 110 Z" fill="%23555" opacity="0.3"/><circle cx="170" cy="30" r="15" fill="none" stroke="%23444" stroke-width="2"/></pattern></defs><rect width="1200" height="400" fill="url(%23tools)"/></svg>') center/cover; color: white; padding: 60px 20px; text-align: center; position: relative; }
+        .language-switcher { position: absolute; top: 20px; right: 20px; display: flex; gap: 15px; align-items: center; z-index: 10; }
+        .language-switcher span { color: #cccccc; font-size: 0.9em; }
+        .language-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-size: 0.9em; transition: all 0.3s ease; }
+        .language-btn:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.5); }
+        .language-btn.active { background: #e94560; border-color: #e94560; }
+        .header h1 { font-size: 3.5em; margin-bottom: 15px; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.8); }
+        .header p { font-size: 1.4em; max-width: 800px; margin: 0 auto; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section { padding: 60px 20px; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 50px; color: #ffffff; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #e94560; }
+        .why-us { background: #0a0a0a; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
+        .feature-card { background: #1a1a1a; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(255,255,255,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255,255,255,0.1); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-card h3 { font-size: 1.3em; margin-bottom: 15px; color: #ffffff; }
+        .feature-card p { color: #cccccc; line-height: 1.7; font-size: 0.95em; }
+        .packages { background: #000000; }
+        .package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .package-card { border: none; border-radius: 15px; padding: 40px 30px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); }
+        .package-card::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150%; height: 150%; background: radial-gradient(ellipse at 30% 30%, rgba(144, 238, 144, 0.4) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(144, 238, 144, 0.3) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(144, 238, 144, 0.2) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(144, 238, 144, 0.15) 0%, transparent 30%); pointer-events: none; }
+        .package-card::after { content: ''; position: absolute; top: 15%; right: 15%; width: 80px; height: 80px; background: radial-gradient(circle, rgba(144, 238, 144, 0.5) 0%, transparent 60%); border-radius: 50%; pointer-events: none; }
+        .package-card.blue { background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); }
+        .package-card.blue::before { background: radial-gradient(ellipse at 30% 30%, rgba(135, 206, 250, 0.4) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(135, 206, 250, 0.3) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(135, 206, 250, 0.2) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(135, 206, 250, 0.15) 0%, transparent 30%); }
+        .package-card.blue::after { background: radial-gradient(circle, rgba(135, 206, 250, 0.5) 0%, transparent 60%); }
+        .package-card.black { background: linear-gradient(135deg, #555 0%, #333 100%); }
+        .package-card.black::before { background: radial-gradient(ellipse at 30% 30%, rgba(220, 220, 220, 0.3) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(220, 220, 220, 0.25) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(220, 220, 220, 0.2) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(220, 220, 220, 0.15) 0%, transparent 30%); }
+        .package-card.black::after { background: radial-gradient(circle, rgba(220, 220, 220, 0.4) 0%, transparent 60%); }
+        .package-card.diamond { background: #000000; }
+        .package-card.diamond::before { background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.15) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 30%); }
+        .package-card.diamond::after { background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%); }
+        .package-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
+        .package-card.diamond:hover { box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3); }
+        .package-name { font-size: 1.8em; font-weight: 700; margin-bottom: 15px; color: #ffffff; position: relative; z-index: 1; }
+        .package-price { font-size: 3em; font-weight: 700; color: #ffffff; margin: 20px 0; position: relative; z-index: 1; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+        .package-note { font-size: 0.9em; color: #f0f0f0; margin-bottom: 25px; font-style: italic; position: relative; z-index: 1; }
+        .package-card ul { text-align: left; color: #ffffff; line-height: 1.8; list-style: none; font-size: 0.9em; position: relative; z-index: 1; }
+        .package-card li { margin-bottom: 8px; }
+        .contact { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center; padding: 60px 20px; }
+        .contact h2 { font-size: 2.5em; margin-bottom: 30px; }
+        .contact-info { font-size: 1.2em; margin-bottom: 15px; }
+        .cta-button { display: inline-block; background: #e94560; color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-size: 1.1em; font-weight: 600; margin-top: 20px; transition: all 0.3s ease; }
+        .cta-button:hover { background: #d63550; transform: scale(1.05); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
+        @media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .header h1 { font-size: 2.5em; } .features-grid { grid-template-columns: 1fr; } .language-switcher { position: static; justify-content: center; margin-bottom: 20px; } }
     </style>
 </head>
 <body>
     <header class="header">
-        <h1>Offtrail Cycles</h1>
-        <p>Professional Mobile Bike Service - We Come to You Across Auckland</p>
+        <div class="language-switcher">
+            <span id="lang-label">Language:</span>
+            <button class="language-btn active" id="btn-en" onclick="switchLanguage('en')">English</button>
+            <button class="language-btn" id="btn-zh" onclick="switchLanguage('zh')">中文</button>
+        </div>
+        <h1 id="title">Offtrail Cycles</h1>
+        <p id="subtitle">Professional Mobile Bike Service - We Come to You Across Auckland</p>
     </header>
 
     <section class="section why-us">
         <div class="container">
-            <h2 class="section-title" id="why-choose-title">Why Choose Offtrail Cycles?</h2>
-            
+            <h2 class="section-title" id="why-title">Why Choose Offtrail Cycles?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚐</div>
-                    <h3 id="convenience-title">Convenience That Comes to You</h3>
-                    <p id="convenience-desc">Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.</p>
+                    <h3 id="feat1-title">Convenience That Comes to You</h3>
+                    <p id="feat1-desc">Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">🔧</div>
-                    <h3 id="professional-title">Professional-Grade Service On-Site</h3>
-                    <p id="professional-desc">Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.</p>
+                    <h3 id="feat2-title">Professional-Grade Service On-Site</h3>
+                    <p id="feat2-desc">Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">👨‍🔧</div>
-                    <h3 id="expertise-title">Expertise You Can Trust</h3>
-                    <p id="expertise-desc">Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.</p>
+                    <h3 id="feat3-title">Expertise You Can Trust</h3>
+                    <p id="feat3-desc">Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">📋</div>
-                    <h3 id="transparency-title">Transparency & Ongoing Care</h3>
-                    <p id="transparency-desc">We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.</p>
+                    <h3 id="feat4-title">Transparency & Ongoing Care</h3>
+                    <p id="feat4-desc">We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.</p>
                 </div>
             </div>
         </div>
@@ -434,297 +97,167 @@
 
     <section class="section packages">
         <div class="container">
-            <h2 class="section-title" id="service-packages-title">Service Packages</h2>
-            <p style="text-align: center; font-size: 1.1em; color: #cccccc; margin-bottom: 30px;" id="price-note">
-                <strong>All prices listed are labour costs only and exclude parts</strong>
-            </p>
-
+            <h2 class="section-title" id="pkg-title">Service Packages</h2>
+            <p style="text-align: center; font-size: 1.1em; color: #cccccc; margin-bottom: 30px;"><strong id="price-note">All prices listed are labour costs only and exclude parts</strong></p>
             <div class="package-grid">
                 <div class="package-card">
                     <div class="package-name" id="green-name">Green Package</div>
                     <div class="package-price">$149</div>
                     <div class="package-note" id="green-note">Basic service & maintenance</div>
-                    <ul>
-                        <li data-en="✓ Inspection & Service reports" data-zh="✓ 检查与服务报告">✓ Inspection & Service reports</li>
-                        <li data-en="✓ Test ride" data-zh="✓ 试骑">✓ Test ride</li>
-                        <li data-en="✓ 6-Point Safety Check ("M" check)" data-zh="✓ 6点安全检查（"M"检查）">✓ 6-Point Safety Check ("M" check)</li>
-                        <li data-en="✓ Gear Tuning" data-zh="✓ 变速调整">✓ Gear Tuning</li>
-                        <li data-en="✓ Brake Alignment" data-zh="✓ 刹车校准">✓ Brake Alignment</li>
-                        <li data-en="✓ Seatpost & Axles Clean & Re-grease" data-zh="✓ 座管与轴清洁及重新润滑">✓ Seatpost & Axles Clean & Re-grease</li>
-                        <li data-en="✓ Chain Inspection & Lubrication" data-zh="✓ 链条检查与润滑">✓ Chain Inspection & Lubrication</li>
-                        <li data-en="✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)" data-zh="✓ 内胎与轮胎更换（不包括轮毂电机轮）">✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
-                        <li data-en="✓ Suspension Setup & Reset" data-zh="✓ 避震设置与重置">✓ Suspension Setup & Reset</li>
-                        <li data-en="✓ Sealant Top-Up & Valve Core Replacement" data-zh="✓ 补充密封剂与气嘴芯更换">✓ Sealant Top-Up & Valve Core Replacement</li>
-                        <li data-en="✓ Cable Replacement (If Required) & Hose Lubrication" data-zh="✓ 线缆更换（如需要）与软管润滑">✓ Cable Replacement (If Required) & Hose Lubrication</li>
-                        <li data-en="✓ Hub Adjustment & Tightening" data-zh="✓ 花鼓调整与紧固">✓ Hub Adjustment & Tightening</li>
-                    </ul>
+                    <ul id="green-items"></ul>
                 </div>
-
                 <div class="package-card blue">
                     <div class="package-name" id="blue-name">Blue Package</div>
                     <div class="package-price">$199</div>
                     <div class="package-note" id="blue-note">Comprehensive service</div>
-                    <ul>
-                        <li id="everything-green">✓ Everything in Green</li>
-                        <li data-en="✓ Drivetrain Cleaning or Component Replacement" data-zh="✓ 传动系统清洁或组件更换">✓ Drivetrain Cleaning or Component Replacement</li>
-                        <li data-en="✓ Wheel Truing" data-zh="✓ 轮组校正">✓ Wheel Truing</li>
-                        <li data-en="✓ Brake Rotor & Pad Cleaning or Replacement" data-zh="✓ 刹车盘与刹车片清洁或更换">✓ Brake Rotor & Pad Cleaning or Replacement</li>
-                    </ul>
+                    <ul id="blue-items"></ul>
                 </div>
-
                 <div class="package-card black">
                     <div class="package-name" id="black-name">Black Package</div>
                     <div class="package-price">$299</div>
                     <div class="package-note" id="black-note">Advanced service & repair</div>
-                    <ul>
-                        <li id="everything-blue">✓ Everything in Blue</li>
-                        <li data-en="✓ Headset Bearing Service or Replacement" data-zh="✓ 头管轴承保养或更换">✓ Headset Bearing Service or Replacement</li>
-                        <li data-en="✓ Hub & Freehub Body Service or Bearing Replacement" data-zh="✓ 花鼓与飞轮体保养或轴承更换">✓ Hub & Freehub Body Service or Bearing Replacement</li>
-                        <li data-en="✓ Bottom Bracket Service or E-Bike Software Update" data-zh="✓ 中轴保养或电动车软件更新">✓ Bottom Bracket Service or E-Bike Software Update</li>
-                    </ul>
+                    <ul id="black-items"></ul>
                 </div>
-
                 <div class="package-card diamond">
                     <div class="package-name" id="diamond-name">Black Diamond</div>
                     <div class="package-price">$649</div>
                     <div class="package-note" id="diamond-note">Premium complete overhaul</div>
-                    <ul>
-                        <li id="everything-black">✓ Everything in Black</li>
-                        <li data-en="✓ Frame Pivot Service or Bearing Replacement" data-zh="✓ 车架枢轴保养或轴承更换">✓ Frame Pivot Service or Bearing Replacement</li>
-                        <li data-en="✓ Fork 50-Hour Service" data-zh="✓ 前叉50小时保养">✓ Fork 50-Hour Service</li>
-                        <li data-en="✓ Shock 50-Hour Service" data-zh="✓ 后避震50小时保养">✓ Shock 50-Hour Service</li>
-                        <li data-en="✓ Full Brake Bleed & Brake Piston Service" data-zh="✓ 全套刹车排气与活塞保养">✓ Full Brake Bleed & Brake Piston Service</li>
-                    </ul>
+                    <ul id="diamond-items"></ul>
                 </div>
             </div>
-
-            <h3 style="text-align: center; font-size: 2em; margin-top: 80px; margin-bottom: 30px; color: #ffffff;" id="individual-services">Individual Services</h3>
-
-            <table class="services-table">
-                <thead>
-                    <tr>
-                        <th>Service</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="category-header">
-                        <td colspan="2">Cable & Hose System Services</td>
-                    </tr>
-                    <tr>
-                        <td>Shifter or Brake External Hose Replacement (each)</td>
-                        <td>$25</td>
-                    </tr>
-                    <tr>
-                        <td>Conventional Bike Internal Shift/Dropper Post Casing (each)</td>
-                        <td>$75</td>
-                    </tr>
-                    <tr>
-                        <td>E-Bike Internal Shift/Dropper Post Casing (each)</td>
-                        <td>$150</td>
-                    </tr>
-                    <tr>
-                        <td>Conventional Bike Internal Brake Hose + Single Brake Bleed</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>E-Bike Internal Brake Hose + Single Brake Bleed</td>
-                        <td>$175</td>
-                    </tr>
-
-                    <tr class="category-header">
-                        <td colspan="2">Wheel & Tyre Services</td>
-                    </tr>
-                    <tr>
-                        <td>Hub-Motor E-Bike Tube or Tyre Replacement</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Convert Tyre to Tubeless (each wheel)</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Hub Service (each)</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Freehub Body Service</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Wheel Truing (each wheel)</td>
-                        <td>$25</td>
-                    </tr>
-                    <tr>
-                        <td>Tube Wheel Spoke Replacement + Wheel True (up to 5 spokes)</td>
-                        <td>$75</td>
-                    </tr>
-                    <tr>
-                        <td>Tubeless Wheel Spoke Replacement + Wheel True (up to 5 spokes)</td>
-                        <td>$125</td>
-                    </tr>
-                    <tr>
-                        <td>Complete Wheel Build (each wheel)</td>
-                        <td>$200</td>
-                    </tr>
-
-                    <tr class="category-header">
-                        <td colspan="2">Brake Services</td>
-                    </tr>
-                    <tr>
-                        <td>Brake Lever Bleed (each)</td>
-                        <td>$25</td>
-                    </tr>
-                    <tr>
-                        <td>Single Brake Bleed</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Both Brakes Bleed</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>Hydraulic Brake Caliper Service (each)</td>
-                        <td>$25</td>
-                    </tr>
-                    <tr>
-                        <td>Brake Pad or Rotor Replacement (each)</td>
-                        <td>$25</td>
-                    </tr>
-
-                    <tr class="category-header">
-                        <td colspan="2">Frame Services</td>
-                    </tr>
-                    <tr>
-                        <td>Headset Service</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Bottom Bracket Service or Replacement</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Headset Bearing Service</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Headset System Replacement</td>
-                        <td>$75</td>
-                    </tr>
-                    <tr>
-                        <td>Fork Replacement</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>Derailleur Clutch Service & Jockey Wheel Replacement</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Bike Wash</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Drivetrain Clean</td>
-                        <td>$75</td>
-                    </tr>
-                    <tr>
-                        <td>Bike Wrapping</td>
-                        <td>$100/hrs</td>
-                    </tr>
-                    <tr>
-                        <td>Frame Pivot Service or Bearing Replacement</td>
-                        <td>$200</td>
-                    </tr>
-
-                    <tr class="category-header">
-                        <td colspan="2">Suspension Services</td>
-                    </tr>
-                    <tr>
-                        <td>Dropper Post Installation (Conventional Bike)</td>
-                        <td>$75</td>
-                    </tr>
-                    <tr>
-                        <td>Dropper Post Installation (E-Bike)</td>
-                        <td>$125</td>
-                    </tr>
-                    <tr>
-                        <td>Dropper Post Service</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>Fork 50-Hour Service</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>Fork Airshaft Service</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>Fork 200-Hour Service</td>
-                        <td>$250</td>
-                    </tr>
-                    <tr>
-                        <td>Shock 50-Hour Service</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>Shock 200-Hour Service</td>
-                        <td>$250</td>
-                    </tr>
-
-                    <tr class="category-header">
-                        <td colspan="2">Bike Building</td>
-                    </tr>
-                    <tr>
-                        <td>Children's Bike Build (Under 24")</td>
-                        <td>$75</td>
-                    </tr>
-                    <tr>
-                        <td>Adult Conventional Bike Build</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>Adult E-Bike Build</td>
-                        <td>$125</td>
-                    </tr>
-
-                    <tr class="category-header">
-                        <td colspan="2">Diagnostics & Troubleshooting</td>
-                    </tr>
-                    <tr>
-                        <td>E-Bike System Shutdown & Component Replacement</td>
-                        <td>$100/hrs</td>
-                    </tr>
-                    <tr>
-                        <td>Intermittent Clicking Noise Diagnosis</td>
-                        <td>$100/hrs</td>
-                    </tr>
-                    <tr>
-                        <td>Complex / Non-Standard Problem Diagnosis & Repair</td>
-                        <td>$100/hrs</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p style="text-align: center; margin-top: 30px; color: #aaaaaa; font-style: italic;">
-                * Additional labour may apply for severely seized, damaged, or non-standard components.
-            </p>
         </div>
     </section>
 
     <section class="contact">
         <div class="container">
             <h2 id="ready-title">Ready to Get Your Bike Serviced?</h2>
-            <p class="contact-info" id="serving-area">📍 Serving Auckland and surrounding suburbs</p>
-            <p class="contact-info" id="contact-quote">📞 Contact us today for a free quote</p>
-            <p class="contact-info" id="flexible-schedule">⏰ Flexible scheduling - we work around your availability</p>
-            <a href="#" class="cta-button" id="book-button">Book Your Service Now</a>
+            <p class="contact-info" id="info1">📍 Serving Auckland and surrounding suburbs</p>
+            <p class="contact-info" id="info2">📞 Contact us today for a free quote</p>
+            <p class="contact-info" id="info3">⏰ Flexible scheduling - we work around your availability</p>
+            <a href="#" class="cta-button" id="cta-btn">Book Your Service Now</a>
         </div>
     </section>
 
     <footer style="background: #0a0a0a; color: white; text-align: center; padding: 30px 20px;">
-        <p id="footer-text">&copy; 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand</p>
-        <p style="margin-top: 10px; opacity: 0.8;" id="footer-tagline">Expert, convenient, and trustworthy bicycle care - wherever you are.</p>
+        <p id="footer1">&copy; 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand</p>
+        <p style="margin-top: 10px; opacity: 0.8;" id="footer2">Expert, convenient, and trustworthy bicycle care - wherever you are.</p>
     </footer>
+
+    <script>
+        const content = {
+            en: {
+                langLabel: "Language:",
+                title: "Offtrail Cycles",
+                subtitle: "Professional Mobile Bike Service - We Come to You Across Auckland",
+                whyTitle: "Why Choose Offtrail Cycles?",
+                feat1Title: "Convenience That Comes to You",
+                feat1Desc: "Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.",
+                feat2Title: "Professional-Grade Service On-Site",
+                feat2Desc: "Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.",
+                feat3Title: "Expertise You Can Trust",
+                feat3Desc: "Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.",
+                feat4Title: "Transparency & Ongoing Care",
+                feat4Desc: "We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.",
+                pkgTitle: "Service Packages",
+                priceNote: "All prices listed are labour costs only and exclude parts",
+                greenName: "Green Package",
+                greenNote: "Basic service & maintenance",
+                greenItems: ["Inspection & Service reports", "Test ride", "6-Point Safety Check (\"M\" check)", "Gear Tuning", "Brake Alignment", "Seatpost & Axles Clean & Re-grease", "Chain Inspection & Lubrication", "Tube & Tyre Replacement (Excludes Hub Motor Wheels)", "Suspension Setup & Reset", "Sealant Top-Up & Valve Core Replacement", "Cable Replacement (If Required) & Hose Lubrication", "Hub Adjustment & Tightening"],
+                blueName: "Blue Package",
+                blueNote: "Comprehensive service",
+                blueItems: ["Everything in Green", "Drivetrain Cleaning or Component Replacement", "Wheel Truing", "Brake Rotor & Pad Cleaning or Replacement"],
+                blackName: "Black Package",
+                blackNote: "Advanced service & repair",
+                blackItems: ["Everything in Blue", "Headset Bearing Service or Replacement", "Hub & Freehub Body Service or Bearing Replacement", "Bottom Bracket Service or E-Bike Software Update"],
+                diamondName: "Black Diamond",
+                diamondNote: "Premium complete overhaul",
+                diamondItems: ["Everything in Black", "Frame Pivot Service or Bearing Replacement", "Fork 50-Hour Service", "Shock 50-Hour Service", "Full Brake Bleed & Brake Piston Service"],
+                readyTitle: "Ready to Get Your Bike Serviced?",
+                info1: "📍 Serving Auckland and surrounding suburbs",
+                info2: "📞 Contact us today for a free quote",
+                info3: "⏰ Flexible scheduling - we work around your availability",
+                ctaBtn: "Book Your Service Now",
+                footer1: "© 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand",
+                footer2: "Expert, convenient, and trustworthy bicycle care - wherever you are."
+            },
+            zh: {
+                langLabel: "语言：",
+                title: "异径单车",
+                subtitle: "专业移动自行车服务 - 我们为奥克兰各地提供上门服务",
+                whyTitle: "为什么选择异径单车？",
+                feat1Title: "上门便捷服务",
+                feat1Desc: "在我们精选的服务套餐中，享受奥克兰大部分地区的免费上门服务。我们将配备齐全的移动工作坊直接送到您家门口，为您节省时间和麻烦。",
+                feat2Title: "现场专业级服务",
+                feat2Desc: "我们的货车是一个完整的移动工作坊，配备全新的Park Tool专业工具套装、超声波清洁器、空气压缩机，以及全面的零件和润滑油库存，每次都能提供专业维修。",
+                feat3Title: "值得信赖的专业技术",
+                feat3Desc: "您的自行车将由技术熟练的专业人员维护。我们的认证机械师拥有超过十年的经验和NZQA资格认证，保证最高标准的工作质量。",
+                feat4Title: "透明度与持续关怀",
+                feat4Desc: "每次服务后，我们都会提供并保存详细的自行车健康报告。此记录帮助您跟踪维护情况，确保为您的自行车未来需求提供一致、明智的护理。",
+                pkgTitle: "服务套餐",
+                priceNote: "所有价格仅为人工费用，不包括零件",
+                greenName: "绿色套餐",
+                greenNote: "基础服务与维护",
+                greenItems: ["检查与服务报告", "试骑", "6点安全检查（\"M\"检查）", "变速调整", "刹车校准", "座管与轴清洁及重新润滑", "链条检查与润滑", "内胎与轮胎更换（不包括轮毂电机轮）", "避震设置与重置", "补充密封剂与气嘴芯更换", "线缆更换（如需要）与软管润滑", "花鼓调整与紧固"],
+                blueName: "蓝色套餐",
+                blueNote: "全面服务",
+                blueItems: ["包含绿色套餐所有内容", "传动系统清洁或组件更换", "轮组校正", "刹车盘与刹车片清洁或更换"],
+                blackName: "黑色套餐",
+                blackNote: "高级服务与维修",
+                blackItems: ["包含蓝色套餐所有内容", "头管轴承保养或更换", "花鼓与飞轮体保养或轴承更换", "中轴保养或电动车软件更新"],
+                diamondName: "黑钻套餐",
+                diamondNote: "顶级全面检修",
+                diamondItems: ["包含黑色套餐所有内容", "车架枢轴保养或轴承更换", "前叉50小时保养", "后避震50小时保养", "全套刹车排气与活塞保养"],
+                readyTitle: "准备好为您的自行车提供服务了吗？",
+                info1: "📍 服务范围：奥克兰及周边地区",
+                info2: "📞 立即联系我们获取免费报价",
+                info3: "⏰ 灵活安排 - 我们配合您的时间",
+                ctaBtn: "立即预约服务",
+                footer1: "© 2026 异径单车。专业移动自行车服务 - 新西兰奥克兰",
+                footer2: "专业、便捷、值得信赖的自行车护理 - 无论您身在何处。"
+            }
+        };
+
+        function switchLanguage(lang) {
+            const c = content[lang];
+            document.getElementById('lang-label').textContent = c.langLabel;
+            document.getElementById('title').textContent = c.title;
+            document.getElementById('subtitle').textContent = c.subtitle;
+            document.getElementById('why-title').textContent = c.whyTitle;
+            document.getElementById('feat1-title').textContent = c.feat1Title;
+            document.getElementById('feat1-desc').textContent = c.feat1Desc;
+            document.getElementById('feat2-title').textContent = c.feat2Title;
+            document.getElementById('feat2-desc').textContent = c.feat2Desc;
+            document.getElementById('feat3-title').textContent = c.feat3Title;
+            document.getElementById('feat3-desc').textContent = c.feat3Desc;
+            document.getElementById('feat4-title').textContent = c.feat4Title;
+            document.getElementById('feat4-desc').textContent = c.feat4Desc;
+            document.getElementById('pkg-title').textContent = c.pkgTitle;
+            document.getElementById('price-note').textContent = c.priceNote;
+            document.getElementById('green-name').textContent = c.greenName;
+            document.getElementById('green-note').textContent = c.greenNote;
+            document.getElementById('green-items').innerHTML = c.greenItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('blue-name').textContent = c.blueName;
+            document.getElementById('blue-note').textContent = c.blueNote;
+            document.getElementById('blue-items').innerHTML = c.blueItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('black-name').textContent = c.blackName;
+            document.getElementById('black-note').textContent = c.blackNote;
+            document.getElementById('black-items').innerHTML = c.blackItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('diamond-name').textContent = c.diamondName;
+            document.getElementById('diamond-note').textContent = c.diamondNote;
+            document.getElementById('diamond-items').innerHTML = c.diamondItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('ready-title').textContent = c.readyTitle;
+            document.getElementById('info1').textContent = c.info1;
+            document.getElementById('info2').textContent = c.info2;
+            document.getElementById('info3').textContent = c.info3;
+            document.getElementById('cta-btn').textContent = c.ctaBtn;
+            document.getElementById('footer1').textContent = c.footer1;
+            document.getElementById('footer2').textContent = c.footer2;
+            
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+        }
+
+        switchLanguage('en');
+    </script>
 </body>
 </html>
