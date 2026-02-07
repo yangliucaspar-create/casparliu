@@ -350,10 +350,19 @@
     <section class="contact">
         <div class="container">
             <h2 id="ready-title">Ready to Get Your Bike Serviced?</h2>
+            <div style="margin: 30px 0;">
+                <p class="contact-info"><strong id="phone-label">Phone:</strong> <a href="tel:0226008237" style="color: #e94560; text-decoration: none;">022 600 8237</a></p>
+                <p class="contact-info"><strong id="email-label">Email:</strong> <a href="mailto:info@offtrailcycles.com" style="color: #e94560; text-decoration: none;">info@offtrailcycles.com</a></p>
+                <div style="margin-top: 20px;">
+                    <p class="contact-info"><strong id="hours-label">Business Hours:</strong></p>
+                    <p class="contact-info" id="hours-weekday">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p class="contact-info" id="hours-weekend">Weekend: Work as required</p>
+                </div>
+            </div>
             <p class="contact-info" id="info1">📍 Serving Auckland and surrounding suburbs</p>
             <p class="contact-info" id="info2">📞 Contact us today for a free quote</p>
             <p class="contact-info" id="info3">⏰ Flexible scheduling - we work around your availability</p>
-            <a href="#" class="cta-button" id="cta-btn">Book Your Service Now</a>
+            <a href="tel:0226008237" class="cta-button" id="cta-btn">Book Your Service Now</a>
         </div>
     </section>
 
@@ -392,6 +401,11 @@
                 diamondNote: "Premium complete overhaul",
                 diamondItems: ["Everything in Black", "Frame Pivot Service or Bearing Replacement", "Fork 50-Hour Service", "Shock 50-Hour Service", "Full Brake Bleed & Brake Piston Service"],
                 readyTitle: "Ready to Get Your Bike Serviced?",
+                phoneLabel: "Phone:",
+                emailLabel: "Email:",
+                hoursLabel: "Business Hours:",
+                hoursWeekday: "Monday - Friday: 9:00 AM - 6:00 PM",
+                hoursWeekend: "Weekend: Work as required",
                 info1: "📍 Serving Auckland and surrounding suburbs",
                 info2: "📞 Contact us today for a free quote",
                 info3: "⏰ Flexible scheduling - we work around your availability",
@@ -481,6 +495,11 @@
                 diamondNote: "顶级全面检修",
                 diamondItems: ["包含黑色套餐所有内容", "车架枢轴保养或轴承更换", "前叉50小时保养", "后避震50小时保养", "全套刹车注油与活塞保养"],
                 readyTitle: "准备好为您的自行车提供服务了吗？",
+                phoneLabel: "电话：",
+                emailLabel: "邮箱：",
+                hoursLabel: "营业时间：",
+                hoursWeekday: "周一至周五：上午9:00 - 下午6:00",
+                hoursWeekend: "周末：根据需要安排",
                 info1: "📍 服务范围：奥克兰及周边地区",
                 info2: "📞 立即联系我们获取免费报价",
                 info3: "⏰ 灵活安排 - 我们配合您的时间",
@@ -592,6 +611,11 @@
             document.getElementById('diamond-note').textContent = c.diamondNote;
             document.getElementById('diamond-items').innerHTML = c.diamondItems.map(i => '<li>✓ ' + i + '</li>').join('');
             document.getElementById('ready-title').textContent = c.readyTitle;
+            document.getElementById('phone-label').textContent = c.phoneLabel;
+            document.getElementById('email-label').textContent = c.emailLabel;
+            document.getElementById('hours-label').textContent = c.hoursLabel;
+            document.getElementById('hours-weekday').textContent = c.hoursWeekday;
+            document.getElementById('hours-weekend').textContent = c.hoursWeekend;
             document.getElementById('info1').textContent = c.info1;
             document.getElementById('info2').textContent = c.info2;
             document.getElementById('info3').textContent = c.info3;
