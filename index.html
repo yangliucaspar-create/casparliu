@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1200, user-scalable=yes">
     <title>Offtrail Cycles</title>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%23ffffff'/><circle cx='15' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='49' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='15' cy='43' r='2' fill='%23111111'/><circle cx='49' cy='43' r='2' fill='%23111111'/><polyline points='15,43 27,19 40,19' fill='none' stroke='%23111111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><line x1='49' y1='43' x2='40' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='27' y1='19' x2='32' y2='43' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='23' y1='19' x2='43' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><circle cx='40' cy='15' r='4' fill='none' stroke='%23111111' stroke-width='2.5'/></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -429,6 +431,8 @@
                     <div style="font-size:3em; margin-bottom:15px;">✅</div>
                     <h3 id="success-title" style="color:#4CAF50; font-size:1.5em; margin-bottom:10px;">Booking Submitted!</h3>
                     <p id="success-msg" style="color:#ccc;">Thank you! We'll be in touch within 24 hours to confirm your service.</p>
+                    <a id="success-cal-btn" href="#" target="_blank" style="display:none; margin-top:16px; background:#4285f4; color:#fff; padding:10px 24px; border-radius:50px; text-decoration:none; font-size:0.9em; font-weight:600;">📅 Add to Google Calendar</a>
+                    <p style="color:#888; font-size:0.82em; margin-top:12px;" id="success-cal-note">Click the button above to add this booking to your Google Calendar.</p>
                     <button onclick="closeBookingModal()" style="margin-top:25px; background:#e94560; color:#fff; border:none; padding:12px 35px; border-radius:50px; font-size:1em; cursor:pointer; font-weight:600;">Close</button>
                 </div>
                 <div id="booking-form-content">
@@ -897,6 +901,9 @@
             document.getElementById('lbl-subscribe').textContent = m.subscribeLabel;
             document.getElementById('success-title').textContent = m.successTitle;
             document.getElementById('success-msg').textContent = m.successMsg;
+            document.getElementById('success-cal-note').textContent = m.successCalNote;
+            var calBtn = document.getElementById('success-cal-btn');
+            calBtn.textContent = (lang === 'zh') ? '📅 添加到 Google 日历' : '📅 Add to Google Calendar';
             // Update count badge if visible
             var checked = document.querySelectorAll('#indiv-services-panel input[type=checkbox]:checked');
             var badge = document.getElementById('indiv-count-badge');
@@ -1055,6 +1062,11 @@
             }
         });
 
+        // ========== EMAILJS CONFIG — fill in your IDs after registering at emailjs.com ==========
+        var EMAILJS_PUBLIC_KEY  = '0rVX04TicF45fHGNQ';
+        var EMAILJS_SERVICE_ID  = 'service_5nuitci';
+        var EMAILJS_TEMPLATE_ID = 'template_49gmlb1';
+
         function submitBooking() {
             var name = document.getElementById('bk-name').value.trim();
             var phone = document.getElementById('bk-phone').value.trim();
@@ -1084,61 +1096,136 @@
             var checkedBoxes = document.querySelectorAll('#indiv-services-panel input[type=checkbox]:checked');
             var selectedIndiv = Array.from(checkedBoxes).map(function(cb) { return cb.value; });
 
-            // Collect form data
+            // Build preferred date string
+            var dateY = document.getElementById('bk-date-year').value;
+            var dateM = document.getElementById('bk-date-month').value;
+            var dateD = document.getElementById('bk-date-day').value;
+            var preferredDate = 'Not specified';
+            var icsDateStr = null;
+            if (dateY && dateM && dateD) {
+                if (lang === 'zh') {
+                    preferredDate = dateY + '年' + dateM + '月' + dateD + '日';
+                } else {
+                    var mNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                    preferredDate = dateD + ' ' + mNames[parseInt(dateM)-1] + ' ' + dateY;
+                }
+                // Zero-pad for ICS
+                var mm = ('0' + dateM).slice(-2);
+                var dd = ('0' + dateD).slice(-2);
+                icsDateStr = dateY + mm + dd;
+            }
+
             var booking = {
                 name: name,
                 phone: phone,
                 address: address,
                 email: document.getElementById('bk-email').value.trim(),
+                bikeBrand: document.getElementById('bk-brand').value.trim(),
                 bikeModel: document.getElementById('bk-model').value.trim(),
                 servicePackage: document.getElementById('bk-package').value,
                 individualServices: selectedIndiv,
-                preferredDate: (function() {
-                    var y = document.getElementById('bk-date-year').value;
-                    var m = document.getElementById('bk-date-month').value;
-                    var d = document.getElementById('bk-date-day').value;
-                    if (!y || !m || !d) return 'Not specified';
-                    var lang = typeof currentLang !== 'undefined' ? currentLang : 'en';
-                    if (lang === 'zh') return y + '年' + m + '月' + d + '日';
-                    var mNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-                    return d + ' ' + mNames[parseInt(m)-1] + ' ' + y;
-                })(),
+                preferredDate: preferredDate,
                 preferredTime: document.getElementById('bk-timeofday').value || 'Not specified',
                 notes: document.getElementById('bk-notes').value.trim(),
                 subscribe: document.getElementById('bk-subscribe').checked,
                 submittedAt: new Date().toLocaleString()
             };
 
-            // Build mailto
-            var subject = encodeURIComponent('New Bike Service Booking - ' + booking.name);
             var indivList = booking.individualServices.length > 0
                 ? booking.individualServices.join('\n  - ')
                 : 'None';
-            var body = encodeURIComponent(
-                'New Booking Request\n\n' +
-                'Name: ' + booking.name + '\n' +
-                'Phone: ' + booking.phone + '\n' +
-                'Email: ' + (booking.email || 'Not provided') + '\n' +
-                'Address: ' + booking.address + '\n' +
-                'Bike Brand: ' + (booking.bikeBrand || 'N/A') + '\n' +
-                'Bike Model: ' + (booking.bikeModel || 'N/A') + '\n' +
-                'Service Package: ' + (booking.servicePackage || 'Not selected') + '\n' +
+
+            var fullMessage =
+                'Name: '           + booking.name + '\n' +
+                'Phone: '          + booking.phone + '\n' +
+                'Email: '          + (booking.email || 'Not provided') + '\n' +
+                'Address: '        + booking.address + '\n' +
+                'Bike Brand: '     + (booking.bikeBrand || 'N/A') + '\n' +
+                'Bike Model: '     + (booking.bikeModel || 'N/A') + '\n' +
+                'Service Package: '+ (booking.servicePackage || 'Not selected') + '\n' +
                 'Individual Services:\n  - ' + indivList + '\n' +
                 'Preferred Date: ' + booking.preferredDate + '\n' +
                 'Preferred Time: ' + booking.preferredTime + '\n' +
-                'Notes: ' + (booking.notes || 'None') + '\n' +
-                'Newsletter Subscription: ' + (booking.subscribe ? 'Yes' : 'No') + '\n\n' +
-                'Submitted: ' + booking.submittedAt
-            );
+                'Notes: '          + (booking.notes || 'None') + '\n' +
+                'Newsletter: '     + (booking.subscribe ? 'Yes' : 'No') + '\n' +
+                'Submitted: '      + booking.submittedAt;
 
-            setTimeout(function() {
+            // EmailJS template parameters — must match variable names in your EmailJS template
+            var templateParams = {
+                to_email:        'info@offtrailcycles.com',
+                from_name:       booking.name,
+                from_email:      booking.email || 'Not provided',
+                phone:           booking.phone,
+                address:         booking.address,
+                bike_brand:      booking.bikeBrand || 'N/A',
+                bike_model:      booking.bikeModel || 'N/A',
+                service_package: booking.servicePackage || 'Not selected',
+                indiv_services:  indivList,
+                preferred_date:  booking.preferredDate,
+                preferred_time:  booking.preferredTime,
+                notes:           booking.notes || 'None',
+                newsletter:      booking.subscribe ? 'Yes' : 'No',
+                cal_link:        icsDateStr ? buildGCalLink(booking, icsDateStr) : 'No date selected',
+                full_message:    fullMessage
+            };
+
+            function showSuccess(calLink) {
                 btn.disabled = false;
                 btn.style.opacity = '1';
                 document.getElementById('submit-btn-text').textContent = lang === 'zh' ? '提交预约申请' : 'Submit Booking Request';
                 document.getElementById('booking-form-content').style.display = 'none';
                 document.getElementById('booking-success').style.display = 'block';
+                // Show Google Calendar link if date was chosen
+                var calBtn = document.getElementById('success-cal-btn');
+                if (calLink) {
+                    calBtn.href = calLink;
+                    calBtn.style.display = 'inline-block';
+                } else {
+                    calBtn.style.display = 'none';
+                }
+            }
+
+            function onSuccess() { showSuccess(icsDateStr ? buildGCalLink(booking, icsDateStr) : null); }
+
+            function onError() {
+                // Fall back to mailto if EmailJS not yet configured
+                var subject = encodeURIComponent('New Bike Service Booking - ' + booking.name);
+                var body = encodeURIComponent(fullMessage);
                 window.location.href = 'mailto:info@offtrailcycles.com?subject=' + subject + '&body=' + body;
-            }, 800);
+                showSuccess(icsDateStr ? buildGCalLink(booking, icsDateStr) : null);
+            }
+
+            // Send via EmailJS
+            if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+                emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                    .then(onSuccess, onError);
+            } else {
+                // EmailJS not configured yet — fall back to mailto
+                setTimeout(onError, 600);
+            }
+        }
+
+        // Build a Google Calendar "Add Event" link
+        function buildGCalLink(booking, icsDateStr) {
+            var title   = encodeURIComponent('Bike Service – ' + booking.name + (booking.servicePackage ? ' (' + booking.servicePackage + ')' : ''));
+            var details = encodeURIComponent(
+                'Phone: ' + booking.phone +
+                '\nEmail: ' + (booking.email || 'N/A') +
+                '\nBike: ' + (booking.bikeBrand ? booking.bikeBrand + ' ' : '') + (booking.bikeModel || '') +
+                '\nPackage: ' + (booking.servicePackage || 'N/A') +
+                '\nTime pref: ' + booking.preferredTime +
+                '\nNotes: ' + (booking.notes || 'None')
+            );
+            var location = encodeURIComponent(booking.address);
+            // All-day event: dates = YYYYMMDD/YYYYMMDD (end = same day + 1 for all-day)
+            var y = icsDateStr.slice(0,4), m = icsDateStr.slice(4,6), d = icsDateStr.slice(6,8);
+            var endDate = new Date(parseInt(y), parseInt(m)-1, parseInt(d)+1);
+            var ey = endDate.getFullYear();
+            var em = ('0'+(endDate.getMonth()+1)).slice(-2);
+            var ed = ('0'+endDate.getDate()).slice(-2);
+            var dates = icsDateStr + '/' + ey + em + ed;
+            return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + title + '&dates=' + dates + '&details=' + details + '&location=' + location;
         }
 
         var modalContent = {
@@ -1171,7 +1258,8 @@
                 submitBtn: 'Submit Booking Request',
                 subscribeLabel: 'Subscribe to our newsletter for tips, promotions & service reminders',
                 successTitle: 'Booking Submitted!',
-                successMsg: "Thank you! We'll be in touch within 24 hours to confirm your service."
+                successMsg: "Thank you! We'll be in touch within 24 hours to confirm your service.",
+                successCalNote: 'Click the button above to add this booking to your Google Calendar.'
             },
             zh: {
                 modalTitle: '预约服务',
@@ -1202,7 +1290,8 @@
                 submitBtn: '提交预约申请',
                 subscribeLabel: '订阅我们的电子报，获取保养技巧、优惠活动及服务提醒',
                 successTitle: '预约已提交！',
-                successMsg: '谢谢您！我们将在24小时内与您确认服务安排。'
+                successMsg: '谢谢您！我们将在24小时内与您确认服务安排。',
+                successCalNote: '点击上方按钮，将此预约添加到您的 Google 日历。'
             }
         };
 
