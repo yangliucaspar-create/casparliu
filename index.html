@@ -1062,10 +1062,13 @@
             }
         });
 
-        // ========== EMAILJS CONFIG — fill in your IDs after registering at emailjs.com ==========
+        // ========== EMAILJS CONFIG ==========
         var EMAILJS_PUBLIC_KEY  = '0rVX04TicF45fHGNQ';
         var EMAILJS_SERVICE_ID  = 'service_5nuitci';
         var EMAILJS_TEMPLATE_ID = 'template_49gmlb1';
+
+        // Initialise EmailJS once on page load
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
         function submitBooking() {
             var name = document.getElementById('bk-name').value.trim();
@@ -1153,6 +1156,7 @@
             // EmailJS template parameters — must match variable names in your EmailJS template
             var templateParams = {
                 to_email:        'info@offtrailcycles.com',
+                reply_to:        booking.email || 'info@offtrailcycles.com',
                 from_name:       booking.name,
                 from_email:      booking.email || 'Not provided',
                 phone:           booking.phone,
@@ -1196,14 +1200,14 @@
             }
 
             // Send via EmailJS
-            if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-                emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-                    .then(onSuccess, onError);
-            } else {
-                // EmailJS not configured yet — fall back to mailto
-                setTimeout(onError, 600);
-            }
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(
+                    function() { onSuccess(); },
+                    function(err) {
+                        console.error('EmailJS error:', JSON.stringify(err));
+                        onError();
+                    }
+                );
         }
 
         // Build a Google Calendar "Add Event" link
