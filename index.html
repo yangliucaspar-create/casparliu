@@ -763,7 +763,7 @@
     </section>
 
     <!-- Booking Modal -->
-    <div id="bookingModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; overflow-y:auto; backdrop-filter:blur(6px);">
+    <div id="bookingModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; overflow-y:auto; backdrop-filter:blur(6px);">
         <div style="max-width:620px; margin:40px auto; background:#111; border-radius:16px; border:1px solid #333; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.8);">
             <!-- Modal Header -->
             <div style="background:linear-gradient(135deg,#e94560,#c72d47); padding:30px 35px; position:relative;">
@@ -1740,7 +1740,7 @@
                 var el2 = document.getElementById(id);
                 if (el2) el2.textContent = m[catKeys[i]];
             });
-            var submitEl = document.getElementById('submit-btn');
+            var submitEl = document.getElementById('submit-btn-text');
             if (submitEl) submitEl.textContent = m.submitBtn;
             var subLabel = document.getElementById('subscribe-label');
             if (subLabel) subLabel.textContent = m.subscribeLabel;
@@ -1761,10 +1761,10 @@
     </script>
 
     <!-- Lightbox -->
-    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" onclick="closeLightboxOnBg(event)" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9998;align-items:center;justify-content:center;flex-direction:column;">
-        <button onclick="closeLightbox()" aria-label="Close" style="position:absolute;top:20px;right:28px;background:rgba(255,255,255,0.12);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.3em;cursor:pointer;z-index:9999;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">✕</button>
-        <button onclick="prevPhoto()" aria-label="Previous" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.6em;cursor:pointer;z-index:9999;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&#8249;</button>
-        <button onclick="nextPhoto()" aria-label="Next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.6em;cursor:pointer;z-index:9999;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&#8250;</button>
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" onclick="closeLightboxOnBg(event)" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9990;align-items:center;justify-content:center;flex-direction:column;">
+        <button onclick="closeLightbox()" aria-label="Close" style="position:absolute;top:20px;right:28px;background:rgba(255,255,255,0.12);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.3em;cursor:pointer;z-index:9991;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">✕</button>
+        <button onclick="prevPhoto()" aria-label="Previous" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.6em;cursor:pointer;z-index:9991;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&#8249;</button>
+        <button onclick="nextPhoto()" aria-label="Next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.6em;cursor:pointer;z-index:9991;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&#8250;</button>
         <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,0.6);">
         <p id="lb-caption" style="color:#ccc;margin-top:14px;font-size:0.9em;letter-spacing:0.04em;text-align:center;"></p>
         <p id="lb-counter" style="color:#666;margin-top:6px;font-size:0.8em;"></p>
