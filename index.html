@@ -842,11 +842,11 @@
                         <label id="lbl-package" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Service Package</label>
                         <select id="bk-package" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; cursor:pointer; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
                             <option value="" id="pkg-opt0">-- Select a package (optional) --</option>
+                            <option value="Kids" id="pkg-opt5">🟡 Yellow Package (24″ &amp; under) – $119</option>
                             <option value="Green" id="pkg-opt1">🟢 Green Package – $129</option>
                             <option value="Blue" id="pkg-opt2">🔵 Blue Package – $199</option>
                             <option value="Black" id="pkg-opt3">⚫ Black Package – $249</option>
                             <option value="Diamond" id="pkg-opt4">💎 Black Diamond Package – $649</option>
-                            <option value="Kids" id="pkg-opt5">Yellow Package – $119</option>
                         </select>
                     </div>
 
@@ -1688,11 +1688,11 @@
                 todOpt2: '🌇 Afternoon (PM)',
                 lblNotes: 'Extra Notes',
                 pkgOpt0: '-- Select a package (optional) --',
+                pkgOpt5: '🟡 Yellow Package (24″ & under) – $119',
                 pkgOpt1: '🟢 Green Package – $129',
                 pkgOpt2: '🔵 Blue Package – $199',
                 pkgOpt3: '⚫ Black Package – $249',
                 pkgOpt4: '💎 Black Diamond Package – $649',
-                pkgOpt5: 'Yellow Package – $119',
                 isCat1: 'Cable & Hose System Services',
                 isCat2: 'Wheel & Tyre Services',
                 isCat3: 'Brake Services',
@@ -1722,11 +1722,11 @@
                 todOpt2: '🌇 下午 (PM)',
                 lblNotes: '备注信息',
                 pkgOpt0: '-- 请选择套餐（可选）--',
+                pkgOpt5: '🟡 黄色套餐（24寸及以下）– $119',
                 pkgOpt1: '🟢 绿色套餐 – $129',
                 pkgOpt2: '🔵 蓝色套餐 – $199',
                 pkgOpt3: '⚫ 黑色套餐 – $249',
                 pkgOpt4: '💎 黑钻套餐 – $649',
-                pkgOpt5: '黄色套餐 – $119',
                 isCat1: '线缆与线管系统服务',
                 isCat2: '轮组与轮胎服务',
                 isCat3: '刹车服务',
@@ -1763,10 +1763,11 @@
             var pkg = document.getElementById('bk-package');
             if (pkg && pkg.options.length >= 5) {
                 pkg.options[0].textContent = m.pkgOpt0;
-                pkg.options[1].textContent = m.pkgOpt1;
-                pkg.options[2].textContent = m.pkgOpt2;
-                pkg.options[3].textContent = m.pkgOpt3;
-                pkg.options[4].textContent = m.pkgOpt4;
+                pkg.options[1].textContent = m.pkgOpt5;
+                pkg.options[2].textContent = m.pkgOpt1;
+                pkg.options[3].textContent = m.pkgOpt2;
+                pkg.options[4].textContent = m.pkgOpt3;
+                if (pkg.options[5]) pkg.options[5].textContent = m.pkgOpt4;
             }
             var tod = document.getElementById('bk-timeofday');
             if (tod && tod.options.length >= 3) {
