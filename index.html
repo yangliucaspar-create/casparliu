@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Offtrail Cycles</title>
+    <title>Offtrail Cycles | Mobile Bike Mechanic Auckland – Bike Repair &amp; Service</title>
+    <meta name="description" content="Auckland's trusted mobile bike mechanic. Offtrail Cycles offers professional bike repair, tune-ups, puncture repair, brake repair and full bicycle service across Auckland – we come to you from Orewa to Papakura.">
+    <meta name="keywords" content="bike repair Auckland, mobile bike mechanic Auckland, bicycle service Auckland, bicycle mechanic Auckland, puncture repair Auckland, brake repair Auckland, bike tune-up Auckland">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.offtrailcycles.com/">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Offtrail Cycles | Mobile Bike Mechanic Auckland">
+    <meta property="og:description" content="Professional mobile bicycle mechanic serving all Auckland suburbs. Bike repairs, tune-ups, brake repairs and full bicycle servicing – we come to you.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.offtrailcycles.com/">
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%23ffffff'/><circle cx='15' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='49' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='15' cy='43' r='2' fill='%23111111'/><circle cx='49' cy='43' r='2' fill='%23111111'/><polyline points='15,43 27,19 40,19' fill='none' stroke='%23111111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><line x1='49' y1='43' x2='40' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='27' y1='19' x2='32' y2='43' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='23' y1='19' x2='43' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><circle cx='40' cy='15' r='4' fill='none' stroke='%23111111' stroke-width='2.5'/></svg>">
@@ -82,7 +91,7 @@
         .cta-button:hover { background: #d63550; transform: scale(1.05); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
         /* Tab Navigation */
         .tab-nav { background: #111111; border-bottom: 2px solid #222; display: flex; justify-content: center; gap: 0; position: sticky; top: 0; z-index: 100; }
-        .tab-btn { background: none; border: none; color: #aaa; padding: 16px 48px; font-size: 1em; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 3px solid transparent; transition: all 0.25s ease; position: relative; top: 2px; flex: 1; }
+        .tab-btn { background: none; border: none; color: #aaa; padding: 16px 48px; font-size: 1em; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 3px solid transparent; transition: all 0.25s ease; position: relative; top: 2px; flex: 0 0 auto; min-width: 160px; }
         .tab-btn:hover { color: #fff; }
         .tab-btn.active { color: #e94560; border-bottom: 3px solid #e94560; }
         .tab-panel { display: none; }
@@ -307,7 +316,7 @@
             .language-button { padding: 7px 12px; font-size: 0.82em; }
 
             /* Tabs */
-            .tab-btn { padding: 14px 10px; font-size: 0.85em; letter-spacing: 0.04em; }
+            .tab-btn { padding: 14px 10px; font-size: 0.85em; letter-spacing: 0.04em; flex: 1; min-width: 0; }
 
             /* Sections */
             .section { padding: 40px 15px; }
@@ -432,11 +441,112 @@
             }
         }
     </style>
+    <!-- Schema.org LocalBusiness Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://www.offtrailcycles.com/",
+      "name": "Offtrail Cycles",
+      "description": "Professional mobile bike mechanic and bicycle repair service covering all Auckland suburbs, from Orewa to Papakura and Kumeu to Flat Bush. Services include bike tune-ups, puncture repair, brake repair, gear adjustments, and full bicycle overhauls.",
+      "url": "https://www.offtrailcycles.com/",
+      "telephone": "+6422600 8237",
+      "email": "info@offtrailcycles.com",
+      "image": "https://www.offtrailcycles.com/images/image_E47E7A571CE65E6DC7FFAEB14F87C2DA.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Auckland",
+        "addressRegion": "Auckland",
+        "addressCountry": "NZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -36.8485,
+        "longitude": 174.7633
+      },
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": -36.8485,
+          "longitude": 174.7633
+        },
+        "geoRadius": "50000"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday","Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ],
+      "priceRange": "$$",
+      "currenciesAccepted": "NZD",
+      "paymentAccepted": "Cash, Credit Card",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Bicycle Repair & Service",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Mobile Bike Repair Auckland",
+              "description": "On-site bicycle repair and servicing across Auckland suburbs"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Puncture Repair Auckland",
+              "description": "Mobile puncture repair and tyre replacement service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Brake Repair Auckland",
+              "description": "Hydraulic brake bleed, brake pad and rotor replacement"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Bike Tune-Up Auckland",
+              "description": "Full bicycle tune-up including gear adjustment, brake alignment and safety check"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Bicycle Service Auckland",
+              "description": "Comprehensive bicycle servicing packages from basic maintenance to full overhaul"
+            }
+          }
+        ]
+      },
+      "sameAs": [
+        "https://www.instagram.com/offtrailcycles",
+        "https://www.facebook.com/offtrailcycles"
+      ]
+    }
+    </script>
 </head>
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="images/image_E47E7A571CE65E6DC7FFAEB14F87C2DA.png" alt="Offtrail Cycles Logo" class="header-logo">
+            <img src="images/image_E47E7A571CE65E6DC7FFAEB14F87C2DA.png" alt="Offtrail Cycles – Mobile Bike Mechanic Auckland Logo" class="header-logo">
             
         </div>
         <div class="language-switcher">
@@ -450,8 +560,8 @@
                 </div>
             </div>
         </div>
-        <h1 id="title">Offtrail Cycles</h1>
-        <p id="subtitle">Professional Mobile Bike Service - We Come to You Across Auckland</p>
+        <h1 id="title">Offtrail Cycles – Mobile Bike Mechanic Auckland</h1>
+        <p id="subtitle">Professional Bicycle Repair &amp; Service Across Auckland – We Come to You</p>
     </header>
 
     <!-- Tab Navigation -->
@@ -470,10 +580,10 @@
     <!-- Sub-section 0: Who We Are -->
     <section class="section who-we-are">
         <div class="container">
-            <h2 class="section-title" id="who-title">Who We Are</h2>
+            <h2 class="section-title" id="who-title">Auckland's Mobile Bicycle Mechanic</h2>
             <div class="who-content">
-                <p id="who-p1">Offtrail Cycles mobile bike workshop providing professional, on-site servicing for individuals, schools, businesses, and cycling events. From routine maintenance to on-location technical support, we keep bikes performing at their best—wherever they're needed.</p>
-                <p id="who-p2">Built around convenience, reliability, and low-impact transport, Offtrail Cycles supports a more active, healthier way of living—while helping reduce environmental impact through everyday cycling.</p>
+                <p id="who-p1">Offtrail Cycles is Auckland's professional mobile bike repair workshop, delivering on-site bicycle servicing to individuals, schools, businesses, and cycling events. From routine tune-ups and puncture repair to brake repair and full drivetrain overhauls, our certified bicycle mechanic keeps your bike performing at its best — wherever you are in Auckland.</p>
+                <p id="who-p2">Built around convenience, reliability, and low-impact transport, Offtrail Cycles supports a more active, healthier way of living — while helping reduce environmental impact through everyday cycling. Book a mobile bike service today and skip the bike shop queue.</p>
             </div>
         </div>
     </section>
@@ -481,7 +591,7 @@
     <!-- Sub-section 1: Why Choose Offtrail Cycles -->
     <section class="section why-us">
         <div class="container">
-            <h2 class="section-title" id="why-title">Why Choose Offtrail Cycles?</h2>
+            <h2 class="section-title" id="why-title">Why Choose Our Bike Repair Service in Auckland?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -492,7 +602,7 @@
                         </svg>
                     </div>
                     <h3 id="feat1-title">Convenience That Comes to You</h3>
-                    <p id="feat1-desc">Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.</p>
+                    <p id="feat1-desc">Enjoy free call-outs across most Auckland suburbs with our selected bicycle service packages. Our mobile bike mechanic saves you time and hassle by bringing a fully-equipped workshop directly to your doorstep — no need to transport your bike to a shop.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -502,7 +612,7 @@
                         </svg>
                     </div>
                     <h3 id="feat2-title">Professional-Grade Service On-Site</h3>
-                    <p id="feat2-desc">Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.</p>
+                    <p id="feat2-desc">Our van is a complete bike repair workshop on wheels, equipped with a brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and a comprehensive stock of parts and lubricants — delivering professional-grade bicycle repairs every time, on-site.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -537,32 +647,32 @@
         <div class="container">
             <h2 class="section-title" id="gallery-title">Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox(0)" tabindex="0" role="button" aria-label="View Wheel truing service">
-                    <img src="images/image_2B92DC8423B60E39084B34AC1987C346.jpg" alt="Wheel truing service" loading="lazy">
+                <div class="gallery-item" onclick="openLightbox(0)" tabindex="0" role="button" aria-label="View Wheel truing service Auckland">
+                    <img src="images/image_2B92DC8423B60E39084B34AC1987C346.jpg" alt="Wheel truing service – mobile bike repair Auckland" loading="lazy">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(1)" tabindex="0" role="button" aria-label="View Cassette ultrasonic cleaning">
-                    <img src="images/image_3FD7E4310C7EF71BBFC33C13E440A775.jpg" alt="Cassette ultrasonic cleaning" loading="lazy">
+                    <img src="images/image_3FD7E4310C7EF71BBFC33C13E440A775.jpg" alt="Cassette ultrasonic cleaning – bicycle mechanic Auckland" loading="lazy">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(2)" tabindex="0" role="button" aria-label="View Bottom bracket service in van">
-                    <img src="images/image_1E291BD57300E71736E8803029B39825.jpg" alt="Bottom bracket service in van" loading="lazy">
+                    <img src="images/image_1E291BD57300E71736E8803029B39825.jpg" alt="Bottom bracket service inside mobile workshop van Auckland" loading="lazy">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(3)" tabindex="0" role="button" aria-label="View Gear tuning adjustment">
-                    <img src="images/image_1F81DF82F6A888D76A40554409758B74.jpg" alt="Gear tuning adjustment" loading="lazy">
+                    <img src="images/image_1F81DF82F6A888D76A40554409758B74.jpg" alt="Gear tuning and adjustment – bicycle service Auckland" loading="lazy">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(4)" tabindex="0" role="button" aria-label="View Brake bleed service">
-                    <img src="images/image_C282016F639FDBA188056AF975A4088E.jpg" alt="Brake bleed service" loading="lazy">
+                    <img src="images/image_C282016F639FDBA188056AF975A4088E.jpg" alt="Hydraulic brake bleed service – brake repair Auckland" loading="lazy">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(5)" tabindex="0" role="button" aria-label="View Fox shock service">
-                    <img src="images/image_0757D0EBFF259DDE6095DE82F8A1ED66.jpg" alt="Fox shock service" loading="lazy">
+                    <img src="images/image_0757D0EBFF259DDE6095DE82F8A1ED66.jpg" alt="Fox suspension shock service – mobile bicycle mechanic Auckland" loading="lazy">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(6)" tabindex="0" role="button" aria-label="View Mobile workshop interior">
-                    <img src="images/image_ED70BAB1F6AA1E7A757A70889AB98AB0.jpg" alt="Mobile workshop interior" loading="lazy">
+                    <img src="images/image_ED70BAB1F6AA1E7A757A70889AB98AB0.jpg" alt="Mobile bike workshop interior – fully equipped bike repair van Auckland" loading="lazy">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(7)" tabindex="0" role="button" aria-label="View Park Tool equipped van">
-                    <img src="images/image_DE5E0DC0240024362F361737CF1B02BB.jpg" alt="Park Tool equipped van" loading="lazy">
+                    <img src="images/image_DE5E0DC0240024362F361737CF1B02BB.jpg" alt="Park Tool equipped mobile workshop van – professional bicycle service Auckland" loading="lazy">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(8)" tabindex="0" role="button" aria-label="View Offtrail Cycles mobile service van">
-                    <img src="images/image_75D8AAECC658E37D53730BE058899B71.jpg" alt="Offtrail Cycles mobile service van" loading="lazy">
+                    <img src="images/image_75D8AAECC658E37D53730BE058899B71.jpg" alt="Offtrail Cycles mobile bike mechanic service van – Auckland" loading="lazy">
                 </div>
             </div>
             <p class="gallery-hint" id="gallery-hint">📸 Follow us on social media for the latest updates</p>
@@ -623,7 +733,7 @@
     <div class="tab-panel" id="panel-services">
     <section class="section packages">
         <div class="container">
-            <h2 class="section-title" id="pkg-title">Service Packages</h2>
+            <h2 class="section-title" id="pkg-title">Auckland Bike Service Packages</h2>
             <p style="text-align: center; font-size: 1.1em; color: #cccccc; margin-bottom: 30px;"><strong id="price-note">All prices listed are labour costs only and exclude parts</strong></p>
             <div class="package-grid">
                     <div class="package-card yellow">
@@ -917,7 +1027,7 @@
 
     <section class="contact">
         <div class="container">
-            <h2 id="ready-title">Ready to Get Your Bike Serviced?</h2>
+            <h2 id="ready-title">Book Your Auckland Bike Repair Today</h2>
             <div style="margin: 30px 0;">
                 <p class="contact-info"><strong id="phone-label">Phone:</strong> <a href="tel:0226008237" style="color: #e94560; text-decoration: none;">022 600 8237</a></p>
                 <p class="contact-info"><strong id="email-label">Email:</strong> <a href="mailto:info@offtrailcycles.com" style="color: #e94560; text-decoration: none;">info@offtrailcycles.com</a></p>
@@ -927,10 +1037,17 @@
                     <p class="contact-info" id="hours-weekend">Weekend: Work as required</p>
                 </div>
             </div>
-            <p class="contact-info" id="info1">📍 Our mobile bike service covering Orewa to Papakura and Kumeu through to Flat Bush. If you are outside this area, please let us know, and we will do our best to get one of the team to you.</p>
+            <p class="contact-info" id="info1">📍 Our mobile bike mechanic covers Orewa to Papakura and Kumeu through to Flat Bush. Need a bicycle service, puncture repair, or brake repair outside this area? Please get in touch and we'll do our best to reach you.</p>
             <p class="contact-info" id="info2">📞 Contact us today for a free quote</p>
             <p class="contact-info" id="info3">✅ Flexible scheduling - we work around your availability</p>
             <button class="cta-button" id="cta-btn" onclick="openBookingModal()">Book Your Service Now</button>
+            <!-- Hidden address for structured local SEO signals -->
+            <address style="font-style:normal; margin-top: 30px; font-size: 0.85em; opacity: 0.6; line-height: 1.8;">
+                Offtrail Cycles &mdash; Mobile Bike Mechanic &amp; Bicycle Repair Auckland<br>
+                Serving: Orewa, Albany, North Shore, Auckland CBD, Manukau, Papakura, Kumeu, Flat Bush &amp; surrounds<br>
+                <a href="tel:0226008237" style="color: inherit; text-decoration: none;">022 600 8237</a> &bull;
+                <a href="mailto:info@offtrailcycles.com" style="color: inherit; text-decoration: none;">info@offtrailcycles.com</a>
+            </address>
         </div>
     </section>
 
@@ -1126,8 +1243,8 @@
                 <span>Facebook</span>
             </a>
         </div>
-        <p id="footer1">&copy; 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand</p>
-        <p style="margin-top: 10px; opacity: 0.8;" id="footer2">Expert, convenient, and trustworthy bicycle care - wherever you are.</p>
+        <p id="footer1">&copy; 2026 Offtrail Cycles. Mobile Bike Mechanic &amp; Bicycle Repair Service – Auckland, New Zealand</p>
+        <p style="margin-top: 10px; opacity: 0.8;" id="footer2">Expert bike repair, tune-ups, puncture repair and brake repair – wherever you are in Auckland.</p>
     </footer>
 
     <!-- Lightbox -->
@@ -1145,21 +1262,21 @@
         const content = {
             en: {
                 langLabel: "Language:",
-                title: "Offtrail Cycles",
-                subtitle: "Professional Mobile Bike Service - We Come to You Across Auckland",
-                whyTitle: "Why Choose Offtrail Cycles?",
-                whoTitle: "Who We Are",
-                whoP1: "Offtrail Cycles mobile bike workshop providing professional, on-site servicing for individuals, schools, businesses, and cycling events. From routine maintenance to on-location technical support, we keep bikes performing at their best—wherever they're needed.",
-                whoP2: "Built around convenience, reliability, and low-impact transport, Offtrail Cycles supports a more active, healthier way of living—while helping reduce environmental impact through everyday cycling.",
+                title: "Offtrail Cycles – Mobile Bike Mechanic Auckland",
+                subtitle: "Professional Bicycle Repair & Service Across Auckland – We Come to You",
+                whyTitle: "Why Choose Our Bike Repair Service in Auckland?",
+                whoTitle: "Auckland's Mobile Bicycle Mechanic",
+                whoP1: "Offtrail Cycles is Auckland's professional mobile bike repair workshop, delivering on-site bicycle servicing to individuals, schools, businesses, and cycling events. From routine tune-ups and puncture repair to brake repair and full drivetrain overhauls, our certified bicycle mechanic keeps your bike performing at its best — wherever you are in Auckland.",
+                whoP2: "Built around convenience, reliability, and low-impact transport, Offtrail Cycles supports a more active, healthier way of living — while helping reduce environmental impact through everyday cycling. Book a mobile bike service today and skip the bike shop queue.",
                 feat1Title: "Convenience That Comes to You",
-                feat1Desc: "Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.",
-                feat2Title: "Professional-Grade Service On-Site",
-                feat2Desc: "Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.",
+                feat1Desc: "Enjoy free call-outs across most Auckland suburbs with our selected bicycle service packages. Our mobile bike mechanic saves you time and hassle by bringing a fully-equipped workshop directly to your doorstep — no need to transport your bike to a shop.",
+                feat2Title: "Professional-Grade Bike Repair On-Site",
+                feat2Desc: "Our van is a complete bike repair workshop on wheels, equipped with a brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and a comprehensive stock of parts and lubricants — delivering professional-grade bicycle repairs every time, on-site.",
                 feat3Title: "Expertise You Can Trust",
                 feat3Desc: "Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.",
                 feat4Title: "Transparency & Ongoing Care",
                 feat4Desc: "We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.",
-                pkgTitle: "Service Packages",
+                pkgTitle: "Auckland Bike Service Packages",
                 priceNote: "All prices listed are labour costs only and exclude parts",
                 greenName: "Green Package",
                 greenNote: "Basic service & maintenance",
@@ -1176,13 +1293,13 @@
                 kidsName: "Yellow Package",
                 kidsNote: 'Kids bike specific service · 24" & under',
                 kidsItems: ["6-Point Safety Check (\"M\" check)", "Gear Tuning", "Brake Alignment", "Seatpost & Axles Clean & Re-grease", "Tube & Tyre Replacement (if required)", "Cable & Hose Replacement (if required)", "Hub & Headset Adjustment (if needed)", "Wheel Truing (if needed)", "Brake Rotor & Pad Cleaning or Replacement (if needed)", "Bottom Bracket Service"],
-                readyTitle: "Ready to Get Your Bike Serviced?",
+                readyTitle: "Book Your Auckland Bike Repair Today",
                 phoneLabel: "Phone:",
                 emailLabel: "Email:",
                 hoursLabel: "Business Hours:",
                 hoursWeekday: "Monday - Friday: 9:00 AM - 6:00 PM",
                 hoursWeekend: "Weekend: Work as required",
-                info1: "📍 Our mobile bike service covering Orewa to Papakura and Kumeu through to Flat Bush. If you are outside this area, please let us know, and we will do our best to get one of the team to you.",
+                info1: "📍 Our mobile bike mechanic covers Orewa to Papakura and Kumeu through to Flat Bush. Need a bicycle service, puncture repair, or brake repair outside this area? Please get in touch and we'll do our best to reach you.",
                 info2: "📞 Contact us today for a free quote",
                 info3: "✅ Flexible scheduling - we work around your availability",
                 ctaBtn: "Book Your Service Now",
@@ -1192,8 +1309,8 @@
                 brandsSubtitle: "We proudly work with the world's leading cycling component brands",
                 tabAbout: "About Us",
                 tabServices: "Services",
-                footer1: "© 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand",
-                footer2: "Expert, convenient, and trustworthy bicycle care - wherever you are.",
+                footer1: "© 2026 Offtrail Cycles. Mobile Bike Mechanic & Bicycle Repair Service – Auckland, New Zealand",
+                footer2: "Expert bike repair, tune-ups, puncture repair and brake repair – wherever you are in Auckland.",
                 indivTitle: "Individual Services",
                 serviceCol: "Service",
                 priceCol: "Price",
