@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, user-scalable=yes">
+    <title>Offtrail Cycles</title>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%23ffffff'/><circle cx='15' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='49' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='15' cy='43' r='2' fill='%23111111'/><circle cx='49' cy='43' r='2' fill='%23111111'/><polyline points='15,43 27,19 40,19' fill='none' stroke='%23111111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><line x1='49' y1='43' x2='40' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='27' y1='19' x2='32' y2='43' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='23' y1='19' x2='43' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><circle cx='40' cy='15' r='4' fill='none' stroke='%23111111' stroke-width='2.5'/></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #ffffff; background-color: #000000; min-width: 1200px; }
+        .header { background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="tools" patternUnits="userSpaceOnUse" width="200" height="200"><circle cx="50" cy="50" r="3" fill="%23444"/><circle cx="150" cy="150" r="3" fill="%23444"/><rect x="70" y="70" width="60" height="4" fill="%23333" opacity="0.5"/><rect x="95" y="45" width="4" height="60" fill="%23333" opacity="0.5"/><path d="M 20 100 L 40 120 L 30 130 L 10 110 Z" fill="%23555" opacity="0.3"/><circle cx="170" cy="30" r="15" fill="none" stroke="%23444" stroke-width="2"/></pattern></defs><rect width="1200" height="400" fill="url(%23tools)"/></svg>') center/cover; color: white; padding: 60px 20px; text-align: center; position: relative; }
+        .logo-container { position: absolute; top: 0; left: 20px; height: 100%; display: flex; align-items: center; padding: 10px 0; box-sizing: border-box; }
+        .header-logo { height: 100%; width: auto; object-fit: contain; max-width: 450px; }
+        @media (max-width: 768px) {
+            .header-logo { max-width: 280px; }
+            .logo-container { left: 10px; }
+        }
+        @media (max-width: 480px) {
+            .header-logo { max-width: 200px; }
+        }
+        .language-switcher { position: absolute; top: 20px; right: 20px; z-index: 10; }
+        .language-dropdown { position: relative; display: inline-block; }
+        .language-button { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 0.9em; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+        .language-button:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.5); }
+        .language-button::after { content: '▼'; font-size: 0.7em; }
+        .language-menu { display: none; position: absolute; top: 100%; right: 0; margin-top: 5px; background: rgba(20, 20, 20, 0.95); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 5px; min-width: 120px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .language-menu.show { display: block; }
+        .language-option { padding: 10px 20px; color: white; cursor: pointer; transition: background 0.2s ease; font-size: 0.9em; }
+        .language-option:hover { background: rgba(255, 255, 255, 0.1); }
+        .language-option.active { background: #e94560; }
+        .header h1 { font-size: 3.5em; margin-bottom: 15px; font-weight: 700; text-shadow: 3px 3px 6px rgba(0,0,0,0.8); }
+        .header p { font-size: 1.4em; max-width: 800px; margin: 0 auto; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section { padding: 60px 20px; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 50px; color: #ffffff; position: relative; padding-bottom: 15px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #e94560; }
+        .why-us { background: #0a0a0a; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
+        .feature-card { background: #1a1a1a; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(255,255,255,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255,255,255,0.1); }
+        .feature-icon { width: 52px; height: 52px; margin-bottom: 20px; color: #e94560; }
+        .feature-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .feature-card h3 { font-size: 1.3em; margin-bottom: 15px; color: #ffffff; }
+        .feature-card p { color: #cccccc; line-height: 1.7; font-size: 0.95em; }
+        .packages { background: #000000; }
+        .package-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 40px; }
+        .package-card { border: none; border-radius: 15px; padding: 20px 16px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); }
+        .package-card::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150%; height: 150%; background: radial-gradient(ellipse at 30% 30%, rgba(144, 238, 144, 0.4) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(144, 238, 144, 0.3) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(144, 238, 144, 0.2) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(144, 238, 144, 0.15) 0%, transparent 30%); pointer-events: none; }
+        .package-card::after { content: ''; position: absolute; top: 15%; right: 15%; width: 80px; height: 80px; background: radial-gradient(circle, rgba(144, 238, 144, 0.5) 0%, transparent 60%); border-radius: 50%; pointer-events: none; }
+        .package-card.blue { background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); }
+        .package-card.blue::before { background: radial-gradient(ellipse at 30% 30%, rgba(135, 206, 250, 0.4) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(135, 206, 250, 0.3) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(135, 206, 250, 0.2) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(135, 206, 250, 0.15) 0%, transparent 30%); }
+        .package-card.blue::after { background: radial-gradient(circle, rgba(135, 206, 250, 0.5) 0%, transparent 60%); }
+        .package-card.black { background: linear-gradient(135deg, #555 0%, #333 100%); }
+        .package-card.black::before { background: radial-gradient(ellipse at 30% 30%, rgba(220, 220, 220, 0.3) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(220, 220, 220, 0.25) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(220, 220, 220, 0.2) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(220, 220, 220, 0.15) 0%, transparent 30%); }
+        .package-card.black::after { background: radial-gradient(circle, rgba(220, 220, 220, 0.4) 0%, transparent 60%); }
+        .package-card.diamond { background: #000000; }
+        .package-card.diamond::before { background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(255, 255, 255, 0.2) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.15) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 30%); }
+        .package-card.diamond::after { background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%); }
+        .package-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
+        .package-card.diamond:hover { box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3); }
+        .package-card.yellow { background: linear-gradient(135deg, #FFD700 0%, #FFC107 100%); }
+        .package-card.yellow::before { background: radial-gradient(ellipse at 30% 30%, rgba(255, 255, 200, 0.5) 0%, transparent 40%), radial-gradient(ellipse at 70% 40%, rgba(255, 255, 200, 0.4) 0%, transparent 35%), radial-gradient(ellipse at 50% 60%, rgba(255, 255, 200, 0.3) 0%, transparent 45%), radial-gradient(ellipse at 20% 70%, rgba(255, 255, 200, 0.2) 0%, transparent 30%); }
+        .package-card.yellow::after { background: radial-gradient(circle, rgba(255, 255, 200, 0.6) 0%, transparent 60%); }
+        .package-card.yellow .package-name,
+        .package-card.yellow .package-price,
+        .package-card.yellow .package-note,
+        .package-card.yellow ul,
+        .package-card.yellow li { color: #1a1a1a; }
+        .package-card.yellow:hover { box-shadow: 0 15px 35px rgba(255, 200, 0, 0.5); }
+        .package-name { font-size: 1.05em; font-weight: 700; margin-bottom: 8px; color: #ffffff; position: relative; z-index: 1; }
+        .package-price { font-size: 1.7em; font-weight: 700; color: #ffffff; margin: 10px 0; position: relative; z-index: 1; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+        .package-note { font-size: 0.78em; color: #f0f0f0; margin-bottom: 14px; font-style: italic; position: relative; z-index: 1; }
+        .package-card ul { text-align: left; color: #ffffff; line-height: 1.5; list-style: none; font-size: 0.85em; position: relative; z-index: 1; }
+        .package-card li { margin-bottom: 4px; }
+        .contact { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center; padding: 60px 20px; }
+        .contact h2 { font-size: 2.5em; margin-bottom: 30px; }
+        .contact-info { font-size: 1.2em; margin-bottom: 15px; }
+        .cta-button { display: inline-block; background: #e94560; color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-size: 1.1em; font-weight: 600; margin-top: 20px; transition: all 0.3s ease; border: none; cursor: pointer; }
+        .cta-button:hover { background: #d63550; transform: scale(1.05); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
+        /* Tab Navigation */
+        .tab-nav { background: #111111; border-bottom: 2px solid #222; display: flex; justify-content: center; gap: 0; position: sticky; top: 0; z-index: 100; }
+        .tab-btn { background: none; border: none; color: #aaa; padding: 16px 48px; font-size: 1em; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 3px solid transparent; transition: all 0.25s ease; position: relative; top: 2px; }
+        .tab-btn:hover { color: #fff; }
+        .tab-btn.active { color: #e94560; border-bottom: 3px solid #e94560; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .cta-button:hover { background: #d63550; transform: scale(1.05); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
+
+        /* ── Who We Are Section ── */
+        .who-we-are { background: #000000; }
+        .who-content {
+            max-width: 820px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .who-content p {
+            color: #cccccc;
+            font-size: 1.08em;
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+        .who-content p:last-child { margin-bottom: 0; }
+
+        /* ── Gallery Section ── */
+        .gallery-section { background: #000000; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 220px);
+            gap: 12px;
+            margin-top: 40px;
+        }
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: #111;
+            border: 1px solid #222;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            cursor: zoom-in;
+        }
+        .gallery-item:hover {
+            border-color: #e94560;
+            transform: scale(1.01);
+            z-index: 2;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.04);
+        }
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+        }
+        .gallery-placeholder svg {
+            width: 64px;
+            height: 48px;
+            opacity: 0.4;
+        }
+        .gallery-placeholder-label {
+            font-size: 0.75em;
+            color: #555;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .gallery-item:hover .gallery-placeholder {
+            background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+        }
+        .gallery-item:hover .gallery-placeholder svg { opacity: 0.6; }
+        .gallery-hint {
+            text-align: center;
+            color: #666;
+            font-size: 0.88em;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ── Cooperative Brands Section ── */
+        .brands-section { background: #0a0a0a; padding-bottom: 70px; }
+        .brands-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1em;
+            margin-top: -30px;
+            margin-bottom: 50px;
+            letter-spacing: 0.03em;
+        }
+        .brands-track-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #2a2a2a;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+        /* Fade edges */
+        .brands-track-wrapper::before,
+        .brands-track-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .brands-track-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #2a2a2a, transparent);
+        }
+        .brands-track-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #2a2a2a, transparent);
+        }
+        .brands-track {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            animation: brandScroll 26s linear infinite;
+            width: max-content;
+        }
+        .brands-track:hover { animation-play-state: paused; }
+        @keyframes brandScroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .brand-logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 90px;
+            flex-shrink: 0;
+            position: relative;
+            padding: 16px 28px;
+            box-sizing: border-box;
+        }
+        .brand-logo-item::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: #3a3a3a;
+        }
+        .brand-logo-item img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            /* no filter �?keep original logo colours */
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.85;
+        }
+        .brand-logo-item:hover img {
+            transform: scale(1.06);
+            opacity: 1;
+        }
+        /* ── Social Media Links ── */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 20px;
+        }
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+        .social-icon span {
+            font-size: 0.75em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .social-icon:hover {
+            color: #e94560;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="images/image_E47E7A571CE65E6DC7FFAEB14F87C2DA.png" alt="Offtrail Cycles Logo" class="header-logo">
+            
+        </div>
+        <div class="language-switcher">
+            <div class="language-dropdown">
+                <button class="language-button" id="lang-btn" onclick="toggleLanguageMenu()">
+                    <span id="current-lang">Language</span>
+                </button>
+                <div class="language-menu" id="lang-menu">
+                    <div class="language-option active" onclick="selectLanguage('en', 'English', event)">English</div>
+                    <div class="language-option" onclick="selectLanguage('zh', '中文', event)">中文</div>
+                </div>
+            </div>
+        </div>
+        <h1 id="title">Offtrail Cycles</h1>
+        <p id="subtitle">Professional Mobile Bike Service - We Come to You Across Auckland</p>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" id="tab-about" onclick="switchTab('about')">
+            <span id="tab-about-label">About Us</span>
+        </button>
+        <button class="tab-btn" id="tab-services" onclick="switchTab('services')">
+            <span id="tab-services-label">Services</span>
+        </button>
+    </nav>
+
+    <!-- About Us Tab -->
+    <div class="tab-panel active" id="panel-about">
+
+    <!-- Sub-section 0: Who We Are -->
+    <section class="section who-we-are">
+        <div class="container">
+            <h2 class="section-title" id="who-title">Who We Are</h2>
+            <div class="who-content">
+                <p id="who-p1">Offtrail Cycles mobile bike workshop providing professional, on-site servicing for individuals, schools, businesses, and cycling events. From routine maintenance to on-location technical support, we keep bikes performing at their best—wherever they're needed.</p>
+                <p id="who-p2">Built around convenience, reliability, and low-impact transport, Offtrail Cycles supports a more active, healthier way of living—while helping reduce environmental impact through everyday cycling.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sub-section 1: Why Choose Offtrail Cycles -->
+    <section class="section why-us">
+        <div class="container">
+            <h2 class="section-title" id="why-title">Why Choose Offtrail Cycles?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- Map pin / location: comes to you -->
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                            <circle cx="12" cy="9" r="2.5"/>
+                        </svg>
+                    </div>
+                    <h3 id="feat1-title">Convenience That Comes to You</h3>
+                    <p id="feat1-desc">Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- Wrench / tool -->
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                        </svg>
+                    </div>
+                    <h3 id="feat2-title">Professional-Grade Service On-Site</h3>
+                    <p id="feat2-desc">Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- Award / certified badge -->
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="6"/>
+                            <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+                        </svg>
+                    </div>
+                    <h3 id="feat3-title">Expertise You Can Trust</h3>
+                    <p id="feat3-desc">Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- Clipboard / report -->
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                            <rect x="9" y="3" width="6" height="4" rx="1"/>
+                            <line x1="9" y1="12" x2="15" y2="12"/>
+                            <line x1="9" y1="16" x2="13" y2="16"/>
+                        </svg>
+                    </div>
+                    <h3 id="feat4-title">Transparency &amp; Ongoing Care</h3>
+                    <p id="feat4-desc">We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sub-section 2: Gallery -->
+    <section class="section gallery-section">
+        <div class="container">
+            <h2 class="section-title" id="gallery-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)" tabindex="0" role="button" aria-label="View Wheel truing service">
+                    <img src="images/image_2B92DC8423B60E39084B34AC1987C346.jpg" alt="Wheel truing service" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)" tabindex="0" role="button" aria-label="View Cassette ultrasonic cleaning">
+                    <img src="images/image_3FD7E4310C7EF71BBFC33C13E440A775.jpg" alt="Cassette ultrasonic cleaning" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)" tabindex="0" role="button" aria-label="View Bottom bracket service in van">
+                    <img src="images/image_1E291BD57300E71736E8803029B39825.jpg" alt="Bottom bracket service in van" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)" tabindex="0" role="button" aria-label="View Gear tuning adjustment">
+                    <img src="images/image_1F81DF82F6A888D76A40554409758B74.jpg" alt="Gear tuning adjustment" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)" tabindex="0" role="button" aria-label="View Brake bleed service">
+                    <img src="images/image_C282016F639FDBA188056AF975A4088E.jpg" alt="Brake bleed service" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)" tabindex="0" role="button" aria-label="View Fox shock service">
+                    <img src="images/image_0757D0EBFF259DDE6095DE82F8A1ED66.jpg" alt="Fox shock service" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)" tabindex="0" role="button" aria-label="View Mobile workshop interior">
+                    <img src="images/image_ED70BAB1F6AA1E7A757A70889AB98AB0.jpg" alt="Mobile workshop interior" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7)" tabindex="0" role="button" aria-label="View Park Tool equipped van">
+                    <img src="images/image_DE5E0DC0240024362F361737CF1B02BB.jpg" alt="Park Tool equipped van" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(8)" tabindex="0" role="button" aria-label="View Offtrail Cycles mobile service van">
+                    <img src="images/image_75D8AAECC658E37D53730BE058899B71.jpg" alt="Offtrail Cycles mobile service van" loading="lazy">
+                </div>
+            </div>
+            <p class="gallery-hint" id="gallery-hint">📸 Follow us on social media for the latest updates</p>
+        </div>
+    </section>
+
+<section class="section brands-section">
+        <div class="container">
+            <h2 class="section-title" id="brands-title">Cooperative Brands</h2>
+            <p class="brands-subtitle" id="brands-subtitle">We proudly work with the world's leading cycling component brands</p>
+        </div>
+        <div class="brands-track-wrapper">
+            <div class="brands-track" id="brandsTrack">
+                <div class="brand-logo-item">
+                    <img src="images/image_9A5BF8532A4F7241DB8A75BB34C30232.png" alt="Shimano">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_94557E6088E55A94BFA0E9D07A4ABEBE.png" alt="SRAM">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_0CD1857A3098663D1853337EB2761F81.png" alt="RockShox">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_61A5377088EF9E1895F3EEC32AB0DCC4.png" alt="DT Swiss">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_A774CC66FD0D6F2E43FC14FBF0EFFE9B.jpg" alt="Bosch">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_83D35427360C01FDC50ABC2178F85D40.png" alt="Maxxis">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_9A5BF8532A4F7241DB8A75BB34C30232.png" alt="Shimano">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_94557E6088E55A94BFA0E9D07A4ABEBE.png" alt="SRAM">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_0CD1857A3098663D1853337EB2761F81.png" alt="RockShox">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_61A5377088EF9E1895F3EEC32AB0DCC4.png" alt="DT Swiss">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_A774CC66FD0D6F2E43FC14FBF0EFFE9B.jpg" alt="Bosch">
+                </div>
+                <div class="brand-logo-item">
+                    <img src="images/image_83D35427360C01FDC50ABC2178F85D40.png" alt="Maxxis">
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    </div><!-- end panel-about -->
+
+    <!-- Services Tab -->
+    <div class="tab-panel" id="panel-services">
+    <section class="section packages">
+        <div class="container">
+            <h2 class="section-title" id="pkg-title">Service Packages</h2>
+            <p style="text-align: center; font-size: 1.1em; color: #cccccc; margin-bottom: 30px;"><strong id="price-note">All prices listed are labour costs only and exclude parts</strong></p>
+            <div class="package-grid">
+                    <div class="package-card yellow">
+                    <div class="package-name" id="kids-name">Yellow Package</div>
+                    <div style="font-size:0.72em; color:rgba(0,0,0,0.55); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; font-style:italic;">⏱ 1 hr</div>
+                    <div class="package-price">$119</div>
+                    <div class="package-note" id="kids-note">Kids bike specific service · 24" & under</div>
+                    <ul id="kids-items">
+                        <li>✓ 6-Point Safety Check ("M" check)</li>
+                        <li>✓ Gear Tuning</li>
+                        <li>✓ Brake Alignment</li>
+                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
+                        <li>✓ Tube & Tyre Replacement (if required)</li>
+                        <li>✓ Cable & Hose Replacement (if required)</li>
+                        <li>✓ Hub & Headset Adjustment (if needed)</li>
+                        <li>✓ Wheel Truing (if needed)</li>
+                        <li>✓ Brake Rotor & Pad Cleaning or Replacement (if needed)</li>
+                        <li>✓ Bottom Bracket Service</li>
+                    </ul>
+                </div>
+                <div class="package-card">
+                    <div class="package-name" id="green-name">Green Package</div>
+                    <div style="font-size:0.72em; color:rgba(255,255,255,0.7); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; font-style:italic;">⏱ 1.5 hrs</div>
+                    <div class="package-price">$129</div>
+                    <div class="package-note" id="green-note">Basic service & maintenance</div>
+                    <ul id="green-items">
+                        <li>✓ Inspection & Service reports</li>
+                        <li>✓ Test ride</li>
+                        <li>✓ 6-Point Safety Check ("M" check)</li>
+                        <li>✓ Gear Tuning</li>
+                        <li>✓ Brake Alignment</li>
+                        <li>✓ Seatpost & Axles Clean & Re-grease</li>
+                        <li>✓ Chain Inspection & Lubrication</li>
+                        <li>✓ Tube & Tyre Replacement (Excludes Hub Motor Wheels)</li>
+                        <li>✓ Suspension Setup & Reset</li>
+                        <li>✓ Sealant Top-Up & Valve Core Replacement</li>
+                        <li>✓ Cable Replacement (If Required) & Hose Lubrication</li>
+                        <li>✓ Hub Adjustment & Tightening</li>
+                    </ul>
+                </div>
+                <div class="package-card blue">
+                    <div class="package-name" id="blue-name">Blue Package</div>
+                    <div style="font-size:0.72em; color:rgba(255,255,255,0.7); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; font-style:italic;">⏱ 2 hrs</div>
+                    <div class="package-price">$199</div>
+                    <div class="package-note" id="blue-note">Comprehensive service</div>
+                    <ul id="blue-items">
+                        <li>✓ Everything in Green</li>
+                        <li>✓ Drivetrain Cleaning or Component Replacement</li>
+                        <li>✓ Wheel Truing</li>
+                        <li>✓ Brake Rotor & Pad Cleaning or Replacement</li>
+                    </ul>
+                </div>
+                <div class="package-card black">
+                    <div class="package-name" id="black-name">Black Package</div>
+                    <div style="font-size:0.72em; color:rgba(255,255,255,0.7); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; font-style:italic;">⏱ 3 hrs</div>
+                    <div class="package-price">$249</div>
+                    <div class="package-note" id="black-note">Advanced service & repair</div>
+                    <ul id="black-items">
+                        <li>✓ Everything in Blue</li>
+                        <li>✓ Headset Bearing Service or Replacement</li>
+                        <li>✓ Hub & Freehub Body Service or Bearing Replacement</li>
+                        <li>✓ Bottom Bracket Service or E-Bike Software Update</li>
+                    </ul>
+                </div>
+                <div class="package-card diamond">
+                    <div class="package-name" id="diamond-name">Black Diamond Package</div>
+                    <div style="font-size:0.72em; color:rgba(255,255,255,0.7); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; font-style:italic;">⏱ Up to 8 hrs</div>
+                    <div class="package-price">$649</div>
+                    <div class="package-note" id="diamond-note">Premium complete overhaul</div>
+                    <ul id="diamond-items">
+                        <li>✓ Everything in Black</li>
+                        <li>✓ Frame Pivot Service or Bearing Replacement</li>
+                        <li>✓ Fork 50-Hour Service</li>
+                        <li>✓ Shock 50-Hour Service</li>
+                        <li>✓ Full Brake Bleed & Brake Piston Service</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section packages">
+        <div class="container">
+            <h3 style="text-align: center; font-size: 2em; margin-top: 80px; margin-bottom: 30px; color: #ffffff;" id="indiv-title">Individual Services</h3>
+
+            <table style="width: 100%; margin-top: 50px; border-collapse: collapse; background: #1a1a1a; box-shadow: 0 5px 15px rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden;">
+                <thead>
+                    <tr>
+                        <th style="background: #2a2a2a; color: white; padding: 15px; text-align: left; font-weight: 600;" id="service-col">Service</th>
+                        <th style="background: #2a2a2a; color: white; padding: 15px; text-align: left; font-weight: 600;" id="price-col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #e94560; color: white; font-weight: 700; font-size: 1.1em;">
+                        <td colspan="2" style="padding: 12px 15px;" id="cat1">Cable & Hose System Services</td>
+                    </tr>
+                    <tr style="color: #ffffff; padding: 12px 15px; border-bottom: 1px solid #333333;">
+                        <td style="padding: 12px 15px;" id="serv1">Shifter or Brake External Hose Replacement (each)</td>
+                        <td style="padding: 12px 15px;">$25</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv2">Conventional Bike Internal Shift/Dropper Post Casing (each)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$75</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv3">E-Bike Internal Shift/Dropper Post Casing (each)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$150</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv4">Conventional Bike Internal Brake Hose + Single Brake Bleed</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv5">E-Bike Internal Brake Hose + Single Brake Bleed</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$175</td>
+                    </tr>
+
+                    <tr style="background: #e94560; color: white; font-weight: 700; font-size: 1.1em;">
+                        <td colspan="2" style="padding: 12px 15px;" id="cat2">Wheel & Tyre Services</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv6">Hub-Motor E-Bike Tube or Tyre Replacement</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv7">Convert Tyre to Tubeless (each wheel)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv8">Hub Service (each)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv9">Freehub Body Service</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv10">Wheel Truing (each wheel)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$25</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv11">Tube Wheel Spoke Replacement + Wheel True (up to 5 spokes)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$75</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv12">Tubeless Wheel Spoke Replacement + Wheel True (up to 5 spokes)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$125</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv13">Complete Wheel Build (each wheel)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$200</td>
+                    </tr>
+
+                    <tr style="background: #e94560; color: white; font-weight: 700; font-size: 1.1em;">
+                        <td colspan="2" style="padding: 12px 15px;" id="cat3">Brake Services</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv14">Brake Lever Bleed (each)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$25</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv15">Single Brake Bleed</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv16">Both Brakes Bleed</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv17">Hydraulic Brake Caliper Service (each)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$25</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv18">Brake Pad or Rotor Replacement (each)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$25</td>
+                    </tr>
+
+                    <tr style="background: #e94560; color: white; font-weight: 700; font-size: 1.1em;">
+                        <td colspan="2" style="padding: 12px 15px;" id="cat4">Frame Services</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv19">Headset Service</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv20">Bottom Bracket Service or Replacement</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv22">Headset System Replacement</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$75</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv23">Fork Replacement</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv24">Derailleur Clutch Service & Jockey Wheel Replacement</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv25">Bike Wash</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv26">Drivetrain Clean</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$75</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv27">Bike Wrapping</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100/hrs</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv28">Frame Pivot Service or Bearing Replacement</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$200</td>
+                    </tr>
+
+                    <tr style="background: #e94560; color: white; font-weight: 700; font-size: 1.1em;">
+                        <td colspan="2" style="padding: 12px 15px;" id="cat5">Suspension Services</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv29">Dropper Post Installation (Conventional Bike)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$75</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv30">Dropper Post Installation (E-Bike)</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$125</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv31">Dropper Post Service</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv32">Fork 50-Hour Service</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv33">Fork Airshaft Service</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$50</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv34">Fork 200-Hour Service</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$250</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv35">Shock 50-Hour Service</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv36">Shock 200-Hour Service</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$250</td>
+                    </tr>
+
+                    <tr style="background: #e94560; color: white; font-weight: 700; font-size: 1.1em;">
+                        <td colspan="2" style="padding: 12px 15px;" id="cat6">Bike Building</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv37">Children's Bike Build (Under 24")</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$75</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv38">Adult Conventional Bike Build</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv39">Adult E-Bike Build</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$125</td>
+                    </tr>
+
+                    <tr style="background: #e94560; color: white; font-weight: 700; font-size: 1.1em;">
+                        <td colspan="2" style="padding: 12px 15px;" id="cat7">Diagnostics & Troubleshooting</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv40">E-Bike System Shutdown & Component Replacement</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100/hr</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv41">Intermittent Clicking Noise Diagnosis</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100/hr</td>
+                    </tr>
+                    <tr style="color: #ffffff;">
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;" id="serv42">Complex / Non-Standard Problem Diagnosis & Repair</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100/hr</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 20px; color: #888; font-size: 0.9em; font-style: italic;" id="disclaimer">* Additional labour may apply for severely seized, damaged, or non-standard components.</p>
+        </div>
+    </section>
+    </div><!-- end panel-services -->
+
+    <section class="contact">
+        <div class="container">
+            <h2 id="ready-title">Ready to Get Your Bike Serviced?</h2>
+            <div style="margin: 30px 0;">
+                <p class="contact-info"><strong id="phone-label">Phone:</strong> <a href="tel:0226008237" style="color: #e94560; text-decoration: none;">022 600 8237</a></p>
+                <p class="contact-info"><strong id="email-label">Email:</strong> <a href="mailto:info@offtrailcycles.com" style="color: #e94560; text-decoration: none;">info@offtrailcycles.com</a></p>
+                <div style="margin-top: 20px;">
+                    <p class="contact-info"><strong id="hours-label">Business Hours:</strong></p>
+                    <p class="contact-info" id="hours-weekday">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p class="contact-info" id="hours-weekend">Weekend: Work as required</p>
+                </div>
+            </div>
+            <p class="contact-info" id="info1">📍 Our mobile bike service covering Orewa to Papakura and Kumeu through to Flat Bush. If you are outside this area, please let us know, and we will do our best to get one of the team to you.</p>
+            <p class="contact-info" id="info2">📞 Contact us today for a free quote</p>
+            <p class="contact-info" id="info3">✅ Flexible scheduling - we work around your availability</p>
+            <button class="cta-button" id="cta-btn" onclick="openBookingModal()">Book Your Service Now</button>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; overflow-y:auto; backdrop-filter:blur(6px);">
+        <div style="max-width:620px; margin:40px auto; background:#111; border-radius:16px; border:1px solid #333; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.8);">
+            <!-- Modal Header -->
+            <div style="background:linear-gradient(135deg,#e94560,#c72d47); padding:30px 35px; position:relative;">
+                <button onclick="closeBookingModal()" style="position:absolute; top:15px; right:20px; background:rgba(255,255,255,0.15); border:none; color:#fff; width:34px; height:34px; border-radius:50%; font-size:1.2em; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">&times;</button>
+                <div style="font-size:2em; margin-bottom:6px;">🚲</div>
+                <h2 id="modal-title" style="color:#fff; font-size:1.7em; font-weight:700; margin:0 0 4px;">Book Your Service</h2>
+                <p id="modal-subtitle" style="color:rgba(255,255,255,0.85); font-size:0.95em; margin:0;">Fill in your details and we'll get back to you shortly.</p>
+            </div>
+            <!-- Modal Form -->
+            <div style="padding:35px;">
+                <div id="booking-success" style="display:none; text-align:center; padding:40px 20px;">
+                    <div style="font-size:3em; margin-bottom:15px;">✅</div>
+                    <h3 id="success-title" style="color:#4CAF50; font-size:1.5em; margin-bottom:10px;">Booking Submitted!</h3>
+                    <p id="success-msg" style="color:#ccc;">Thank you! We'll be in touch within 24 hours to confirm your service.</p>
+                    <a id="success-cal-btn" href="#" target="_blank" style="display:none; margin-top:16px; background:#4285f4; color:#fff; padding:10px 24px; border-radius:50px; text-decoration:none; font-size:0.9em; font-weight:600;">📅 Add to Google Calendar</a>
+                    <p style="color:#888; font-size:0.82em; margin-top:12px;" id="success-cal-note">Click the button above to add this booking to your Google Calendar.</p>
+                    <button onclick="closeBookingModal()" id="success-close-btn" style="margin-top:25px; background:#e94560; color:#fff; border:none; padding:12px 35px; border-radius:50px; font-size:1em; cursor:pointer; font-weight:600;">Close</button>
+                </div>
+                <div id="booking-form-content">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;">
+                        <div>
+                            <label id="lbl-name" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Full Name *</label>
+                            <input id="bk-name" type="text" placeholder="John Smith" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                        </div>
+                        <div>
+                            <label id="lbl-phone" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Phone *</label>
+                            <input id="bk-phone" type="tel" placeholder="022 000 0000" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                        </div>
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <label id="lbl-address" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Address *</label>
+                        <input id="bk-address" type="text" placeholder="123 Example Street, Auckland" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <label id="lbl-email" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Email</label>
+                        <input id="bk-email" type="email" placeholder="example@email.com" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;">
+                        <div>
+                            <label id="lbl-brand" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Bike Brand</label>
+                            <input id="bk-brand" type="text" placeholder="Trek, Giant, Specialized" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                        </div>
+                        <div>
+                            <label id="lbl-model" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Bike Model</label>
+                            <input id="bk-model" type="text" placeholder="Marlin 5, Defy Advanced" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                        </div>
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <label id="lbl-package" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Service Package</label>
+                        <select id="bk-package" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; cursor:pointer; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                            <option value="" id="pkg-opt0">-- Select a package (optional) --</option>
+                            <option value="Kids" id="pkg-opt5">🟡 Yellow Package (24" & under) - $119</option>
+                            <option value="Green" id="pkg-opt1">🟢 Green Package - $129</option>
+                            <option value="Blue" id="pkg-opt2">🔵 Blue Package - $199</option>
+                            <option value="Black" id="pkg-opt3">⚫ Black Package - $249</option>
+                            <option value="Diamond" id="pkg-opt4">💎 Black Diamond Package - $649</option>
+                        </select>
+                    </div>
+
+                    <!-- Individual Services -->
+                    <div style="margin-bottom:18px;">
+                        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; cursor:pointer;" onclick="toggleIndivServices()">
+                            <label id="lbl-indiv" style="display:block; color:#aaa; font-size:0.85em; font-weight:500; text-transform:uppercase; letter-spacing:0.05em; cursor:pointer;">🔧 Individual Services (optional)</label>
+                            <span id="indiv-toggle-icon" style="color:#e94560; font-size:1.1em; transition:transform 0.3s;">+</span>
+                        </div>
+                        <div id="indiv-services-panel" style="display:none; background:#1a1a1a; border:1px solid #333; border-radius:8px; overflow:hidden; max-height:340px; overflow-y:auto;">
+
+                            <!-- Cat 1 -->
+                            <div style="background:#2a2a2a; padding:8px 14px; color:#e94560; font-size:0.82em; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;" id="is-cat1">Cable &amp; Hose System Services</div>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Shifter or Brake External Hose Replacement (each) - $25" style="accent-color:#e94560;"> <span id="is-s1">Shifter or Brake External Hose Replacement (each)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$25</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Conventional Bike Internal Shift/Dropper Post Casing (each) - $75" style="accent-color:#e94560;"> <span id="is-s2">Conventional Bike Internal Shift/Dropper Post Casing (each)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$75</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="E-Bike Internal Shift/Dropper Post Casing (each) - $150" style="accent-color:#e94560;"> <span id="is-s3">E-Bike Internal Shift/Dropper Post Casing (each)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$150</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Conventional Bike Internal Brake Hose + Single Brake Bleed - $100" style="accent-color:#e94560;"> <span id="is-s4">Conventional Bike Internal Brake Hose + Single Brake Bleed</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="E-Bike Internal Brake Hose + Single Brake Bleed - $175" style="accent-color:#e94560;"> <span id="is-s5">E-Bike Internal Brake Hose + Single Brake Bleed</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$175</span></label>
+
+                            <!-- Cat 2 -->
+                            <div style="background:#2a2a2a; padding:8px 14px; color:#e94560; font-size:0.82em; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;" id="is-cat2">Wheel &amp; Tyre Services</div>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Hub-Motor E-Bike Tube or Tyre Replacement - $50" style="accent-color:#e94560;"> <span id="is-s6">Hub-Motor E-Bike Tube or Tyre Replacement</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Convert Tyre to Tubeless (each wheel) - $50" style="accent-color:#e94560;"> <span id="is-s7">Convert Tyre to Tubeless (each wheel)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Hub Service (each) - $50" style="accent-color:#e94560;"> <span id="is-s8">Hub Service (each)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Freehub Body Service - $50" style="accent-color:#e94560;"> <span id="is-s9">Freehub Body Service</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Wheel Truing (each wheel) - $25" style="accent-color:#e94560;"> <span id="is-s10">Wheel Truing (each wheel)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$25</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Tube Wheel Spoke Replacement + Wheel True (up to 5 spokes) - $75" style="accent-color:#e94560;"> <span id="is-s11">Tube Wheel Spoke Replacement + Wheel True (up to 5)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$75</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Tubeless Wheel Spoke Replacement + Wheel True (up to 5 spokes) - $125" style="accent-color:#e94560;"> <span id="is-s12">Tubeless Wheel Spoke Replacement + Wheel True (up to 5)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$125</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Complete Wheel Build (each wheel) - $200" style="accent-color:#e94560;"> <span id="is-s13">Complete Wheel Build (each wheel)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$200</span></label>
+
+                            <!-- Cat 3 -->
+                            <div style="background:#2a2a2a; padding:8px 14px; color:#e94560; font-size:0.82em; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;" id="is-cat3">Brake Services</div>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Brake Lever Bleed (each) - $25" style="accent-color:#e94560;"> <span id="is-s14">Brake Lever Bleed (each)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$25</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Single Brake Bleed - $50" style="accent-color:#e94560;"> <span id="is-s15">Single Brake Bleed</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Both Brakes Bleed - $100" style="accent-color:#e94560;"> <span id="is-s16">Both Brakes Bleed</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Hydraulic Brake Caliper Service (each) - $25" style="accent-color:#e94560;"> <span id="is-s17">Hydraulic Brake Caliper Service (each)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$25</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Brake Pad or Rotor Replacement (each) - $25" style="accent-color:#e94560;"> <span id="is-s18">Brake Pad or Rotor Replacement (each)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$25</span></label>
+
+                            <!-- Cat 4 -->
+                            <div style="background:#2a2a2a; padding:8px 14px; color:#e94560; font-size:0.82em; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;" id="is-cat4">Frame Services</div>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Headset Service - $50" style="accent-color:#e94560;"> <span id="is-s19">Headset Service</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Bottom Bracket Service or Replacement - $50" style="accent-color:#e94560;"> <span id="is-s20">Bottom Bracket Service or Replacement</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Headset System Replacement - $75" style="accent-color:#e94560;"> <span id="is-s22">Headset System Replacement</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$75</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Fork Replacement - $100" style="accent-color:#e94560;"> <span id="is-s23">Fork Replacement</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Derailleur Clutch Service & Jockey Wheel Replacement - $50" style="accent-color:#e94560;"> <span id="is-s24">Derailleur Clutch Service &amp; Jockey Wheel Replacement</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Bike Wash - $50" style="accent-color:#e94560;"> <span id="is-s25">Bike Wash</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Drivetrain Clean - $75" style="accent-color:#e94560;"> <span id="is-s26">Drivetrain Clean</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$75</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Bike Wrapping - $100/hr" style="accent-color:#e94560;"> <span id="is-s27">Bike Wrapping</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100/hr</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Frame Pivot Service or Bearing Replacement - $200" style="accent-color:#e94560;"> <span id="is-s28">Frame Pivot Service or Bearing Replacement</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$200</span></label>
+
+                            <!-- Cat 5 -->
+                            <div style="background:#2a2a2a; padding:8px 14px; color:#e94560; font-size:0.82em; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;" id="is-cat5">Suspension Services</div>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Dropper Post Installation (Conventional Bike) - $75" style="accent-color:#e94560;"> <span id="is-s29">Dropper Post Installation (Conventional Bike)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$75</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Dropper Post Installation (E-Bike) - $125" style="accent-color:#e94560;"> <span id="is-s30">Dropper Post Installation (E-Bike)</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$125</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Dropper Post Service - $100" style="accent-color:#e94560;"> <span id="is-s31">Dropper Post Service</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Fork 50-Hour Service - $100" style="accent-color:#e94560;"> <span id="is-s32">Fork 50-Hour Service</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Fork Airshaft Service - $50" style="accent-color:#e94560;"> <span id="is-s33">Fork Airshaft Service</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$50</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Fork 200-Hour Service - $250" style="accent-color:#e94560;"> <span id="is-s34">Fork 200-Hour Service</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$250</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Shock 50-Hour Service - $100" style="accent-color:#e94560;"> <span id="is-s35">Shock 50-Hour Service</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Shock 200-Hour Service - $250" style="accent-color:#e94560;"> <span id="is-s36">Shock 200-Hour Service</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$250</span></label>
+
+                            <!-- Cat 6 -->
+                            <div style="background:#2a2a2a; padding:8px 14px; color:#e94560; font-size:0.82em; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;" id="is-cat6">Bike Building</div>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Children's Bike Build (Under 24\") - $75" style="accent-color:#e94560;"> <span id="is-s37">Children's Bike Build (Under 24")</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$75</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Adult Conventional Bike Build - $100" style="accent-color:#e94560;"> <span id="is-s38">Adult Conventional Bike Build</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Adult E-Bike Build - $125" style="accent-color:#e94560;"> <span id="is-s39">Adult E-Bike Build</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$125</span></label>
+
+                            <!-- Cat 7 -->
+                            <div style="background:#2a2a2a; padding:8px 14px; color:#e94560; font-size:0.82em; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;" id="is-cat7">Diagnostics &amp; Troubleshooting</div>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="E-Bike System Shutdown & Component Replacement - $100/hr" style="accent-color:#e94560;"> <span id="is-s40">E-Bike System Shutdown &amp; Component Replacement</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100/hr</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer; border-bottom:1px solid #2a2a2a;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Intermittent Clicking Noise Diagnosis - $100/hr" style="accent-color:#e94560;"> <span id="is-s41">Intermittent Clicking Noise Diagnosis</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100/hr</span></label>
+                            <label style="display:flex; align-items:center; gap:10px; padding:9px 14px; color:#ddd; font-size:0.9em; cursor:pointer;" onmouseover="this.style.background='#222'" onmouseout="this.style.background='transparent'"><input type="checkbox" value="Complex / Non-Standard Problem Diagnosis & Repair - $100/hr" style="accent-color:#e94560;"> <span id="is-s42">Complex / Non-Standard Problem Diagnosis &amp; Repair</span> <span style="margin-left:auto; color:#e94560; white-space:nowrap;">$100/hr</span></label>
+                        </div>
+                        <!-- Selected count badge -->
+                        <div id="indiv-count-badge" style="display:none; margin-top:6px; font-size:0.82em; color:#e94560;"></div>
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <label id="lbl-date" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Preferred Date</label>
+                        <div style="display:grid; grid-template-columns:2fr 2fr 1.4fr; gap:8px;">
+                            <select id="bk-date-year" style="background:#1a1a1a; border:1px solid #333; color:#fff; padding:11px 10px; border-radius:8px; font-size:0.9em; outline:none; cursor:pointer; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                                <option value="" id="date-year-placeholder">Year</option>
+                            </select>
+                            <select id="bk-date-month" style="background:#1a1a1a; border:1px solid #333; color:#fff; padding:11px 10px; border-radius:8px; font-size:0.9em; outline:none; cursor:pointer; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                                <option value="" id="date-month-placeholder">Month</option>
+                            </select>
+                            <select id="bk-date-day" style="background:#1a1a1a; border:1px solid #333; color:#fff; padding:11px 10px; border-radius:8px; font-size:0.9em; outline:none; cursor:pointer; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                                <option value="" id="date-day-placeholder">Day</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <label id="lbl-timeofday" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Preferred Time</label>
+                        <select id="bk-timeofday" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; cursor:pointer; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
+                            <option value="" id="tod-opt0">-- AM / PM --</option>
+                            <option value="Morning (AM)" id="tod-opt1">🌅 Morning (AM)</option>
+                            <option value="Afternoon (PM)" id="tod-opt2">🌇 Afternoon (PM)</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom:25px;">
+                        <label id="lbl-notes" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Extra Notes</label>
+                        <textarea id="bk-notes" rows="4" placeholder="Describe any specific issues or other details" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; resize:vertical; font-family:inherit; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'"></textarea>
+                    </div>
+                    <div id="form-error" style="display:none; color:#e94560; font-size:0.9em; margin-bottom:15px; padding:10px 14px; background:rgba(233,69,96,0.1); border-radius:8px; border:1px solid rgba(233,69,96,0.3);"></div>
+                    <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:18px; cursor:pointer;">
+                        <input type="checkbox" id="bk-subscribe" style="accent-color:#e94560; margin-top:3px; width:16px; height:16px; flex-shrink:0;">
+                        <span id="lbl-subscribe" style="color:#aaa; font-size:0.88em; line-height:1.5;">Subscribe to our newsletter for tips, promotions &amp; service reminders</span>
+                    </label>
+                    <button onclick="submitBooking()" id="submit-btn" style="width:100%; background:#e94560; color:#fff; border:none; padding:15px; border-radius:50px; font-size:1.05em; font-weight:700; cursor:pointer; transition:all 0.3s; letter-spacing:0.02em;" onmouseover="this.style.background='#c72d47'; this.style.transform='scale(1.02)'" onmouseout="this.style.background='#e94560'; this.style.transform='scale(1)'">
+                        <span id="submit-btn-text">Submit Booking Request</span>
+                    </button>
+                    <p style="text-align:center; color:#666; font-size:0.82em; margin-top:14px;">* Required fields. We'll confirm your booking within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: #0a0a0a; color: white; text-align: center; padding: 30px 20px;">
+        <!-- Social media icons -->
+        <div class="social-links">
+            <a href="https://www.instagram.com/offtrailcycles/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+                <span>Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/people/Offtrail-Cycles/pfbid02sbfo3c3C5vHwcg8gkqqd4fK8GYEpnvFSJGtUFZjbhP5YD4nQbKirKMHcTrLXmvUhl/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+                <span>Facebook</span>
+            </a>
+        </div>
+        <p id="footer1">&copy; 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand</p>
+        <p style="margin-top: 10px; opacity: 0.8;" id="footer2">Expert, convenient, and trustworthy bicycle care - wherever you are.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" onclick="closeLightboxOnBg(event)" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9990;align-items:center;justify-content:center;flex-direction:column;">
+        <button onclick="closeLightbox()" aria-label="Close" style="position:absolute;top:20px;right:28px;background:rgba(255,255,255,0.12);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.3em;cursor:pointer;z-index:9991;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&times;</button>
+        <button onclick="prevPhoto()" aria-label="Previous" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.6em;cursor:pointer;z-index:9991;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&#8249;</button>
+        <button onclick="nextPhoto()" aria-label="Next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.6em;cursor:pointer;z-index:9991;line-height:1;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&#8250;</button>
+        <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:85vh;object-fit:contain;border-radius:4px;box-shadow:0 8px 40px rgba(0,0,0,0.6);">
+        <p id="lb-caption" style="color:#ccc;margin-top:14px;font-size:0.9em;letter-spacing:0.04em;text-align:center;"></p>
+        <p id="lb-counter" style="color:#666;margin-top:6px;font-size:0.8em;"></p>
+    </div>
+
+    <script>
+        // ========== DATA DEFINITIONS ==========
+        const content = {
+            en: {
+                langLabel: "Language:",
+                title: "Offtrail Cycles",
+                subtitle: "Professional Mobile Bike Service - We Come to You Across Auckland",
+                whyTitle: "Why Choose Offtrail Cycles?",
+                whoTitle: "Who We Are",
+                whoP1: "Offtrail Cycles mobile bike workshop providing professional, on-site servicing for individuals, schools, businesses, and cycling events. From routine maintenance to on-location technical support, we keep bikes performing at their best—wherever they're needed.",
+                whoP2: "Built around convenience, reliability, and low-impact transport, Offtrail Cycles supports a more active, healthier way of living—while helping reduce environmental impact through everyday cycling.",
+                feat1Title: "Convenience That Comes to You",
+                feat1Desc: "Enjoy free call-outs across most Auckland suburbs with our selected service packages. We save you time and hassle by bringing our fully-equipped mobile workshop directly to your doorstep.",
+                feat2Title: "Professional-Grade Service On-Site",
+                feat2Desc: "Our van is a complete workshop on wheels, equipped with brand-new Park Tool master kit, ultrasonic cleaner, air compressor, and comprehensive stock of parts and lubricants for professional repairs every time.",
+                feat3Title: "Expertise You Can Trust",
+                feat3Desc: "Your bike is in skilled hands. Our certified mechanic brings over a decade of experience and holds NZQA qualifications, guaranteeing the highest standard of work.",
+                feat4Title: "Transparency & Ongoing Care",
+                feat4Desc: "We provide and save a detailed Bike Health Report after every service. This record helps you track maintenance and ensures consistent, informed care for your bike's future needs.",
+                pkgTitle: "Service Packages",
+                priceNote: "All prices listed are labour costs only and exclude parts",
+                greenName: "Green Package",
+                greenNote: "Basic service & maintenance",
+                greenItems: ["Inspection & Service reports", "Test ride", "6-Point Safety Check (\"M\" check)", "Gear Tuning", "Brake Alignment", "Seatpost & Axles Clean & Re-grease", "Chain Inspection & Lubrication", "Tube & Tyre Replacement (Excludes Hub Motor Wheels)", "Suspension Setup & Reset", "Sealant Top-Up & Valve Core Replacement", "Cable Replacement (If Required) & Hose Lubrication", "Hub Adjustment & Tightening"],
+                blueName: "Blue Package",
+                blueNote: "Comprehensive service",
+                blueItems: ["Everything in Green", "Drivetrain Cleaning or Component Replacement", "Wheel Truing", "Brake Rotor & Pad Cleaning or Replacement"],
+                blackName: "Black Package",
+                blackNote: "Advanced service & repair",
+                blackItems: ["Everything in Blue", "Headset Bearing Service or Replacement", "Hub & Freehub Body Service or Bearing Replacement", "Bottom Bracket Service or E-Bike Software Update"],
+                diamondName: "Black Diamond Package",
+                diamondNote: "Premium complete overhaul",
+                diamondItems: ["Everything in Black", "Frame Pivot Service or Bearing Replacement", "Fork 50-Hour Service", "Shock 50-Hour Service", "Full Brake Bleed & Brake Piston Service"],
+                kidsName: "Yellow Package",
+                kidsNote: 'Kids bike specific service · 24" & under',
+                kidsItems: ["6-Point Safety Check (\"M\" check)", "Gear Tuning", "Brake Alignment", "Seatpost & Axles Clean & Re-grease", "Tube & Tyre Replacement (if required)", "Cable & Hose Replacement (if required)", "Hub & Headset Adjustment (if needed)", "Wheel Truing (if needed)", "Brake Rotor & Pad Cleaning or Replacement (if needed)", "Bottom Bracket Service"],
+                readyTitle: "Ready to Get Your Bike Serviced?",
+                phoneLabel: "Phone:",
+                emailLabel: "Email:",
+                hoursLabel: "Business Hours:",
+                hoursWeekday: "Monday - Friday: 9:00 AM - 6:00 PM",
+                hoursWeekend: "Weekend: Work as required",
+                info1: "📍 Our mobile bike service covering Orewa to Papakura and Kumeu through to Flat Bush. If you are outside this area, please let us know, and we will do our best to get one of the team to you.",
+                info2: "📞 Contact us today for a free quote",
+                info3: "✅ Flexible scheduling - we work around your availability",
+                ctaBtn: "Book Your Service Now",
+                galleryTitle: "Gallery",
+                galleryHint: "📸 Follow us on social media for the latest updates",
+                brandsTitle: "Cooperative Brands",
+                brandsSubtitle: "We proudly work with the world's leading cycling component brands",
+                tabAbout: "About Us",
+                tabServices: "Services",
+                footer1: "© 2026 Offtrail Cycles. Professional Mobile Bike Service - Auckland, New Zealand",
+                footer2: "Expert, convenient, and trustworthy bicycle care - wherever you are.",
+                indivTitle: "Individual Services",
+                serviceCol: "Service",
+                priceCol: "Price",
+                cat1: "Cable & Hose System Services",
+                cat2: "Wheel & Tyre Services",
+                cat3: "Brake Services",
+                cat4: "Frame Services",
+                cat5: "Suspension Services",
+                cat6: "Bike Building",
+                cat7: "Diagnostics & Troubleshooting",
+                disclaimer: "* Additional labour may apply for severely seized, damaged, or non-standard components.",
+                serv1: "Shifter or Brake External Hose Replacement (each)",
+                serv2: "Conventional Bike Internal Shift/Dropper Post Casing (each)",
+                serv3: "E-Bike Internal Shift/Dropper Post Casing (each)",
+                serv4: "Conventional Bike Internal Brake Hose + Single Brake Bleed",
+                serv5: "E-Bike Internal Brake Hose + Single Brake Bleed",
+                serv6: "Hub-Motor E-Bike Tube or Tyre Replacement",
+                serv7: "Convert Tyre to Tubeless (each wheel)",
+                serv8: "Hub Service (each)",
+                serv9: "Freehub Body Service",
+                serv10: "Wheel Truing (each wheel)",
+                serv11: "Tube Wheel Spoke Replacement + Wheel True (up to 5 spokes)",
+                serv12: "Tubeless Wheel Spoke Replacement + Wheel True (up to 5 spokes)",
+                serv13: "Complete Wheel Build (each wheel)",
+                serv14: "Brake Lever Bleed (each)",
+                serv15: "Single Brake Bleed",
+                serv16: "Both Brakes Bleed",
+                serv17: "Hydraulic Brake Caliper Service (each)",
+                serv18: "Brake Pad or Rotor Replacement (each)",
+                serv19: "Headset Service",
+                serv20: "Bottom Bracket Service or Replacement",
+                serv21: "",
+                serv22: "Headset System Replacement",
+                serv23: "Fork Replacement",
+                serv24: "Derailleur Clutch Service & Jockey Wheel Replacement",
+                serv25: "Bike Wash",
+                serv26: "Drivetrain Clean",
+                serv27: "Bike Wrapping",
+                serv28: "Frame Pivot Service or Bearing Replacement",
+                serv29: "Dropper Post Installation (Conventional Bike)",
+                serv30: "Dropper Post Installation (E-Bike)",
+                serv31: "Dropper Post Service",
+                serv32: "Fork 50-Hour Service",
+                serv33: "Fork Airshaft Service",
+                serv34: "Fork 200-Hour Service",
+                serv35: "Shock 50-Hour Service",
+                serv36: "Shock 200-Hour Service",
+                serv37: "Children's Bike Build (Under 24\")",
+                serv38: "Adult Conventional Bike Build",
+                serv39: "Adult E-Bike Build",
+                serv40: "E-Bike System Shutdown & Component Replacement",
+                serv41: "Intermittent Clicking Noise Diagnosis",
+                serv42: "Complex / Non-Standard Problem Diagnosis & Repair"
+            },
+            zh: {
+                langLabel: "语言",
+                title: "异径单车",
+                subtitle: "专业移动自行车服务 - 我们为奥克兰各地提供上门服务",
+                whyTitle: "为什么选择异径单车？",
+                whoTitle: "关于我们",
+                whoP1: "异径单车移动工作坊为个人、学校、企业及骑行赛事提供专业的上门服务。从日常保养到现场技术支持，无论在哪里，我们都能让您的爱车保持最佳状态。",
+                whoP2: "异径单车以便捷、可靠、低碳出行为核心理念，致力于推广更积极健康的生活方式，同时通过日常骑行助力减少对环境的影响。",
+                feat1Title: "上门便捷服务",
+                feat1Desc: "在我们精选的服务套餐中，享受奥克兰大部分地区的免费上门服务。我们将配备齐全的移动工作坊直接送到您家门口，为您节省时间和麻烦。",
+                feat2Title: "现场专业级服务",
+                feat2Desc: "我们的货车是一个完整的移动工作坊，配备全新的Park Tool专业工具套装、超声波清洁器、空气压缩机，以及全面的零件和润滑油库存，每次都能提供专业维修。",
+                feat3Title: "值得信赖的专业技术",
+                feat3Desc: "您的自行车将由技术熟练的专业人员维护。我们的认证机械师拥有超过十年的经验和NZQA资格认证，保证最高标准的工作质量。",
+                feat4Title: "透明度与持续关怀",
+                feat4Desc: "每次服务后，我们都会提供并保存详细的自行车健康报告。此记录帮助您跟踪维护情况，确保为您的自行车未来需求提供一致、明智的护理。",
+                pkgTitle: "服务套餐",
+                priceNote: "所有价格仅为人工费用，不包括零件",
+                greenName: "绿色套餐",
+                greenNote: "基础服务与维护",
+                greenItems: ["检查与服务报告", "试骑", "6点安全检查（\"M\"检查）", "变速调整", "刹车校准", "座管与轴清洁及重新润滑", "链条检查与润滑", "内胎与轮胎更换（不包括轮毂电机轮组）", "避震设置与重置", "真空胎补胎液补充与气嘴芯更换", "线缆更换（如需要）与线管润滑", "花鼓调整与紧固"],
+                blueName: "蓝色套餐",
+                blueNote: "全面服务",
+                blueItems: ["包含绿色套餐所有内容", "传动系统清洁或组件更换", "轮组校正", "刹车盘与刹车片清洁或更换"],
+                blackName: "黑色套餐",
+                blackNote: "高级服务与维修",
+                blackItems: ["包含蓝色套餐所有内容", "碗组轴承保养或更换", "花鼓与塔基保养或轴承更换", "中轴保养或电动车软件更新"],
+                diamondName: "黑钻套餐",
+                diamondNote: "顶级全面检修",
+                diamondItems: ["包含黑色套餐所有内容", "车架枢轴保养或轴承更换", "前叉50小时保养", "后避震50小时保养", "全套刹车注油与活塞保养"],
+                kidsName: "黄色套餐",
+                kidsNote: "儿童单车专属服务 · 24寸及以下",
+                kidsItems: ["6点安全检查（\"M\"检查）", "变速调整", "刹车校准", "座管与轴清洁及重新润滑", "内胎与轮胎更换（如需要）", "线缆与油管更换（如需要）", "花鼓与碗组调整（如需要）", "轮组校正（如需要）", "刹车盘与刹车片清洁或更换（如需要）", "中轴保养"],
+                readyTitle: "准备好为您的自行车提供服务了吗？",
+                phoneLabel: "电话",
+                emailLabel: "邮箱",
+                hoursLabel: "营业时间",
+                hoursWeekday: "周一至五：上午9:00 - 下午6:00",
+                hoursWeekend: "周末：根据需要安排",
+                info1: "📍 我们的移动自行车服务覆盖从Orewa到Papakura，以及从Kumeu到Flat Bush。如果您在此范围之外，请告知我们，我们将尽力安排团队成员上门服务。",
+                info2: "📞 立即联系我们获取免费报价",
+                info3: "✅ 灵活安排 - 我们配合您的时间",
+                ctaBtn: "立即预约服务",
+                galleryTitle: "图片展示",
+                galleryHint: "📸 照片即将上线 - 关注我们的社交媒体获取最新动态",
+                brandsTitle: "合作品牌",
+                brandsSubtitle: "我们自豪地与全球顶级单车组件品牌合作",
+                tabAbout: "关于我们",
+                tabServices: "服务项目",
+                footer1: "© 2026 异径单车。专业移动自行车服务 - 新西兰奥克兰",
+                footer2: "专业、便捷、值得信赖的自行车护理 - 无论您身在何处。",
+                indivTitle: "单项服务",
+                serviceCol: "服务项目",
+                priceCol: "价格",
+                cat1: "线缆与线管系统服务",
+                cat2: "轮组与轮胎服务",
+                cat3: "刹车服务",
+                cat4: "车架服务",
+                cat5: "避震服务",
+                cat6: "自行车组装",
+                cat7: "诊断与故障排除",
+                disclaimer: "* 严重锈蚀、损坏或非标准组件可能产生额外人工费用。",
+                serv1: "变速器或刹车外部油管更换（单个）",
+                serv2: "传统自行车内走线变速/坐管线管更换（单个）",
+                serv3: "电动车内走线变速/坐管线管更换（单个）",
+                serv4: "传统自行车内走线刹车油管 + 单边刹车注油",
+                serv5: "电动车内走线刹车油管 + 单边刹车注油",
+                serv6: "轮毂电机电动车内胎或外胎更换",
+                serv7: "轮组真空系统改装（单个）",
+                serv8: "花鼓保养（单轮）",
+                serv9: "塔基保养",
+                serv10: "轮组校正（单轮）",
+                serv11: "有内胎轮组辐条更换 + 轮组校正（最多5根）",
+                serv12: "真空胎轮组辐条更换 + 轮组校正（最多5根）",
+                serv13: "轮组编圈（单个）",
+                serv14: "刹车手柄注油（单个）",
+                serv15: "单边刹车注油",
+                serv16: "双边刹车注油",
+                serv17: "液压刹车活塞保养（单个）",
+                serv18: "刹车片或刹车盘更换（单个）",
+                serv19: "碗组保养",
+                serv20: "中轴保养或更换",
+                serv21: "",
+                serv22: "碗组系统更换",
+                serv23: "前叉更换",
+                serv24: "变速器离合器保养 & 导轮更换",
+                serv25: "自行车清洗",
+                serv26: "传动系统清洗",
+                serv27: "自行车贴模",
+                serv28: "全减震车架枢轴保养或轴承更换",
+                serv29: "升降座管安装（传统自行车）",
+                serv30: "升降座管安装（电动车）",
+                serv31: "升降座管保养",
+                serv32: "前叉50小时保养",
+                serv33: "前叉气柱保养",
+                serv34: "前叉200小时保养",
+                serv35: "后避震50小时保养",
+                serv36: "后避震200小时保养",
+                serv37: "儿童自行车组装（24寸以下）",
+                serv38: "成人传统自行车组装",
+                serv39: "成人电动车组装",
+                serv40: "电动车系统故障 & 组件更换",
+                serv41: "间歇性异响诊断",
+                serv42: "复杂 / 非标准问题诊断与维修"
+            }
+        };
+
+        const modalContent = {
+            en: {
+                modalTitle: 'Book Your Service',
+                modalSubtitle: "Fill in your details and we'll get back to you shortly.",
+                lblName: 'Full Name *', lblPhone: 'Phone *', lblAddress: 'Address *',
+                lblEmail: 'Email',
+                lblBrand: 'Bike Brand', lblModel: 'Bike Model',
+                lblPackage: 'Service Package',
+                lblIndiv: '🔧 Individual Services (optional)',
+                lblDate: 'Preferred Date',
+                lblTimeofday: 'Preferred Time',
+                todOpt0: '-- AM / PM --',
+                todOpt1: '🌅 Morning (AM)',
+                todOpt2: '🌇 Afternoon (PM)',
+                lblNotes: 'Extra Notes',
+                pkgOpt0: '-- Select a package (optional) --',
+                pkgOpt5: '🟡 Yellow Package (24" & under) - $119',
+                pkgOpt1: '🟢 Green Package - $129',
+                pkgOpt2: '🔵 Blue Package - $199',
+                pkgOpt3: '⚫ Black Package - $249',
+                pkgOpt4: '💎 Black Diamond Package - $649',
+                isCat1: 'Cable & Hose System Services',
+                isCat2: 'Wheel & Tyre Services',
+                isCat3: 'Brake Services',
+                isCat4: 'Frame Services',
+                isCat5: 'Suspension Services',
+                isCat6: 'Bike Building',
+                isCat7: 'Diagnostics & Troubleshooting',
+                submitBtn: 'Submit Booking Request',
+                subscribeLabel: 'Subscribe to our newsletter for tips, promotions & service reminders',
+                successTitle: 'Booking Submitted!',
+                successMsg: "Thank you! We'll be in touch within 24 hours to confirm your service.",
+                successCalNote: 'Click the button above to add this booking to your Google Calendar.',
+                closeBtn: 'Close'
+            },
+            zh: {
+                modalTitle: '预约服务',
+                modalSubtitle: '请填写您的信息，我们将尽快与您联系。',
+                lblName: '姓名 *', lblPhone: '电话 *', lblAddress: '地址 *',
+                lblEmail: '电子邮箱',
+                lblBrand: '自行车品牌', lblModel: '自行车型号',
+                lblPackage: '服务套餐',
+                lblIndiv: '🔧 单项服务（可选）',
+                lblDate: '首选日期',
+                lblTimeofday: '首选时间',
+                todOpt0: '-- 上午 / 下午 --',
+                todOpt1: '🌅 上午 (AM)',
+                todOpt2: '🌇 下午 (PM)',
+                lblNotes: '备注信息',
+                pkgOpt0: '-- 请选择套餐（可选）--',
+                pkgOpt5: '🟡 黄色套餐（24寸及以下）- $119',
+                pkgOpt1: '🟢 绿色套餐 - $129',
+                pkgOpt2: '🔵 蓝色套餐 - $199',
+                pkgOpt3: '⚫ 黑色套餐 - $249',
+                pkgOpt4: '💎 黑钻套餐 - $649',
+                isCat1: '线缆与线管系统服务',
+                isCat2: '轮组与轮胎服务',
+                isCat3: '刹车服务',
+                isCat4: '车架服务',
+                isCat5: '避震服务',
+                isCat6: '自行车组装',
+                isCat7: '诊断与故障排除',
+                submitBtn: '提交预约申请',
+                subscribeLabel: '订阅我们的电子报，获取保养技巧、优惠活动及服务提醒',
+                successTitle: '预约已提交！',
+                successMsg: '谢谢！我们将于 24 小时内与您联系确认服务。',
+                successCalNote: '点击上方按钮将此预约添加到您的 Google 日历。',
+                closeBtn: '关闭'
+            }
+        };
+
+        const _lbPhotos = [
+            "images/image_2B92DC8423B60E39084B34AC1987C346.jpg",
+            "images/image_3FD7E4310C7EF71BBFC33C13E440A775.jpg",
+            "images/image_1E291BD57300E71736E8803029B39825.jpg",
+            "images/image_1F81DF82F6A888D76A40554409758B74.jpg",
+            "images/image_C282016F639FDBA188056AF975A4088E.jpg",
+            "images/image_0757D0EBFF259DDE6095DE82F8A1ED66.jpg",
+            "images/image_ED70BAB1F6AA1E7A757A70889AB98AB0.jpg",
+            "images/image_DE5E0DC0240024362F361737CF1B02BB.jpg",
+            "images/image_75D8AAECC658E37D53730BE058899B71.jpg"
+        ];
+        const _lbAlts = [
+            "Wheel truing service",
+            "Cassette ultrasonic cleaning",
+            "Bottom bracket service in van",
+            "Gear tuning adjustment",
+            "Brake bleed service",
+            "Fox shock service",
+            "Mobile workshop interior",
+            "Park Tool equipped van",
+            "Offtrail Cycles mobile service van"
+        ];
+
+        let currentLang = 'en';
+
+        // ========== CORE FUNCTIONS ==========
+        function toggleLanguageMenu() {
+            document.getElementById('lang-menu').classList.toggle('show');
+        }
+
+        function selectLanguage(lang, displayName, event) {
+            currentLang = lang;
+            document.getElementById('current-lang').textContent = displayName;
+            document.getElementById('lang-menu').classList.remove('show');
+            
+            // Update active state
+            document.querySelectorAll('.language-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            switchLanguage(lang);
+        }
+
+        function switchLanguage(lang) {
+            const c = content[lang];
+            const m = modalContent[lang] || modalContent.en;
+            
+            // Update main content
+            document.getElementById('title').textContent = c.title;
+            document.getElementById('subtitle').textContent = c.subtitle;
+            document.getElementById('why-title').textContent = c.whyTitle;
+            document.getElementById('who-title').textContent = c.whoTitle;
+            document.getElementById('who-p1').textContent = c.whoP1;
+            document.getElementById('who-p2').textContent = c.whoP2;
+            document.getElementById('feat1-title').textContent = c.feat1Title;
+            document.getElementById('feat1-desc').textContent = c.feat1Desc;
+            document.getElementById('feat2-title').textContent = c.feat2Title;
+            document.getElementById('feat2-desc').textContent = c.feat2Desc;
+            document.getElementById('feat3-title').textContent = c.feat3Title;
+            document.getElementById('feat3-desc').textContent = c.feat3Desc;
+            document.getElementById('feat4-title').textContent = c.feat4Title;
+            document.getElementById('feat4-desc').textContent = c.feat4Desc;
+            document.getElementById('pkg-title').textContent = c.pkgTitle;
+            document.getElementById('price-note').textContent = c.priceNote;
+            document.getElementById('green-name').textContent = c.greenName;
+            document.getElementById('green-note').textContent = c.greenNote;
+            document.getElementById('green-items').innerHTML = c.greenItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('blue-name').textContent = c.blueName;
+            document.getElementById('blue-note').textContent = c.blueNote;
+            document.getElementById('blue-items').innerHTML = c.blueItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('black-name').textContent = c.blackName;
+            document.getElementById('black-note').textContent = c.blackNote;
+            document.getElementById('black-items').innerHTML = c.blackItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('diamond-name').textContent = c.diamondName;
+            document.getElementById('diamond-note').textContent = c.diamondNote;
+            document.getElementById('diamond-items').innerHTML = c.diamondItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('kids-name').textContent = c.kidsName;
+            document.getElementById('kids-note').textContent = c.kidsNote;
+            document.getElementById('kids-items').innerHTML = c.kidsItems.map(i => '<li>✓ ' + i + '</li>').join('');
+            document.getElementById('ready-title').textContent = c.readyTitle;
+            document.getElementById('phone-label').textContent = c.phoneLabel;
+            document.getElementById('email-label').textContent = c.emailLabel;
+            document.getElementById('hours-label').textContent = c.hoursLabel;
+            document.getElementById('hours-weekday').textContent = c.hoursWeekday;
+            document.getElementById('hours-weekend').textContent = c.hoursWeekend;
+            document.getElementById('info1').textContent = c.info1;
+            document.getElementById('info2').textContent = c.info2;
+            document.getElementById('info3').textContent = c.info3;
+            document.getElementById('cta-btn').textContent = c.ctaBtn;
+            document.getElementById('tab-about-label').textContent = c.tabAbout;
+            document.getElementById('tab-services-label').textContent = c.tabServices;
+            document.getElementById('footer1').textContent = c.footer1;
+            document.getElementById('footer2').textContent = c.footer2;
+            document.getElementById('gallery-title').textContent = c.galleryTitle;
+            document.getElementById('gallery-hint').textContent = c.galleryHint;
+            document.getElementById('brands-title').textContent = c.brandsTitle;
+            document.getElementById('brands-subtitle').textContent = c.brandsSubtitle;
+            
+            // Update individual services table
+            document.getElementById('indiv-title').textContent = c.indivTitle;
+            document.getElementById('service-col').textContent = c.serviceCol;
+            document.getElementById('price-col').textContent = c.priceCol;
+            document.getElementById('cat1').textContent = c.cat1;
+            document.getElementById('cat2').textContent = c.cat2;
+            document.getElementById('cat3').textContent = c.cat3;
+            document.getElementById('cat4').textContent = c.cat4;
+            document.getElementById('cat5').textContent = c.cat5;
+            document.getElementById('cat6').textContent = c.cat6;
+            document.getElementById('cat7').textContent = c.cat7;
+            document.getElementById('disclaimer').textContent = c.disclaimer;
+            
+            // Update all service items
+            for (let i = 1; i <= 42; i++) {
+                const elem = document.getElementById('serv' + i);
+                if (elem && c['serv' + i]) {
+                    elem.textContent = c['serv' + i];
+                }
+            }
+
+            // Update booking modal text
+            applyModalLabels(lang);
+            
+            var calBtn = document.getElementById('success-cal-btn');
+            if (calBtn) {
+                calBtn.textContent = (lang === 'zh') ? '📅 添加到 Google 日历' : '📅 Add to Google Calendar';
+            }
+        }
+
+        function applyModalLabels(lang) {
+            const m = modalContent[lang] || modalContent.en;
+            document.getElementById('modal-title').textContent = m.modalTitle;
+            document.getElementById('modal-subtitle').textContent = m.modalSubtitle;
+            
+            const labelMap = {
+                'lbl-name': m.lblName, 'lbl-phone': m.lblPhone, 'lbl-address': m.lblAddress,
+                'lbl-email': m.lblEmail, 'lbl-brand': m.lblBrand, 'lbl-model': m.lblModel,
+                'lbl-package': m.lblPackage, 'lbl-indiv': m.lblIndiv, 'lbl-date': m.lblDate,
+                'lbl-timeofday': m.lblTimeofday, 'lbl-notes': m.lblNotes,
+                'submit-btn-text': m.submitBtn, 'lbl-subscribe': m.subscribeLabel,
+                'success-title': m.successTitle, 'success-msg': m.successMsg,
+                'success-cal-note': m.successCalNote, 'success-close-btn': m.closeBtn
+            };
+            
+            for (let id in labelMap) {
+                const el = document.getElementById(id);
+                if (el) el.textContent = labelMap[id];
+            }
+
+            const pkg = document.getElementById('bk-package');
+            if (pkg && pkg.options.length >= 6) {
+                pkg.options[0].textContent = m.pkgOpt0;
+                pkg.options[1].textContent = m.pkgOpt5;
+                pkg.options[2].textContent = m.pkgOpt1;
+                pkg.options[3].textContent = m.pkgOpt2;
+                pkg.options[4].textContent = m.pkgOpt3;
+                pkg.options[5].textContent = m.pkgOpt4;
+            }
+
+            const tod = document.getElementById('bk-timeofday');
+            if (tod && tod.options.length >= 3) {
+                tod.options[0].textContent = m.todOpt0;
+                tod.options[1].textContent = m.todOpt1;
+                tod.options[2].textContent = m.todOpt2;
+            }
+
+            const cats = ['is-cat1','is-cat2','is-cat3','is-cat4','is-cat5','is-cat6','is-cat7'];
+            cats.forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = m['isCat' + (i+1)];
+            });
+
+            populateDateDropdowns(lang);
+            
+            // Update count badge if visible
+            const checked = document.querySelectorAll('#indiv-services-panel input[type=checkbox]:checked');
+            const badge = document.getElementById('indiv-count-badge');
+            if (badge && checked.length > 0) {
+                badge.textContent = lang === 'zh'
+                    ? '已选择 ' + checked.length + ' 项单项服务'
+                    : checked.length + ' individual service(s) selected';
+            }
+        }
+
+        // ========== UI HELPERS ==========
+        window.onclick = function(event) {
+            if (!event.target.matches('.language-button') && !event.target.matches('#current-lang')) {
+                document.getElementById('lang-menu').classList.remove('show');
+            }
+        }
+        
+        // ========== DATE LOGIC ==========
+        const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const MONTHS_ZH = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+
+        function populateDateDropdowns(lang) {
+            const yearSel  = document.getElementById('bk-date-year');
+            const monthSel = document.getElementById('bk-date-month');
+            const daySel   = document.getElementById('bk-date-day');
+            if (!yearSel || !monthSel || !daySel) return;
+            
+            const savedYear  = yearSel.value;
+            const savedMonth = monthSel.value;
+            const savedDay   = daySel.value;
+            const isZh = (lang === 'zh');
+
+            document.getElementById('date-year-placeholder').textContent  = isZh ? '年' : 'Year';
+            document.getElementById('date-month-placeholder').textContent = isZh ? '月' : 'Month';
+            document.getElementById('date-day-placeholder').textContent   = isZh ? '日' : 'Day';
+
+            while (yearSel.options.length > 1) yearSel.remove(1);
+            for (let y = 2026; y <= 2099; y++) {
+                const o = document.createElement('option');
+                o.value = y;
+                o.textContent = isZh ? y + '年' : y;
+                yearSel.appendChild(o);
+            }
+
+            const months = isZh ? MONTHS_ZH : MONTHS_EN;
+            while (monthSel.options.length > 1) monthSel.remove(1);
+            for (let m = 0; m < 12; m++) {
+                const o = document.createElement('option');
+                o.value = m + 1;
+                o.textContent = months[m];
+                monthSel.appendChild(o);
+            }
+
+            updateDays(savedYear || 2026, savedMonth || 1, lang);
+            if (savedYear)  yearSel.value  = savedYear;
+            if (savedMonth) monthSel.value = savedMonth;
+            if (savedDay)   daySel.value   = savedDay;
+        }
+
+        function updateDays(year, month, lang) {
+            const daySel = document.getElementById('bk-date-day');
+            if (!daySel) return;
+            const savedDay = daySel.value;
+            const isZh = (lang === 'zh');
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const minDay = (parseInt(year) === 2026 && parseInt(month) === 4) ? 18 : 1;
+            
+            while (daySel.options.length > 1) daySel.remove(1);
+            for (let d = minDay; d <= daysInMonth; d++) {
+                const o = document.createElement('option');
+                o.value = d;
+                o.textContent = isZh ? d + '日' : d;
+                daySel.appendChild(o);
+            }
+            if (savedDay >= minDay && savedDay <= daysInMonth) daySel.value = savedDay;
+        }
+
+        document.addEventListener('change', function(e) {
+            if (e.target.id === 'bk-date-year' || e.target.id === 'bk-date-month') {
+                const y = document.getElementById('bk-date-year').value || 2026;
+                const m = document.getElementById('bk-date-month').value || 1;
+                updateDays(y, m, currentLang);
+            }
+        });
+
+        // ========== MODAL FUNCTIONS ==========
+        window.openBookingModal = function() {
+            document.getElementById('bookingModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            document.getElementById('booking-form-content').style.display = 'block';
+            document.getElementById('booking-success').style.display = 'none';
+            document.getElementById('form-error').style.display = 'none';
+            ['bk-name','bk-phone','bk-address','bk-email','bk-brand','bk-model','bk-notes'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            document.getElementById('bk-package').value = '';
+            document.getElementById('bk-timeofday').value = '';
+            document.getElementById('bk-subscribe').checked = false;
+            populateDateDropdowns(currentLang);
+            document.querySelectorAll('#indiv-services-panel input[type=checkbox]').forEach(cb => cb.checked = false);
+            document.getElementById('indiv-services-panel').style.display = 'none';
+            document.getElementById('indiv-toggle-icon').style.transform = 'rotate(0deg)';
+            document.getElementById('indiv-count-badge').style.display = 'none';
+        }
+
+        window.closeBookingModal = function() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) closeBookingModal();
+        });
+
+        window.toggleIndivServices = function() {
+            const panel = document.getElementById('indiv-services-panel');
+            const icon = document.getElementById('indiv-toggle-icon');
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                panel.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox' && e.target.closest('#indiv-services-panel')) {
+                const checked = document.querySelectorAll('#indiv-services-panel input[type=checkbox]:checked');
+                const badge = document.getElementById('indiv-count-badge');
+                if (checked.length > 0) {
+                    badge.style.display = 'block';
+                    badge.textContent = currentLang === 'zh'
+                        ? '已选择 ' + checked.length + ' 项单项服务'
+                        : checked.length + ' individual service(s) selected';
+                } else {
+                    badge.style.display = 'none';
+                }
+            }
+        });
+
+        window.switchTab = function(tab) {
+            document.getElementById('panel-about').classList.toggle('active', tab === 'about');
+            document.getElementById('panel-services').classList.toggle('active', tab === 'services');
+            document.getElementById('tab-about').classList.toggle('active', tab === 'about');
+            document.getElementById('tab-services').classList.toggle('active', tab === 'services');
+        }
+
+        // ========== EMAILJS & BOOKING ==========
+        const EMAILJS_PUBLIC_KEY  = '0rVX04TicF45fHGNQ';
+        const EMAILJS_SERVICE_ID  = 'service_yk62j4x';
+        const EMAILJS_TEMPLATE_ID = 'template_49gmlb1';
+
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+        window.submitBooking = function() {
+            const name = document.getElementById('bk-name').value.trim();
+            const phone = document.getElementById('bk-phone').value.trim();
+            const address = document.getElementById('bk-address').value.trim();
+            const errEl = document.getElementById('form-error');
+
+            const errors = {
+                en: { required: 'Please fill in Name, Phone, and Address.' },
+                zh: { required: '请填写姓名、电话和地址。' }
+            };
+            const msg = errors[currentLang] || errors.en;
+
+            if (!name || !phone || !address) {
+                errEl.textContent = msg.required;
+                errEl.style.display = 'block';
+                return;
+            }
+            errEl.style.display = 'none';
+
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            document.getElementById('submit-btn-text').textContent = currentLang === 'zh' ? '提交中...' : 'Submitting...';
+
+            const checkedBoxes = document.querySelectorAll('#indiv-services-panel input[type=checkbox]:checked');
+            const selectedIndiv = Array.from(checkedBoxes).map(cb => cb.value);
+
+            const dateY = document.getElementById('bk-date-year').value;
+            const dateM = document.getElementById('bk-date-month').value;
+            const dateD = document.getElementById('bk-date-day').value;
+            let preferredDate = 'Not specified';
+            let icsDateStr = null;
+            if (dateY && dateM && dateD) {
+                if (currentLang === 'zh') {
+                    preferredDate = dateY + '年' + dateM + '月' + dateD + '日';
+                } else {
+                    const mNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                    preferredDate = dateD + ' ' + mNames[parseInt(dateM)-1] + ' ' + dateY;
+                }
+                icsDateStr = dateY + ('0' + dateM).slice(-2) + ('0' + dateD).slice(-2);
+            }
+
+            const booking = {
+                name, phone, address,
+                email: document.getElementById('bk-email').value.trim(),
+                bikeBrand: document.getElementById('bk-brand').value.trim(),
+                bikeModel: document.getElementById('bk-model').value.trim(),
+                servicePackage: document.getElementById('bk-package').value,
+                individualServices: selectedIndiv,
+                preferredDate,
+                preferredTime: document.getElementById('bk-timeofday').value || 'Not specified',
+                notes: document.getElementById('bk-notes').value.trim(),
+                subscribe: document.getElementById('bk-subscribe').checked,
+                submittedAt: new Date().toLocaleString()
+            };
+
+            const indivList = booking.individualServices.length > 0 ? booking.individualServices.join('\n  - ') : 'None';
+            const fullMessage = `Name: ${booking.name}\nPhone: ${booking.phone}\nEmail: ${booking.email || 'Not provided'}\nAddress: ${booking.address}\nBike: ${booking.bikeBrand || 'N/A'} ${booking.bikeModel || ''}\nPackage: ${booking.servicePackage || 'Not selected'}\nIndividual Services:\n  - ${indivList}\nDate: ${booking.preferredDate}\nTime: ${booking.preferredTime}\nNotes: ${booking.notes || 'None'}\nNewsletter: ${booking.subscribe ? 'Yes' : 'No'}\nSubmitted: ${booking.submittedAt}`;
+
+            const templateParams = {
+                to_email: 'info@offtrailcycles.com',
+                reply_to: booking.email || 'info@offtrailcycles.com',
+                from_name: booking.name,
+                from_email: booking.email || 'Not provided',
+                phone: booking.phone,
+                address: booking.address,
+                bike_brand: booking.bikeBrand || 'N/A',
+                bike_model: booking.bikeModel || 'N/A',
+                service_package: booking.servicePackage || 'Not selected',
+                indiv_services: indivList,
+                preferred_date: booking.preferredDate,
+                preferred_time: booking.preferredTime,
+                notes: booking.notes || 'None',
+                newsletter: booking.subscribe ? 'Yes' : 'No',
+                cal_link: icsDateStr ? buildGCalLink(booking, icsDateStr) : 'No date selected',
+                full_message: fullMessage
+            };
+
+            function showSuccess(calLink) {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                document.getElementById('submit-btn-text').textContent = currentLang === 'zh' ? '提交预约申请' : 'Submit Booking Request';
+                document.getElementById('booking-form-content').style.display = 'none';
+                document.getElementById('booking-success').style.display = 'block';
+                const successCalBtn = document.getElementById('success-cal-btn');
+                if (calLink) {
+                    successCalBtn.href = calLink;
+                    successCalBtn.style.display = 'inline-block';
+                } else {
+                    successCalBtn.style.display = 'none';
+                }
+            }
+
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(() => showSuccess(icsDateStr ? buildGCalLink(booking, icsDateStr) : null))
+                .catch(err => {
+                    console.error('EmailJS error:', err);
+                    const subject = encodeURIComponent('New Bike Service Booking - ' + booking.name);
+                    const body = encodeURIComponent(fullMessage);
+                    window.location.href = `mailto:info@offtrailcycles.com?subject=${subject}&body=${body}`;
+                    showSuccess(icsDateStr ? buildGCalLink(booking, icsDateStr) : null);
+                });
+        }
+
+        function buildGCalLink(booking, icsDateStr) {
+            const title = encodeURIComponent('Bike Service - ' + booking.name + (booking.servicePackage ? ' (' + booking.servicePackage + ')' : ''));
+            const details = encodeURIComponent(`Phone: ${booking.phone}\nEmail: ${booking.email || 'N/A'}\nBike: ${booking.bikeBrand || ''} ${booking.bikeModel || ''}\nPackage: ${booking.servicePackage || 'N/A'}\nTime: ${booking.preferredTime}\nNotes: ${booking.notes || 'None'}`);
+            const location = encodeURIComponent(booking.address);
+            const y = icsDateStr.slice(0,4), m = icsDateStr.slice(4,6), d = icsDateStr.slice(6,8);
+            const endDate = new Date(parseInt(y), parseInt(m)-1, parseInt(d)+1);
+            const ey = endDate.getFullYear(), em = ('0'+(endDate.getMonth()+1)).slice(-2), ed = ('0'+endDate.getDate()).slice(-2);
+            const dates = `${icsDateStr}/${ey}${em}${ed}`;
+            return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+        }
+
+        // ========== LIGHTBOX FUNCTIONS ==========
+        var _lbIdx = 0;
+        window.openLightbox = function(i) {
+            _lbIdx = i;
+            _showLightbox();
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function _showLightbox() {
+            document.getElementById('lb-img').src = _lbPhotos[_lbIdx];
+            document.getElementById('lb-img').alt = _lbAlts[_lbIdx];
+            document.getElementById('lb-caption').textContent = _lbAlts[_lbIdx];
+            document.getElementById('lb-counter').textContent = (_lbIdx + 1) + ' / ' + _lbPhotos.length;
+        }
+        window.closeLightbox = function() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        window.closeLightboxOnBg = function(e) {
+            if (e.target === document.getElementById('lightbox')) closeLightbox();
+        }
+        window.nextPhoto = function() { _lbIdx = (_lbIdx + 1) % _lbPhotos.length; _showLightbox(); }
+        window.prevPhoto = function() { _lbIdx = (_lbIdx - 1 + _lbPhotos.length) % _lbPhotos.length; _showLightbox(); }
+        document.addEventListener('keydown', function(e) {
+            const lb = document.getElementById('lightbox');
+            if (lb && lb.style.display === 'flex') {
+                if (e.key === 'ArrowRight') nextPhoto();
+                else if (e.key === 'ArrowLeft') prevPhoto();
+                else if (e.key === 'Escape') closeLightbox();
+            }
+        });
+
+        // Initial Load
+        switchLanguage('en');
+    </script>
+</body>
+</html>
+
