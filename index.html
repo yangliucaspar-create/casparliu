@@ -97,8 +97,9 @@
         .tab-btn { background: none; border: none; color: #aaa; padding: 16px 48px; font-size: 1em; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 3px solid transparent; transition: all 0.25s ease; position: relative; top: 2px; flex: 0 0 auto; min-width: 160px; }
         .tab-btn:hover { color: #fff; }
         .tab-btn.active { color: #e94560; border-bottom: 3px solid #e94560; }
-        .tab-panel { display: block; }
+        .tab-panel { display: none; }
         .tab-panel.active { display: block; }
+        .seo-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
         .cta-button:hover { background: #d63550; transform: scale(1.05); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
 
         /* ── Who We Are Section ── */
@@ -1865,14 +1866,15 @@
         });
 
         window.switchTab = function(tab) {
+            document.getElementById('panel-about').classList.toggle('active', tab === 'about');
+            document.getElementById('panel-services').classList.toggle('active', tab === 'services');
             document.getElementById('tab-about').classList.toggle('active', tab === 'about');
             document.getElementById('tab-services').classList.toggle('active', tab === 'services');
-            var target = document.getElementById('panel-' + tab);
-            if (target) {
-                var navH = document.querySelector('.tab-nav').offsetHeight;
-                var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 8;
-                window.scrollTo({ top: top, behavior: 'smooth' });
-            }
+            // Remove SEO-only class when panel becomes active (so it's fully visible)
+            ['about','services'].forEach(function(p) {
+                var el = document.getElementById('panel-' + p);
+                if (el) el.classList.remove('seo-hidden');
+            });
         }
 
         // ========== EMAILJS & BOOKING ==========
@@ -2046,6 +2048,23 @@
         window.addEventListener('resize', adjustBookingFormLayout);
         adjustBookingFormLayout();
     </script>
+
+    <!-- SEO-only: services content visible to crawlers, hidden from users -->
+    <div class="seo-hidden" aria-hidden="true">
+        <h2>Auckland Bike Service Packages</h2>
+        <h3>Yellow Package – $119 – Kids bike specific service (24" &amp; under)</h3>
+        <p>6-Point Safety Check, Gear Tuning, Brake Alignment, Seatpost &amp; Axles Clean &amp; Re-grease, Tube &amp; Tyre Replacement, Cable &amp; Hose Replacement, Hub &amp; Headset Adjustment, Wheel Truing, Brake Rotor &amp; Pad Cleaning or Replacement, Bottom Bracket Service.</p>
+        <h3>Green Package – $129 – Basic bicycle service &amp; maintenance</h3>
+        <p>Inspection &amp; Service reports, Test ride, 6-Point Safety Check, Gear Tuning, Brake Alignment, Seatpost &amp; Axles Clean &amp; Re-grease, Chain Inspection &amp; Lubrication, Tube &amp; Tyre Replacement, Suspension Setup &amp; Reset, Sealant Top-Up &amp; Valve Core Replacement, Cable Replacement &amp; Hose Lubrication, Hub Adjustment &amp; Tightening.</p>
+        <h3>Blue Package – $199 – Comprehensive bicycle service</h3>
+        <p>Everything in Green, plus Drivetrain Cleaning or Component Replacement, Wheel Truing, Brake Rotor &amp; Pad Cleaning or Replacement.</p>
+        <h3>Black Package – $249 – Advanced bike service &amp; repair</h3>
+        <p>Everything in Blue, plus Headset Bearing Service or Replacement, Hub &amp; Freehub Body Service or Bearing Replacement, Bottom Bracket Service or E-Bike Software Update.</p>
+        <h3>Black Diamond Package – $649 – Premium complete bicycle overhaul</h3>
+        <p>Everything in Black, plus Frame Pivot Service or Bearing Replacement, Fork 50-Hour Service, Shock 50-Hour Service, Full Brake Bleed &amp; Brake Piston Service.</p>
+        <h2>Individual Bicycle Repair Services – Auckland</h2>
+        <p>Puncture repair and tyre replacement, brake repair, brake bleed, wheel truing, gear tuning, bottom bracket service, headset service, drivetrain clean, suspension service, e-bike diagnostics, bike build. Serving all Auckland suburbs including North Shore, Albany, Orewa, Papakura, Manukau, Kumeu, Flat Bush.</p>
+    </div>
 </body>
 </html>
 
