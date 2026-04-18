@@ -2,23 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Offtrail Cycles</title>
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%23ffffff'/><circle cx='15' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='49' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='15' cy='43' r='2' fill='%23111111'/><circle cx='49' cy='43' r='2' fill='%23111111'/><polyline points='15,43 27,19 40,19' fill='none' stroke='%23111111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><line x1='49' y1='43' x2='40' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='27' y1='19' x2='32' y2='43' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='23' y1='19' x2='43' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><circle cx='40' cy='15' r='4' fill='none' stroke='%23111111' stroke-width='2.5'/></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #ffffff; background-color: #000000; min-width: 1200px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #ffffff; background-color: #000000; }
         .header { background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="tools" patternUnits="userSpaceOnUse" width="200" height="200"><circle cx="50" cy="50" r="3" fill="%23444"/><circle cx="150" cy="150" r="3" fill="%23444"/><rect x="70" y="70" width="60" height="4" fill="%23333" opacity="0.5"/><rect x="95" y="45" width="4" height="60" fill="%23333" opacity="0.5"/><path d="M 20 100 L 40 120 L 30 130 L 10 110 Z" fill="%23555" opacity="0.3"/><circle cx="170" cy="30" r="15" fill="none" stroke="%23444" stroke-width="2"/></pattern></defs><rect width="1200" height="400" fill="url(%23tools)"/></svg>') center/cover; color: white; padding: 60px 20px; text-align: center; position: relative; }
         .logo-container { position: absolute; top: 0; left: 20px; height: 100%; display: flex; align-items: center; padding: 10px 0; box-sizing: border-box; }
         .header-logo { height: 100%; width: auto; object-fit: contain; max-width: 450px; }
         @media (max-width: 768px) {
-            .header-logo { max-width: 280px; }
+            .header-logo { max-width: 220px; }
             .logo-container { left: 10px; }
         }
         @media (max-width: 480px) {
-            .header-logo { max-width: 200px; }
+            .header-logo { max-width: 160px; }
+            .logo-container { left: 8px; }
         }
         .language-switcher { position: absolute; top: 20px; right: 20px; z-index: 10; }
         .language-dropdown { position: relative; display: inline-block; }
@@ -81,7 +82,7 @@
         .cta-button:hover { background: #d63550; transform: scale(1.05); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
         /* Tab Navigation */
         .tab-nav { background: #111111; border-bottom: 2px solid #222; display: flex; justify-content: center; gap: 0; position: sticky; top: 0; z-index: 100; }
-        .tab-btn { background: none; border: none; color: #aaa; padding: 16px 48px; font-size: 1em; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 3px solid transparent; transition: all 0.25s ease; position: relative; top: 2px; }
+        .tab-btn { background: none; border: none; color: #aaa; padding: 16px 48px; font-size: 1em; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 3px solid transparent; transition: all 0.25s ease; position: relative; top: 2px; flex: 1; }
         .tab-btn:hover { color: #fff; }
         .tab-btn.active { color: #e94560; border-bottom: 3px solid #e94560; }
         .tab-panel { display: none; }
@@ -282,6 +283,153 @@
         .social-icon:hover {
             color: #e94560;
             transform: translateY(-3px);
+        }
+
+        /* ══════════════════════════════════════════
+           MOBILE RESPONSIVE STYLES
+        ══════════════════════════════════════════ */
+
+        /* Tablet: 768px */
+        @media (max-width: 900px) {
+            .package-grid { grid-template-columns: repeat(3, 1fr); }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            /* Header */
+            .header { padding: 50px 15px 30px; min-height: 160px; }
+            .header h1 { font-size: 2em; margin-bottom: 10px; }
+            .header p { font-size: 1em; }
+            .logo-container { position: static; height: auto; padding: 0; display: flex; justify-content: center; margin-bottom: 14px; }
+            .header { display: flex; flex-direction: column; align-items: center; padding-top: 55px; }
+            .header-logo { max-width: 180px; height: auto; }
+            .language-switcher { top: 12px; right: 12px; }
+            .language-button { padding: 7px 12px; font-size: 0.82em; }
+
+            /* Tabs */
+            .tab-btn { padding: 14px 10px; font-size: 0.85em; letter-spacing: 0.04em; }
+
+            /* Sections */
+            .section { padding: 40px 15px; }
+            .section-title { font-size: 1.8em; margin-bottom: 30px; }
+
+            /* Features grid: 2 columns */
+            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .feature-card { padding: 20px; }
+            .feature-card h3 { font-size: 1.1em; }
+
+            /* Gallery: 2 columns */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(5, 160px);
+            }
+            /* Last item spans full width on 9-item 2-col grid */
+            .gallery-item:last-child { grid-column: span 1; }
+
+            /* Packages: 2 cols */
+            .package-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .package-price { font-size: 1.5em; }
+
+            /* Contact */
+            .contact h2 { font-size: 1.8em; }
+            .contact-info { font-size: 1em; }
+
+            /* Social links */
+            .social-links { gap: 20px; }
+        }
+
+        /* Mobile: 480px */
+        @media (max-width: 480px) {
+            /* Header */
+            .header { padding-top: 50px; }
+            .header h1 { font-size: 1.6em; }
+            .header p { font-size: 0.9em; }
+            .header-logo { max-width: 140px; }
+            .language-button { padding: 6px 10px; font-size: 0.78em; }
+
+            /* Tabs */
+            .tab-btn { padding: 12px 6px; font-size: 0.78em; letter-spacing: 0.02em; }
+
+            /* Sections */
+            .section { padding: 30px 12px; }
+            .section-title { font-size: 1.5em; margin-bottom: 24px; }
+
+            /* Features: single column */
+            .features-grid { grid-template-columns: 1fr; gap: 14px; }
+
+            /* Gallery: 2 col, shorter rows */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(5, 130px);
+                gap: 8px;
+            }
+
+            /* Packages: single column */
+            .package-grid { grid-template-columns: 1fr; gap: 12px; }
+            .package-card { padding: 16px 14px; }
+            .package-name { font-size: 1em; }
+            .package-price { font-size: 1.4em; }
+
+            /* Contact */
+            .contact { padding: 40px 15px; }
+            .contact h2 { font-size: 1.5em; }
+            .cta-button { padding: 13px 28px; font-size: 1em; }
+
+            /* Booking form grid fix */
+            .bk-two-col { grid-template-columns: 1fr !important; }
+
+            /* Social */
+            .social-links { flex-wrap: wrap; gap: 16px; }
+
+            /* Brands track */
+            .brand-logo-item { width: 140px; height: 70px; padding: 10px 18px; }
+        }
+
+        /* Very small phones */
+        @media (max-width: 360px) {
+            .header h1 { font-size: 1.3em; }
+            .tab-btn { font-size: 0.72em; padding: 11px 4px; }
+            .section-title { font-size: 1.3em; }
+            .gallery-grid { grid-template-rows: repeat(5, 110px); gap: 6px; }
+        }
+
+        /* ── iOS zoom fix: keep all form inputs ≥ 16px so Safari doesn't zoom ── */
+        @media (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+
+        /* ── Services table: scroll horizontally on small screens ── */
+        .services-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        @media (max-width: 600px) {
+            .services-table-wrap table {
+                min-width: 420px;
+            }
+        }
+
+        /* ── Lightbox: full-screen on mobile ── */
+        @media (max-width: 600px) {
+            #lightbox > div {
+                width: 98vw !important;
+                padding: 10px !important;
+            }
+            #lb-img {
+                max-height: 65vh !important;
+            }
+        }
+
+        /* ── Booking modal: edge-to-edge on small phones ── */
+        @media (max-width: 480px) {
+            #bookingModal > div {
+                margin: 0 !important;
+                border-radius: 0 !important;
+                min-height: 100vh;
+            }
         }
     </style>
 </head>
@@ -561,7 +709,7 @@
         <div class="container">
             <h3 style="text-align: center; font-size: 2em; margin-top: 80px; margin-bottom: 30px; color: #ffffff;" id="indiv-title">Individual Services</h3>
 
-            <table style="width: 100%; margin-top: 50px; border-collapse: collapse; background: #1a1a1a; box-shadow: 0 5px 15px rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden;">
+            <div class="services-table-wrap"><table style="width: 100%; margin-top: 50px; border-collapse: collapse; background: #1a1a1a; box-shadow: 0 5px 15px rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden;">
                 <thead>
                     <tr>
                         <th style="background: #2a2a2a; color: white; padding: 15px; text-align: left; font-weight: 600;" id="service-col">Service</th>
@@ -761,7 +909,7 @@
                         <td style="padding: 12px 15px; border-bottom: 1px solid #333333;">$100/hr</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             <p style="margin-top: 20px; color: #888; font-size: 0.9em; font-style: italic;" id="disclaimer">* Additional labour may apply for severely seized, damaged, or non-standard components.</p>
         </div>
     </section>
@@ -788,16 +936,16 @@
 
     <!-- Booking Modal -->
     <div id="bookingModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; overflow-y:auto; backdrop-filter:blur(6px);">
-        <div style="max-width:620px; margin:40px auto; background:#111; border-radius:16px; border:1px solid #333; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.8);">
+        <div style="max-width:620px; margin:20px auto; background:#111; border-radius:16px; border:1px solid #333; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.8);">
             <!-- Modal Header -->
-            <div style="background:linear-gradient(135deg,#e94560,#c72d47); padding:30px 35px; position:relative;">
+            <div style="background:linear-gradient(135deg,#e94560,#c72d47); padding:25px 25px; position:relative;">
                 <button onclick="closeBookingModal()" style="position:absolute; top:15px; right:20px; background:rgba(255,255,255,0.15); border:none; color:#fff; width:34px; height:34px; border-radius:50%; font-size:1.2em; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">&times;</button>
                 <div style="font-size:2em; margin-bottom:6px;">🚲</div>
                 <h2 id="modal-title" style="color:#fff; font-size:1.7em; font-weight:700; margin:0 0 4px;">Book Your Service</h2>
                 <p id="modal-subtitle" style="color:rgba(255,255,255,0.85); font-size:0.95em; margin:0;">Fill in your details and we'll get back to you shortly.</p>
             </div>
             <!-- Modal Form -->
-            <div style="padding:35px;">
+            <div style="padding:25px;">
                 <div id="booking-success" style="display:none; text-align:center; padding:40px 20px;">
                     <div style="font-size:3em; margin-bottom:15px;">✅</div>
                     <h3 id="success-title" style="color:#4CAF50; font-size:1.5em; margin-bottom:10px;">Booking Submitted!</h3>
@@ -807,7 +955,7 @@
                     <button onclick="closeBookingModal()" id="success-close-btn" style="margin-top:25px; background:#e94560; color:#fff; border:none; padding:12px 35px; border-radius:50px; font-size:1em; cursor:pointer; font-weight:600;">Close</button>
                 </div>
                 <div id="booking-form-content">
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;">
+                    <div class="bk-two-col" style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;">
                         <div>
                             <label id="lbl-name" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Full Name *</label>
                             <input id="bk-name" type="text" placeholder="John Smith" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
@@ -825,7 +973,7 @@
                         <label id="lbl-email" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Email</label>
                         <input id="bk-email" type="email" placeholder="example@email.com" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
                     </div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;">
+                    <div class="bk-two-col" style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;">
                         <div>
                             <label id="lbl-brand" style="display:block; color:#aaa; font-size:0.85em; margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.05em;">Bike Brand</label>
                             <input id="bk-brand" type="text" placeholder="Trek, Giant, Specialized" style="width:100%; background:#1a1a1a; border:1px solid #333; color:#fff; padding:12px 14px; border-radius:8px; font-size:0.95em; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#e94560'" onblur="this.style.borderColor='#333'">
@@ -1759,6 +1907,18 @@
 
         // Initial Load
         switchLanguage('en');
+
+        // Mobile: collapse two-col booking form grids
+        function adjustBookingFormLayout() {
+            const cols = document.querySelectorAll('.bk-two-col');
+            if (window.innerWidth <= 480) {
+                cols.forEach(el => el.style.gridTemplateColumns = '1fr');
+            } else {
+                cols.forEach(el => el.style.gridTemplateColumns = '1fr 1fr');
+            }
+        }
+        window.addEventListener('resize', adjustBookingFormLayout);
+        adjustBookingFormLayout();
     </script>
 </body>
 </html>
