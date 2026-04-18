@@ -15,7 +15,10 @@
     <meta property="og:url" content="https://www.offtrailcycles.com/">
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='8' fill='%23ffffff'/><circle cx='15' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='49' cy='43' r='10' fill='none' stroke='%23111111' stroke-width='3.5'/><circle cx='15' cy='43' r='2' fill='%23111111'/><circle cx='49' cy='43' r='2' fill='%23111111'/><polyline points='15,43 27,19 40,19' fill='none' stroke='%23111111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/><line x1='49' y1='43' x2='40' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='27' y1='19' x2='32' y2='43' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><line x1='23' y1='19' x2='43' y2='19' stroke='%23111111' stroke-width='3' stroke-linecap='round'/><circle cx='40' cy='15' r='4' fill='none' stroke='%23111111' stroke-width='2.5'/></svg>">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #ffffff; background-color: #000000; }
@@ -94,7 +97,7 @@
         .tab-btn { background: none; border: none; color: #aaa; padding: 16px 48px; font-size: 1em; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 3px solid transparent; transition: all 0.25s ease; position: relative; top: 2px; flex: 0 0 auto; min-width: 160px; }
         .tab-btn:hover { color: #fff; }
         .tab-btn.active { color: #e94560; border-bottom: 3px solid #e94560; }
-        .tab-panel { display: none; }
+        .tab-panel { display: block; }
         .tab-panel.active { display: block; }
         .cta-button:hover { background: #d63550; transform: scale(1.05); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
 
@@ -1862,10 +1865,14 @@
         });
 
         window.switchTab = function(tab) {
-            document.getElementById('panel-about').classList.toggle('active', tab === 'about');
-            document.getElementById('panel-services').classList.toggle('active', tab === 'services');
             document.getElementById('tab-about').classList.toggle('active', tab === 'about');
             document.getElementById('tab-services').classList.toggle('active', tab === 'services');
+            var target = document.getElementById('panel-' + tab);
+            if (target) {
+                var navH = document.querySelector('.tab-nav').offsetHeight;
+                var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
         }
 
         // ========== EMAILJS & BOOKING ==========
@@ -2022,8 +2029,10 @@
             }
         });
 
-        // Initial Load
-        switchLanguage('en');
+        // Initial load — HTML already contains full English content.
+        // Only initialise modal labels and date dropdowns via JS.
+        applyModalLabels('en');
+        populateDateDropdowns('en');
 
         // Mobile: collapse two-col booking form grids
         function adjustBookingFormLayout() {
